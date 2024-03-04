@@ -14,7 +14,7 @@
     //     echo "<link rel='stylesheet' href='assets/css/$title.css'>";
     // }
     ?>
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="<?=SITE_PATH ? SITE_PATH : ""?>assets/styles/css/style.css">
     <title><?= $title ? $title : "..."?></title>
 </head>
 <body>

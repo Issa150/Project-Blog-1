@@ -1,5 +1,8 @@
 <?php
+include_once "config/Database.php";
 include_once 'config/function.php';
+$title = "login";
+include_once "inc/header.html.php";
 include_once "classes/GetUsers.php";
 $usersStmt = new GetUsers();
 
@@ -18,6 +21,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = strtolower(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS));
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
     $verifyTicket = true;
+
+    foreach($_POST as $input){
+        if (empty($input)){
+            $verifyTicket = false;
+        }
+    }
 
     if (empty($username)) {
         $usernameEmptyErr = "<p>This field can not be empty.";
@@ -72,16 +81,15 @@ function errorDisplay($usernameEmptyErr,$usernameLengthErr,$usernameErr){
 
 }
 
-$title = "login";
-include_once "inc/header.html.php"
+
 ?>
 
-<form action="" method="post">
+<form autocomplete="off" action="" method="post">
     <h2>Welcome to login page</h2>
-    <input type="text" name="username" placeholder="Username">
-    <?php errorDisplay($usernameEmptyErr,$usernameLengthErr,$usernameErr)?>
+    <input autocomplete="off" type="text" name="username" placeholder="Username">
+    <?php  errorDisplay($usernameEmptyErr,$usernameLengthErr,$usernameErr)?>
 
-    <input type="password" name="password" placeholder="Password">
+    <input autocomplete="off" type="password" name="password" placeholder="Password">
     <?php errorDisplay($passwordEmptyErr,$passwordLengthErr,$passwordErr)?>
     <button type="submit">Login</button>
 </form>

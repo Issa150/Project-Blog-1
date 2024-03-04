@@ -1,4 +1,5 @@
-<?php include_once "config/function.php" ;
+<?php 
+//include_once "config/function.php" ;
 
 
 // die;
@@ -6,7 +7,7 @@
 <!-- ///////////////////////////////////////////////////// -->
 <?php
 include_once 'config/function.php';
-include_once "config/GetUsers.php";
+include_once "classes/GetUsers.php";
 $usersStmt = new GetUsers();
 
 // Error messages

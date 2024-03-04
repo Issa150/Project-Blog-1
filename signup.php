@@ -11,7 +11,7 @@ $passwordRepeatErr = "";
 
 $welcome = "";
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if(!empty($_POST)) {
 
     $firstName = filter_input(INPUT_POST, 'firstName', FILTER_SANITIZE_SPECIAL_CHARS);
     $lastName = filter_input(INPUT_POST, 'lastName', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
 // echo$firstName,$lastName,$username,$email,$password,$passwordRepeat;
-
+    
     if (empty($firstName)) {
         $firstNameErr = "<p>This field can not be empty.</p>";
         
