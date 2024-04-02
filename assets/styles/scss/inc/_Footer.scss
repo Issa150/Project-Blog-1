@@ -1,0 +1,25 @@
+footer{
+    background: #141414;
+    color: azure;
+    padding: 2em;
+
+
+    .container{
+        display: flex;
+        justify-content: space-between;
+
+        ul{
+            h3{
+                margin-block: 1em;
+            }
+            li{
+                list-style: none;
+                margin-block: .7em;
+
+                a{
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

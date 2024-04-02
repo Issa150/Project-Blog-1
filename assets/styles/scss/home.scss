@@ -1,0 +1,145 @@
+@import "./config/Variables";
+@import "./config/Reset";
+
+@import "./inc/Nav";
+
+header {
+  .swiper {
+    width: 100%;
+    height: 90vh;
+
+    .swiper-slide {
+      text-align: center;
+      font-size: 18px;
+      background: #EEEEEE;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+      position: relative;
+
+      img {
+        position: absolute;
+        offset: 0;
+        // display: block;
+        width: 100%;
+        height: 100%;
+        // object-fit: cover;
+        object-position: 0 50%;
+      }
+
+      .content{
+        z-index: 1;
+        text-align: left;
+        padding: 3em 1em;
+        // background: linear-gradient(to top, rgba(0, 0, 0, 0.488), rgba(0, 0, 0, 0.307),transparent);
+        background: linear-gradient(to top, rgba(255, 255, 255, 0.488), rgba(255, 255, 255, 0.307),transparent);
+        // background: #ffffff47;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+        // max-width: 100vw;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+
+      }
+    }
+
+    // /////////
+    .swiper-button-next,.swiper-button-prev{
+        top: 83%;
+    }
+    .swiper-button-next{
+        right: 4rem;
+    }
+    .swiper-button-prev{
+        display: none;
+    }
+    //////////////
+    .autoplay-progress {
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 10;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: var(--swiper-theme-color);
+
+      svg {
+        --progress: 0;
+        position: absolute;
+        left: 0;
+        top: 0px;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        stroke-width: 4px;
+        stroke: var(--swiper-theme-color);
+        fill: none;
+        stroke-dashoffset: calc(125.6px * (1 - var(--progress)));
+        stroke-dasharray: 125.6;
+        transform: rotate(-90deg);
+      }
+    }
+  }
+}
+
+
+main{
+
+    section{
+        h2{
+            font-size: 2rem;
+            margin-block: 1em;
+            border-bottom: 3px solid grey;
+            padding-bottom: .6em;
+            border-spacing: 10px 10px;
+        }
+
+        &>div{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.2em;
+
+            article{
+                background: #e3e3e3;
+                box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+                border-radius: 1.2rem;
+                padding: .3em;
+
+
+                figure{
+
+                    img{
+                        width: 100%;
+                        aspect-ratio: 1/.6;
+                        border-radius: 1rem;
+                    }
+
+                    figcaption{
+                        padding: 1.5em;
+
+                        .meta-info-container{
+                            margin-top: 1em;
+                            display: flex;
+                            align-items: center;
+                            gap: 1em;
+
+                            img{
+                                
+                                width: 30px;
+                                aspect-ratio: 1/1;
+                                border-radius: 50%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@import "./inc/Footer";

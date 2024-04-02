@@ -1,78 +1,70 @@
-<?php 
-//include_once "config/function.php" ;
-
-
-// die;
-?>
-<!-- ///////////////////////////////////////////////////// -->
 <?php
-include_once 'config/function.php';
-include_once "classes/GetUsers.php";
-$usersStmt = new GetUsers();
-
-// Error messages
-$usernameErr = "";
-$passwordErr = "";
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-    $username = strtolower(filter_input(INPUT_POST, 'username', FILTER_SANITIZE_SPECIAL_CHARS));
-    $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_SPECIAL_CHARS);
-    $verifyTicket = true;
-
-    if (empty($username)) {
-        $usernameErr = "<p>This field can not be empty.";
-        $verifyTicket = false;
-    } elseif (strlen($username) < 5) {
-        $usernameErr = "<p>The value must be at least 5 characters!</p>";
-        $verifyTicket = false;
-    }
+include_once "inc/session_security.php";
+include_once "inc/function.php";
+include_once "controllers/index.controller.php";
 
 
-    if (empty($password)) {
-        $passwordErr = "<p>This field can not be empty.";
-        $verifyTicket = false;
-    } elseif (strlen($password) < 8) {
-        $passwordErr = "<p>The value must be at least 8 characters!</p>";
-        $verifyTicket = false;
-    }
 
-
-    if ($verifyTicket) {
-
-        $user = $usersStmt->getSingleUser("username", $username);
-
-        // If user is found in the database
-        if ($user != null) {
-
-
-            // Checking for correct password 
-            // if (password_verify($password,$user["password"])) {
-            if ($password === $user["password"]) {
-                $welcome = "Welcome to the dashboard!<br />";
-            } else {
-                $passwordErr = "Password is incorrect.";
-            }
-        } else {
-            $usernameErr = "<p>The username does not exist.</p>";
-        }
-    }
-}
-
-$title = "index";
-include_once "inc/header.html.php"
+$title = "home";
+include_once "inc/header.html.php";
+include_once "inc/nav.php";
 ?>
 
-<form action="" method="post">
-    <h2>Welcome to login page</h2>
-    <input type="text" name="username" placeholder="Username">
-    <?php if ($usernameErr) echo "<div class='errorContainer'>{$usernameErr}</div>"; ?>
+<header>
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="assets/imgs/jason-briscoe-GrdJp16CPk8-unsplash.jpg" alt="a woman cooking in the kitchen.">
+                <div class="content">
+                    <div class="container">
+                        <h3>Mastering the Art of Homemade Pasta</h3>
+                        <p>Discover the joy of crafting your own fresh pasta from scratch. Learn essential techniques, from kneading the dough to shaping delicate ravioli.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">Slide 2</div>
+            <div class="swiper-slide">Slide 3</div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
 
-    <input type="password" name="password" placeholder="Password">
-    <?php if ($passwordErr) echo "<div class='errorContainer'>{$passwordErr}</div>"; ?>
-    <button type="submit">Login</button>
-</form>
+        <div class="autoplay-progress">
+            <svg viewBox="0 0 48 48">
+                <circle cx="24" cy="24" r="20"></circle>
+            </svg>
+            <span></span>
+        </div>
+    </div>
+
+    <!-- Swiper JS -->
+</header>
+
+
+<main>
+    <section class="container">
+        <h2>Recent blog posts</h2>
+        <div class="posts">
+            <article>
+                <figure>
+                    <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
+                    <figcaption>
+                        <h3>Building you API stack</h3>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi, aliquam quis culpa quod earum molestiae! Corporis beatae laboriosam suscipit nesciunt illum autem optio a nostrum.</p>
+                        <div class="meta-info-container">
+                            <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
+                            <p>Lana steinler</p>
+                            <p>18 Jan 2024</p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </article>
+        </div>
+        <button>Load more</button>
+    </section>
+</main>
 
 
 
-<?php include_once "inc/footer.html.php" ?>
+<?php include_once "inc/footer.html.php"; ?>

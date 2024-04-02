@@ -1,23 +1,23 @@
 <?php
-// include_once "../config/Database.php";
+include_once "Database.php";
 
 class getUsers{
     private $db;
     
     public function __construct(){
-        $this->db = new Database("localhost","root", "", "first_db" );
+        $this->db = new Database("localhost","root", "", "blog_1" );
     }
 
 
-    public function getSingleUser($par1, $parValue){
-        $stmt = $this->db->connection()->prepare("SELECT * FROM users WHERE $par1 = ?");
+    public function getSingleUser( $param){
+        $stmt = $this->db->connection()->prepare("SELECT * FROM users WHERE username = :username");
 
         $stmt->execute(array(
-            $par1 = $parValue
+            ":username" => $param
         ));
         $user = $stmt->fetch();
 
-        return $user;
+        return $user;   
     }
 
     public function getAllUsers(){
@@ -32,3 +32,17 @@ class getUsers{
     
 
 }
+
+
+/* 
+public function getSingleUser($par1, $parValue){
+        $stmt = $this->db->connection()->prepare("SELECT * FROM users WHERE $par1 = ?");
+
+        $stmt->execute(array(
+            $par1 = $parValue
+        ));
+        $user = $stmt->fetch();
+
+        return $user;
+    }
+*/

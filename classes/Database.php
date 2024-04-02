@@ -8,7 +8,7 @@ class Database{
     private $connection;
 
 
-    public function __construct($host, $username, $password, $db_name){
+    public function __construct($host = 'localhost', $username = 'root', $password = '', $db_name = 'blog_1'){
         $this->host = $host;
         $this->username = $username;
         $this->password = $password;
