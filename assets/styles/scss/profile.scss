@@ -1,0 +1,99 @@
+@import "./config/Variables";
+@import "./config/Reset";
+@import "./inc/Nav";
+
+main.container{
+    display: grid;
+    grid-template-columns: min(160px, 20%) 1fr;
+    // grid-template-columns: repeat(auto-fill, minmax(max(160px,20%), 1fr));
+
+
+    aside{
+        // width: max(150px,30%);
+
+        ul{
+            li{
+                list-style: none;
+
+                a{
+                    text-decoration: none;
+                    padding:  .5rem 1rem;
+                    transition: .2s;
+                    border-left: 3px solid transparent;
+
+                    &:hover{
+                        border-left: 3px solid orange;
+                        background: rgba(255, 166, 0, 0.065);
+                    }
+
+
+                    i{
+                        margin-right: 10px;
+                        font-size: 1.3rem;
+                        color: rgb(61, 59, 59);
+                    }
+                }
+            }
+        }
+    }
+
+
+    .info-detail{
+
+        .head-info{
+            display: grid;
+            grid-template-columns: auto 1fr;
+            align-items: center;
+            gap:  2rem;
+
+            img{
+                width: 100px;
+                border-radius: 50%;
+                filter: drop-shadow(0 0 10px lightgrey);
+            }
+
+            .user-info{
+
+                h3{
+                    font-size: 2.5rem;
+                }
+            }
+        }
+
+
+        .body-info{
+
+            form{
+                display: flex;
+                flex-wrap: wrap;
+                column-gap: 1em;
+
+                fieldset{
+                    // flex: 0 1 300px;
+                    flex-basis: 40%;
+                    flex-grow: 1;
+
+                    input[type="radio"]{
+                        margin-block: 1em;
+                    }
+                }
+
+            }
+        }
+
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@import "./inc/Footer";

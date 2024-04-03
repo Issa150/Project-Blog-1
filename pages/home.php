@@ -1,7 +1,11 @@
 <?php
-include_once "inc/session_security.php";
-include_once "inc/function.php";
-include_once "controllers/index.controller.php";
+// include_once "inc/session_security.php";
+// include_once "inc/function.php";
+// include_once "controllers/index.controller.php";
+
+// if(isset($_GET['login'])){
+//     header('Location: pages/connection/login');
+// }
 
 
 $title = "home";
@@ -66,4 +70,4 @@ include_once "inc/nav.php";
 
 
 
-<?php include_once "inc/footer.html.php"; ?>
+<?php //include_once "inc/footer.html.php"; ?>
