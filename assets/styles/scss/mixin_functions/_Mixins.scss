@@ -1,0 +1,55 @@
+@mixin slidingMenu() {
+  ul {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: max-content;
+    opacity: 0;
+    visibility: hidden;
+
+    // Effect
+    transition: transform 0.25s, opacity 0.25s;
+    transform: translateY(1em) scale(0.95);
+    // real list UL
+    & > div {
+      margin-top: 1em;
+      background: #eeeeee;
+      box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
+      padding: 10px;
+
+      li {
+        // margin-block: 10px;
+
+        a {
+          padding: 0.6em 0.8em;
+          border-radius: $radius-sm;
+          transition: 0.25s;
+          border-bottom: 3px solid transparent;
+          display: flex;
+            align-items: center;
+            gap: .5em;
+
+          &:hover {
+            border-bottom: 3px solid $clr_accent_1;
+            background: #e1e1e1;
+            background: rgba($clr_accent_1, 0.065);
+
+            i {
+              color: darken($clr_accent_1, 5%);
+            }
+          }
+
+          i {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  &:hover ul {
+    opacity: 1;
+    visibility: visible;   
+    transform: translateY(0em) scale(1);
+  }
+}

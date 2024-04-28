@@ -1,5 +1,5 @@
 <?php
-include_once "../../controllers/connection/signup.controller.php";
+include_once "../../inc/process/signup.process.php";
 
 $title = "signup";
 include_once "../../inc/header.html.php"

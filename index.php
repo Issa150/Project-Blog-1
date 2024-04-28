@@ -1,15 +1,16 @@
 <?php
 include_once "inc/session_security.php";
 include_once "inc/function.php";
-include_once "controllers/index.controller.php";
+include_once "inc/process/index.process.php";
 
 
 $title = "home";
 include_once "inc/header.html.php";
-include_once "inc/nav.php";
+include_once "inc/components/nav.php";
 ?>
 
 <header>
+    <?php   ?>
     <!-- Swiper -->
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">

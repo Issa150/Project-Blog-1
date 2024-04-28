@@ -4,6 +4,9 @@ include_once '../../inc/function.php';
 include_once "../../classes/GetUsers.php";
 
 
+
+
+///////////////////////////////////////
 // Error variables
 $usernameErr = $passwordErr = "";
 
@@ -43,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             // Checking for correct password 
             if (password_verify($password,$user["password"])) {
-
+                unset($user[ "password" ]);
                 $_SESSION['current_user'] = $user;
                 
                 header('Location: '. SITE_PATH . 'index.php');

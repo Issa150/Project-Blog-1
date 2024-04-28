@@ -1,5 +1,5 @@
-@import "./config/Variables";
-@import "./config/Reset";
+@import "./base/Variables";
+@import "./base/Reset";
 
 @import "./inc/Nav";
 
@@ -33,7 +33,7 @@ header {
         text-align: left;
         padding: 3em 1em;
         // background: linear-gradient(to top, rgba(0, 0, 0, 0.488), rgba(0, 0, 0, 0.307),transparent);
-        background: linear-gradient(to top, rgba(255, 255, 255, 0.488), rgba(255, 255, 255, 0.307),transparent);
+        background: linear-gradient(to top, rgba(255, 255, 255, 0.788), rgba(255, 255, 255, 0.607),transparent);
         // background: #ffffff47;
         backdrop-filter: blur(5px);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
@@ -52,7 +52,7 @@ header {
         right: 4rem;
     }
     .swiper-button-prev{
-        display: none;
+        left: 4rem;
     }
     //////////////
     .autoplay-progress {

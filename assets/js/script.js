@@ -47,14 +47,14 @@ var swiper = new Swiper(".mySwiper", {
 /////////////////////////////////////////////////
 //            MENU TOGGLE RESPONSIVE           //
 const ul = document.querySelector('nav .container ul');
-my_menu.onclick = () => {
+hamburger_menu.onclick = () => {
     ul.classList.toggle("active")
     // menuUls.forEach(ul => {
     // })
 }
 ////////////////////////////////////////////////
 //          Active Menu detection //
-let links = document.querySelectorAll("nav a"); 
+let links = document.querySelectorAll("nav ul:first-child a"); 
 let pageActive = window.location.href;
 // Stockage localisation dans une variable
 for (let i = 0; i < links.length; i++) {
@@ -62,4 +62,18 @@ for (let i = 0; i < links.length; i++) {
     if (pageActive.includes(links[i].href)) {        // On vérifie si la localisation de la page contient le lien sur lequel on clique // si true        
         links[i].classList.add("active"); // Ajout de la classe "actuel"    
     }
+}
+
+////////////////////////////////////////////////
+//         Form handling
+
+// const  closeDialog = closeDialog
+openDialog.onclick = ()=>{
+    myModal.showModal();
+    document.body.style.overflow = 'hidden';
+}
+cancelModal.onclick = ()=>{
+    myModal.close();
+    document.body.style.overflow = 'auto';
+
 }

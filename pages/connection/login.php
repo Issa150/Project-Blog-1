@@ -1,5 +1,5 @@
 <?php
-include_once "../../controllers/connection/login.controller.php";
+include_once "../../inc/process/login.process.php";
 
 
 $title = "login";
@@ -15,7 +15,7 @@ include_once "../../inc/header.html.php";
                 <i class="fa-solid fa-user"></i>
 
                 <div class="single_wrap_input">
-                    <input autocomplete="off" type="text" name="username" placeholder="Username">
+                    <input value="issa2024" autocomplete="off" type="text" name="username" placeholder="Username">
                 </div>
             </div>
             <?php echo $usernameErr ? "<p class='error-message'>$usernameErr</p>" : ""; ?>
@@ -25,7 +25,7 @@ include_once "../../inc/header.html.php";
             <div class="input-clone">
                 <i class="fa-solid fa-lock"></i>
                 <div class="single_wrap_input">
-                    <input autocomplete="off" type="password" name="password" placeholder="Password">
+                    <input value="Issa2024" autocomplete="off" type="password" name="password" placeholder="Password">
                     <span class="showPassword" id="showPassword"><i class="fa-solid fa-eye"></i></span>
                 </div>
             </div>

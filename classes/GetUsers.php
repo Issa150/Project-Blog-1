@@ -20,6 +20,17 @@ class getUsers{
         return $user;   
     }
 
+    public function getSingle($table,$col,$val){
+        $stmt = $this->db->connection()->prepare("SELECT * FROM $table WHERE $col = :$col");
+
+        $stmt->execute(array(
+            ":$col" => $val
+        ));
+        $user = $stmt->fetch();
+
+        return $user;   
+    }
+
     public function getAllUsers(){
         $stmt = $this->db->connection()->prepare("SELECT * FROM users");
         $stmt->execute();

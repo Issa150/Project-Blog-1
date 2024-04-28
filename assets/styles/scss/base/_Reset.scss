@@ -10,7 +10,11 @@ img {
   object-fit: cover;
   display: block;
 }
+li{
+  list-style: none;
+}
 a {
+  text-decoration: none;
   color: inherit;
   display: inline-block;
 }
@@ -23,6 +27,11 @@ textarea {
   border: none;
   margin-block: 0.5em;
   border-radius: $radius-sm;
+  outline: 1px solid lightgrey;
+
+  &:focus{
+    outline: 1px solid rgb(5, 172, 218);
+  }
 }
 label{
   display: block;
@@ -33,7 +42,7 @@ fieldset{
   outline: none;
 }
 
-button {
+button,.btn {
   padding: 0.6em 1.2em;
   font-size: 1rem;
   outline: none;

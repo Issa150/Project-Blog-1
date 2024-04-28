@@ -13,7 +13,12 @@ img {
   display: block;
 }
 
+li {
+  list-style: none;
+}
+
 a {
+  text-decoration: none;
   color: inherit;
   display: inline-block;
 }
@@ -27,6 +32,11 @@ textarea {
   border: none;
   margin-block: 0.5em;
   border-radius: 5px;
+  outline: 1px solid lightgrey;
+}
+input:is([type=text], [type=password], [type=email]):focus,
+textarea:focus {
+  outline: 1px solid rgb(5, 172, 218);
 }
 
 label {
@@ -38,7 +48,7 @@ fieldset {
   outline: none;
 }
 
-button {
+button, .btn {
   padding: 0.6em 1.2em;
   font-size: 1rem;
   outline: none;
@@ -71,6 +81,12 @@ body {
 
 nav {
   padding: 1em;
+  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 20;
 }
 nav .container {
   display: -webkit-box;
@@ -80,35 +96,88 @@ nav .container {
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
-nav .container ul {
+nav .container > ul {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   gap: 0.2em;
 }
-nav .container ul li {
-  list-style: none;
+nav .container > ul > li {
+  position: relative;
 }
-nav .container ul li a {
-  text-decoration: none;
+nav .container > ul > li > a {
   padding: 0.5em 0.9em;
   border-radius: 5px;
   -webkit-transition: 0.15s ease-out;
   transition: 0.15s ease-out;
 }
-nav .container ul li a:hover {
+nav .container > ul > li > a:hover {
   background: #191a19;
   color: azure;
 }
-nav .container ul li a.active {
+nav .container > ul > li > a.active {
   background: #191a19;
   color: azure;
   font-weight: bolder;
 }
-nav .container ul li a i {
+nav .container > ul > li > a i {
   margin-left: 1em;
 }
-nav .container ul.connection li:has(img) a {
+nav .container > ul > li ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.25s, -webkit-transform 0.25s;
+  transition: opacity 0.25s, -webkit-transform 0.25s;
+  transition: transform 0.25s, opacity 0.25s;
+  transition: transform 0.25s, opacity 0.25s, -webkit-transform 0.25s;
+  -webkit-transform: translateY(1em) scale(0.95);
+          transform: translateY(1em) scale(0.95);
+}
+nav .container > ul > li ul > div {
+  margin-top: 1em;
+  background: #eeeeee;
+  -webkit-box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
+  padding: 10px;
+}
+nav .container > ul > li ul > div li a {
+  padding: 0.6em 0.8em;
+  border-radius: 5px;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  border-bottom: 3px solid transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+}
+nav .container > ul > li ul > div li a:hover {
+  border-bottom: 3px solid orange;
+  background: #e1e1e1;
+  background: rgba(255, 165, 0, 0.065);
+}
+nav .container > ul > li ul > div li a:hover i {
+  color: #e69500;
+}
+nav .container > ul > li ul > div li a i {
+  margin: 0;
+}
+nav .container > ul > li:hover ul {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0em) scale(1);
+          transform: translateY(0em) scale(1);
+}
+nav .container ul.connection li:has(img) > a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -118,15 +187,18 @@ nav .container ul.connection li:has(img) a {
   gap: 0.5em;
   padding: 0;
 }
-nav .container ul.connection li:has(img) a img {
+nav .container ul.connection li:has(img) > a img {
+  border: 3px solid white;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.158);
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.158);
   width: 40px;
   border-radius: 50%;
 }
-nav .container ul.connection li:has(img) a:hover {
+nav .container ul.connection li:has(img) > a:hover {
   background: transparent;
   color: initial;
 }
-nav .container .my_menu {
+nav .container .hamburger_menu {
   display: none;
 }
 
@@ -166,7 +238,7 @@ nav .container .my_menu {
   nav .container ul.active li:hover {
     background: #000;
   }
-  nav .container .my_menu {
+  nav .container .hamburger_menu {
     color: #000000;
     display: block;
   }
@@ -202,8 +274,8 @@ header .swiper .swiper-slide .content {
   z-index: 1;
   text-align: left;
   padding: 3em 1em;
-  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0.488)), color-stop(rgba(255, 255, 255, 0.307)), to(transparent));
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.488), rgba(255, 255, 255, 0.307), transparent);
+  background: -webkit-gradient(linear, left bottom, left top, from(rgba(255, 255, 255, 0.788)), color-stop(rgba(255, 255, 255, 0.607)), to(transparent));
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.788), rgba(255, 255, 255, 0.607), transparent);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
@@ -218,7 +290,7 @@ header .swiper .swiper-button-next {
   right: 4rem;
 }
 header .swiper .swiper-button-prev {
-  display: none;
+  left: 4rem;
 }
 header .swiper .autoplay-progress {
   position: absolute;
