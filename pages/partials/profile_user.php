@@ -156,11 +156,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </fieldset>
 
         <fieldset class="grid-col-3">
-            <label for="country">country</label>
+            <label for="country">Country</label>
             <input readonly="true" type="text" name="country" id="country" value="<?= $getUser['country'] ?>">
         </fieldset>
         <div class="grid-full-width">
-            <button href="?modify" id="openDialog">Make changes</button>
+            <button id="openDialog">Make changes</button>
         </div>
     </div>
     <!--  ----------------------------------------------->

@@ -142,12 +142,17 @@ main.container{
                     button{
                         font-size: 1.2rem;
                         padding: .8em 1.5em;
-                        background: linear-gradient(10deg, #F56545, #F06543);
+                        // background: linear-gradient(10deg, #F56545, #F06543);
                     }
                 }
 
 
 
+            }
+            .formOff{
+                input{
+                    background: hsl(0, 0%, 96%);
+                }
             }
 
             // #editProfileform{
@@ -155,7 +160,7 @@ main.container{
             
             #myModal{
                 background: linear-gradient(-60deg, #EEEEEE,rgb(246, 248, 227),#EEEEEE);
-                padding: 1em;
+                padding: 1em 2em;
                 border: none;
                 outline: none;
                 width: clamp(400px, 60%,800px);
@@ -163,9 +168,20 @@ main.container{
                 top: 50%;
                 transform: translate(-50%,-50%);
                 box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
+
                 &::backdrop{
                     background: hsla(0, 0%, 0%, 0.237);
                 }
+                button{
+                    font-size: 1.2rem;
+                    padding: .8em 1.5em;
+                    background: linear-gradient(10deg, #F56545, #F06543);
+                }
+
+                button#cancelModal{
+                    background: linear-gradient(to bottom, rgb(0, 162, 248),rgb(2, 120, 167));
+                }
+                
             }
 
             
