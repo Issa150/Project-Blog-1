@@ -3,6 +3,7 @@
         unset($_SESSION['current_user']);
         header("Location: " . SITE_PATH);
     }
+
 ?>
 
 <nav>
@@ -39,6 +40,7 @@
                 <ul>
                     <div>
                         <li><a href="<?= SITE_PATH ?>pages/account.php?user_info"><i class="fa-regular fa-user"></i> Profile</a></li>
+                        <li><a href="<?= SITE_PATH ?>admin/dashboard.php"><i class="fa-solid fa-briefcase"></i> Backoffice</a></li>
                         <li><a href=""><i class="fa-regular fa-heart"></i> Favorites</a></li>
                         <li><a href="<?= SITE_PATH ?>pages/account.php?account_setting"><i class="fa-solid fa-id-card"></i>Account setting</a></li>
                         <li><a href="?logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>

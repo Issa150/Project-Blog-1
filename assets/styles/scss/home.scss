@@ -1,7 +1,7 @@
 @import "./base/Variables";
 @import "./base/Reset";
 
-@import "./inc/Nav";
+@import "./partials/Nav";
 
 header {
   .swiper {
@@ -142,4 +142,4 @@ main{
     }
 }
 
-@import "./inc/Footer";
+@import "./partials/Footer";

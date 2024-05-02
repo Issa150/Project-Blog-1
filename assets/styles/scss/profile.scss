@@ -1,6 +1,6 @@
 @import "./base/Variables";
 @import "./base/Reset";
-@import "./inc/Nav";
+@import "./partials/Nav";
 
 main.container{
     display: grid;
@@ -202,4 +202,4 @@ main.container{
 
 
 
-@import "./inc/Footer";
+@import "./partials/Footer";
