@@ -292,9 +292,19 @@ main.container .info-detail .body-info .formOff, main.container .info-detail .bo
 main.container .info-detail .body-info .formOff label, main.container .info-detail .body-info #editProfileform label {
   cursor: pointer;
 }
+main.container .info-detail .body-info .formOff h2, main.container .info-detail .body-info #editProfileform h2 {
+  text-align: center;
+  grid-column: span 6;
+  padding: 0.7em;
+}
 main.container .info-detail .body-info .formOff fieldset, main.container .info-detail .body-info #editProfileform fieldset {
   margin-block: 1em;
   grid-column: span 3;
+}
+main.container .info-detail .body-info .formOff fieldset:has(input[type=file]), main.container .info-detail .body-info #editProfileform fieldset:has(input[type=file]) {
+  background: white;
+  border-radius: 5px;
+  padding: 1em;
 }
 main.container .info-detail .body-info .formOff fieldset input[type=radio]:not(:first-child), main.container .info-detail .body-info #editProfileform fieldset input[type=radio]:not(:first-child) {
   margin-block: 1em;
@@ -308,11 +318,18 @@ main.container .info-detail .body-info .formOff fieldset ul:has(input[type=radio
   gap: 1em;
 }
 main.container .info-detail .body-info .formOff .grid-col-3, main.container .info-detail .body-info #editProfileform .grid-col-3 {
-  grid-column: span 2;
+  grid-column: span 3;
+}
+main.container .info-detail .body-info .formOff .grid-col-6, main.container .info-detail .body-info #editProfileform .grid-col-6 {
+  grid-column: span 6;
+}
+main.container .info-detail .body-info .formOff .grid-col-12, main.container .info-detail .body-info #editProfileform .grid-col-12 {
+  grid-column: span 6;
 }
 main.container .info-detail .body-info .formOff .grid-full-width, main.container .info-detail .body-info #editProfileform .grid-full-width {
   grid-column: span 6;
   text-align: center;
+  justify-items: start;
 }
 main.container .info-detail .body-info .formOff .grid-full-width button, main.container .info-detail .body-info #editProfileform .grid-full-width button {
   font-size: 1.2rem;
@@ -331,6 +348,31 @@ main.container .info-detail .body-info #myModal {
   top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
+  text-align: center;
+}
+main.container .info-detail .body-info #myModal label {
+  text-align: left;
+}
+main.container .info-detail .body-info #myModal label.btn {
+  display: inline-block;
+  font-size: 1.2rem;
+  padding: 0.69em 1.5em;
+}
+main.container .info-detail .body-info #myModal input[type=file] {
+  display: none;
+}
+main.container .info-detail .body-info #myModal input[type=checkbox] {
+  padding: 2em;
+}
+main.container .info-detail .body-info #myModal fieldset i {
+  margin-right: 1em;
+}
+main.container .info-detail .body-info #myModal fieldset:has(input[type=checkbox]) {
+  text-align: left;
+}
+main.container .info-detail .body-info #myModal fieldset:has(input[type=checkbox]) label {
+  display: inline-block;
+  margin-right: 2em;
 }
 main.container .info-detail .body-info #myModal::backdrop {
   background: hsla(0, 0%, 0%, 0.237);

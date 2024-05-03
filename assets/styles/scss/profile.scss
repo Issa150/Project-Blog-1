@@ -1,6 +1,7 @@
 @import "./base/Variables";
 @import "./base/Reset";
 @import "./partials/Nav";
+@import "./mixin_functions/Mixins";
 
 main.container{
     display: grid;
@@ -101,53 +102,7 @@ main.container{
         .body-info{
 
             .formOff, #editProfileform{
-                display: grid;
-                grid-template-columns: repeat(6, 1fr);
-                column-gap: 1em;
-                
-                // generals
-                label{
-                    cursor: pointer;
-                }
-
-                // spcefic
-                fieldset{
-                    margin-block: 1em;
-                    grid-column: span 3;
-
-                    input[type="radio"]:not(:first-child){
-                        margin-block: 1em;
-                        accent-color: red;
-                        margin-left: 1em;
-                    }
-
-
-                    ul:has(input[type="radio"]){
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        gap: 1em;
-                    }
-
-                    
-                }
-                .grid-col-3{
-                    grid-column: span 2;
-                }
-                .grid-full-width{
-                    grid-column: span 6;
-                    text-align: center;
-                    
-
-                    button{
-                        font-size: 1.2rem;
-                        padding: .8em 1.5em;
-                        // background: linear-gradient(10deg, #F56545, #F06543);
-                    }
-                }
-
-
-
+                @include form_1();
             }
             .formOff{
                 input{
@@ -159,28 +114,7 @@ main.container{
             // }
             
             #myModal{
-                background: linear-gradient(-60deg, #EEEEEE,rgb(246, 248, 227),#EEEEEE);
-                padding: 1em 2em;
-                border: none;
-                outline: none;
-                width: clamp(400px, 60%,800px);
-                left: 50%;
-                top: 50%;
-                transform: translate(-50%,-50%);
-                box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
-
-                &::backdrop{
-                    background: hsla(0, 0%, 0%, 0.237);
-                }
-                button{
-                    font-size: 1.2rem;
-                    padding: .8em 1.5em;
-                    background: linear-gradient(10deg, #F56545, #F06543);
-                }
-
-                button#cancelModal{
-                    background: linear-gradient(to bottom, rgb(0, 162, 248),rgb(2, 120, 167));
-                }
+                @include mudal();
                 
             }
 

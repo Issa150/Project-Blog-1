@@ -9,15 +9,16 @@ class Posts extends Newdb{
         $stmt->execute();
     }
 
-    public function insertPost($title, $body, $user_id, $image_banner){
-        $sql = "INSERT INTOR posts(title, body, user_id, image_banner) VALUES
-                                (:title, :body, :user_id, :image_banner)";
+    public function insertPost($title, $body, $user_id, $image_banner,$published){
+        $sql = "INSERT INTO posts(title, body, user_id, image_banner,published) VALUES
+                                (:title, :body, :user_id, :image_banner, :published)";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([
             ":title" => $title, 
             ":body" => $body, 
             ":user_id" => $user_id, 
-            ":image_banner" => $image_banner 
+            ":image_banner" => $image_banner ,
+            ":published" => $published
         ]);
 
 

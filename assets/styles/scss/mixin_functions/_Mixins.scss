@@ -10,8 +10,9 @@
     // Effect
     transition: transform 0.25s, opacity 0.25s;
     transform: translateY(1em) scale(0.95);
+
     // real list UL
-    & > div {
+    &>div {
       margin-top: 1em;
       background: #eeeeee;
       box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
@@ -26,8 +27,8 @@
           transition: 0.25s;
           border-bottom: 3px solid transparent;
           display: flex;
-            align-items: center;
-            gap: .5em;
+          align-items: center;
+          gap: .5em;
 
           &:hover {
             border-bottom: 3px solid $clr_accent_1;
@@ -49,7 +50,143 @@
 
   &:hover ul {
     opacity: 1;
-    visibility: visible;   
+    visibility: visible;
     transform: translateY(0em) scale(1);
+  }
+}
+
+
+////////////////////////////////////
+
+@mixin form_1() {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 1em;
+
+  // generals
+  label {
+    cursor: pointer;
+  }
+  
+
+  // spcefic
+  h2{
+    text-align: center;
+    grid-column: span 6;
+    padding: .7em;
+  } 
+
+
+  fieldset {
+    margin-block: 1em;
+    grid-column: span 3;
+
+    &:has(input[type='file']){
+      background: white;
+      border-radius: $radius-sm;
+      padding: 1em;
+    }
+
+    input[type="radio"]:not(:first-child) {
+      margin-block: 1em;
+      accent-color: red;
+      margin-left: 1em;
+    }
+
+
+    ul:has(input[type="radio"]) {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1em;
+    }
+
+
+  }
+
+  .grid-col-3 {
+    grid-column: span 3;
+  }
+
+  .grid-col-6 {
+    grid-column: span 6;
+  }
+  .grid-col-12{
+    grid-column: span 6;
+  }
+
+  .grid-full-width {
+    grid-column: span 6;
+    text-align: center;
+    justify-items: start;
+
+
+    button {
+      font-size: 1.2rem;
+      padding: .8em 1.5em;
+      // background: linear-gradient(10deg, #F56545, #F06543);
+    }
+  }
+}
+
+////////////////////////////////////
+
+@mixin mudal() {
+  background: linear-gradient(-60deg, #EEEEEE,rgb(246, 248, 227),#EEEEEE);
+  padding: 1em 2em;
+  border: none;
+  outline: none;
+  width: clamp(400px, 60%,800px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
+  text-align: center;
+
+  label{
+      text-align: left;
+  }
+  label.btn{
+      display: inline-block;
+      font-size: 1.2rem;
+      padding: .69em 1.5em;
+  }
+
+  input[type='file']{
+      display: none;
+  }
+  input[type='checkbox']{
+      padding: 2em;
+  }
+  fieldset{
+
+
+      i{
+          margin-right: 1em;
+      }
+
+
+      &:has(input[type="checkbox"]){
+          text-align: left;
+
+          label{
+              display: inline-block;
+              margin-right: 2em;
+          }
+      }
+      
+  }
+
+  &::backdrop{
+      background: hsla(0, 0%, 0%, 0.237);
+  }
+  button{
+      font-size: 1.2rem;
+      padding: .8em 1.5em;
+      background: linear-gradient(10deg, #F56545, #F06543);
+  }
+
+  button#cancelModal{
+      background: linear-gradient(to bottom, rgb(0, 162, 248),rgb(2, 120, 167));
   }
 }

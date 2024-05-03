@@ -333,6 +333,16 @@ main.container .info-detail .body-info #myModal input[type=file] {
 main.container .info-detail .body-info #myModal input[type=checkbox] {
   padding: 2em;
 }
+main.container .info-detail .body-info #myModal fieldset i {
+  margin-right: 1em;
+}
+main.container .info-detail .body-info #myModal fieldset:has(input[type=checkbox]) {
+  text-align: left;
+}
+main.container .info-detail .body-info #myModal fieldset:has(input[type=checkbox]) label {
+  display: inline-block;
+  margin-right: 2em;
+}
 main.container .info-detail .body-info #myModal::backdrop {
   background: hsla(0, 0%, 0%, 0.237);
 }
@@ -343,6 +353,57 @@ main.container .info-detail .body-info #myModal button {
 }
 main.container .info-detail .body-info #myModal button#cancelModal {
   background: linear-gradient(to bottom, rgb(0, 162, 248), rgb(2, 120, 167));
+}
+main.container .info-detail .body-info form {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  column-gap: 1em;
+}
+main.container .info-detail .body-info form label {
+  cursor: pointer;
+}
+main.container .info-detail .body-info form h2 {
+  text-align: center;
+  grid-column: span 6;
+  padding: 0.7em;
+}
+main.container .info-detail .body-info form fieldset {
+  margin-block: 1em;
+  grid-column: span 3;
+}
+main.container .info-detail .body-info form fieldset:has(input[type=file]) {
+  background: white;
+  border-radius: 5px;
+  padding: 1em;
+}
+main.container .info-detail .body-info form fieldset input[type=radio]:not(:first-child) {
+  margin-block: 1em;
+  accent-color: red;
+  margin-left: 1em;
+}
+main.container .info-detail .body-info form fieldset ul:has(input[type=radio]) {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+}
+main.container .info-detail .body-info form .grid-col-3 {
+  grid-column: span 3;
+}
+main.container .info-detail .body-info form .grid-col-6 {
+  grid-column: span 6;
+}
+main.container .info-detail .body-info form .grid-col-12 {
+  grid-column: span 6;
+}
+main.container .info-detail .body-info form .grid-full-width {
+  grid-column: span 6;
+  text-align: center;
+  justify-items: start;
+}
+main.container .info-detail .body-info form .grid-full-width button {
+  font-size: 1.2rem;
+  padding: 0.8em 1.5em;
 }
 
 footer {

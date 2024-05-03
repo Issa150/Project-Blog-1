@@ -3,9 +3,9 @@ include_once "../inc/session_security.php";
 include_once "../inc/function.php";
 include_once "../classes/GetUsers.php";
 include_once "../classes/Update_user_info.php";
+include_once "../classes/Posts.php";
 
 ///////////::
-
 
 
 $title = "dashboard";
@@ -17,6 +17,24 @@ include_once "../inc/header.html.php";
 if (!isset($_SESSION['current_user'])) {
     header("Location: " . SITE_PATH . "pages/connection/login.php");
 }
+
+
+if(!empty($_POST)){
+    $title = trim(filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS));
+    $body = trim(filter_input(INPUT_POST, "body", FILTER_SANITIZE_SPECIAL_CHARS));
+    $published = (isset($_POST['draft'])) ? 0 : 1;
+    // $published = $_POST['draft'];
+    // $image_banner = $_FILES['post_image_banner'];
+    $image_banner = "image.png";
+    $user_id = $_SESSION['current_user']['id'];
+
+
+    $post = new Posts();
+    $post->insertPost($title, $body,$user_id , $image_banner, $published);
+    // dump($post);
+
+}
+
 
 ?>
 
