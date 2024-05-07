@@ -405,6 +405,25 @@ main.container .info-detail .body-info form .grid-full-width button {
   font-size: 1.2rem;
   padding: 0.8em 1.5em;
 }
+main.container .info-detail .body-info .control_bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid grey;
+}
+main.container .info-detail .body-info .control_bar .layouts {
+  display: flex;
+  gap: 0.8em;
+  padding-right: 1em;
+}
+main.container .info-detail .body-info .control_bar .layouts i {
+  transition: 0.35s;
+}
+main.container .info-detail .body-info .control_bar .layouts i:hover {
+  color: #36b58f;
+  scale: 1.001;
+}
 
 footer {
   background: #141414;

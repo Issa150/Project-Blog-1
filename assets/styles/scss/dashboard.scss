@@ -2,6 +2,7 @@
 @import "./base/Reset";
 @import "./partials/Nav";
 @import "./mixin_functions/Mixins";
+// @import "components/Posts";
 
 header {
     position: relative;
@@ -138,6 +139,8 @@ main.container {
             form{
                 @include form_1();
             }
+
+            @import "components/Posts";
         }
     }
 }
