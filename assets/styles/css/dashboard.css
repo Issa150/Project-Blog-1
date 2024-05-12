@@ -372,24 +372,19 @@ main.container .info-detail .body-info .control_bar .meta-statistic dl {
 main.container .info-detail .body-info .control_bar .meta-statistic dl dt {
   font-weight: bold;
 }
-main.container .info-detail .body-info .posts_container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+main.container .info-detail .body-info .posts_container Table {
+  border-collapse: collapse;
+  margin-top: 1em;
+  width: calc(100% - 2em);
+  margin-inline: auto;
 }
-main.container .info-detail .body-info .posts_container article {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 0 clamp(150px, 25%, 230px);
-          flex: 1 0 clamp(150px, 25%, 230px);
-  padding: 5px;
+main.container .info-detail .body-info .posts_container Table td, main.container .info-detail .body-info .posts_container Table th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
 }
-main.container .info-detail .body-info .posts_container article figure figcaption .meta-info-container img {
-  width: 30px;
-  border-radius: 50%;
-  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.256);
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.256);
+main.container .info-detail .body-info .posts_container Table tr:nth-child(even) {
+  background-color: #dddddd;
 }
 
 footer {

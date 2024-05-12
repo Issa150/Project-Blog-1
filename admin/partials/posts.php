@@ -19,10 +19,11 @@ if (!empty($_POST)) {
 }
 
 // Afficher Toutes les articles
-$allPosts = $posts->getAllByJoin("SELECT p.*, u.id,u.name,u.image 
-                                    FROM posts p
-                                    JOIN users u
-                                    ON p.user_id = u.id");
+$allPosts = $posts->getAll();
+// $allPosts = $posts->getAllByJoin("SELECT p.*, u.id,u.name,u.image 
+//                                     FROM posts p
+//                                     JOIN users u
+//                                     ON p.user_id = u.id");
 // dump($allPosts);
 
 ?>
@@ -63,11 +64,13 @@ $allPosts = $posts->getAllByJoin("SELECT p.*, u.id,u.name,u.image
     <div class="meta-statistic">
         <!-- <dl>
             <dt>Published: </dt>
-            <dd><?//= '2'  ?></dd>
+            <dd><? //= '2'  
+                ?></dd>
         </dl>
         <dl>
             <dt>Draft: </dt>
-            <dd><?//= '2' ?></dd>
+            <dd><? //= '2' 
+                ?></dd>
         </dl> -->
 
         <dl>
@@ -79,26 +82,52 @@ $allPosts = $posts->getAllByJoin("SELECT p.*, u.id,u.name,u.image
 
 <div class="posts_container">
 
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Thematics</th>
+                <th>Category</th>
+                <th>Tags</th>
+                <th>Dates</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <?php foreach ($allPosts as $post) : ?>
+                <tr>
+                    <td><?= $post['title'] ?></td>
+                    <td><?= '$post[author]' ?></td>
+                    <td><?= '$post[thematic]' ?></td>
+                    <td><?= '$post[category]' ?></td>
+                    <td><?= '$post[tags]' ?></td>
+                    <td><?= '$post[created_att]' ?></td>
+                </tr>
+            <?php endforeach ?>
+        </tbody>
+    </table>
+
     <?php
     // dump($allPosts);
-    foreach ($allPosts as $post) : ?>
+    //foreach ($allPosts as $post) : ?>
         <article>
-            <figure>
-                <!-- adding image placeholder  -->
-                <img src="<?= SITE_PATH . 'assets/imgs/' ?><?= !empty($post['image_cover']) ? $post['image_cover'] : "initials/placeholder.png" ?>" alt="Post image">
+            <!-- <figure>
+                 adding image placeholder  -->
+                <!-- <img src="<?//= SITE_PATH . 'assets/imgs/' ?><?//= !empty($post['image_cover']) ? $post['image_cover'] : "initials/placeholder.png" ?>" alt="Post image">
                 <figcaption>
-                    <h3><?= $post['title'] ?></h3>
-                    <p><?= $post['body'] ?></p>
+                    <h3><?//= $post['title'] ?></h3>
+                    <p><?//= $post['body'] ?></p>
                     <div class="meta-info-container">
-                        <img src="<?= SITE_PATH ?>assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
+                        <img src="<?//= SITE_PATH ?>assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
                         <div class="meta-info-author_date">
-                            <p>User id : <?= $post['user_id'] ?></p>
-                            <p><?= $post['created_at'] ?></p>
+                            <p>User id : <?//= $post['user_id'] ?></p>
+                            <p><?//= $post['created_at'] ?></p>
                         </div>
                     </div>
                 </figcaption>
             </figure>
-        </article>
-    <?php endforeach ?>
+        </article> --> 
+    <?php //endforeach ?>
     <!-- End of fEtching Posts -->
 </div>
