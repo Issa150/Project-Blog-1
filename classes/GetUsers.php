@@ -1,16 +1,11 @@
 <?php
 include_once "Database.php";
 
-class getUsers{
-    private $db;
+class getUsers extends Database {
     
-    public function __construct(){
-        $this->db = new Database("localhost","root", "", "blog_1" );
-    }
-
-
-    public function getSingleUser( $param){
-        $stmt = $this->db->connection()->prepare("SELECT * FROM users WHERE username = :username");
+    public function getSingleUser($param){
+        $sql = "SELECT * FROM users WHERE username = :username";
+        $stmt = $this->connection->prepare($sql);
 
         $stmt->execute(array(
             ":username" => $param
@@ -21,7 +16,7 @@ class getUsers{
     }
 
     public function getSingle($table,$col,$val){
-        $stmt = $this->db->connection()->prepare("SELECT * FROM $table WHERE $col = :$col");
+        $stmt = $this->connection->prepare("SELECT * FROM $table WHERE $col = :$col");
 
         $stmt->execute(array(
             ":$col" => $val
@@ -32,28 +27,43 @@ class getUsers{
     }
 
     public function getAllUsers(){
-        $stmt = $this->db->connection()->prepare("SELECT * FROM users");
+        $stmt = $this->connection->prepare("SELECT * FROM users");
         $stmt->execute();
         $users = $stmt->fetchAll();
 
         return $users;
     }
-    
-        
-    
 
-}
-
-
-/* 
-public function getSingleUser($par1, $parValue){
-        $stmt = $this->db->connection()->prepare("SELECT * FROM users WHERE $par1 = ?");
-
+    // Create
+    // Insertion un utilisateur
+    public function creatingAccount($firstName,$lastName,$username, $email, $password) {
+        $sql = "INSERT INTO users (name, lastName, username, email, password)
+                            VALUE(:name, :lastName, :username, :email, :password)";
+        $stmt = $this->connection->prepare($sql);
         $stmt->execute(array(
-            $par1 = $parValue
+            ":name" => $firstName,
+            ":lastName"=>$lastName,
+            ":username"=>$username,
+            ":email"=>$email,
+            ":password"=>$password
         ));
-        $user = $stmt->fetch();
-
-        return $user;
+    
+    
     }
-*/
+
+
+    // Update
+    //update one file
+    public function updateSingleFile($col,$val,$id){
+        $sql = "UPDATE users SET $col =:val
+                WHERE id =:id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([
+            ":val" => $val,
+            ':id'  => $id
+        ]);
+
+        //updateing the $_SESSION
+        
+    }
+}

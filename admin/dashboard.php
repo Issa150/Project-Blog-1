@@ -17,25 +17,6 @@ include_once "../inc/header.html.php";
 if (!isset($_SESSION['current_user'])) {
     header("Location: " . SITE_PATH . "pages/connection/login.php");
 }
-
-
-if(!empty($_POST)){
-    $title = trim(filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS));
-    $body = trim(filter_input(INPUT_POST, "body", FILTER_SANITIZE_SPECIAL_CHARS));
-    $published = (isset($_POST['draft'])) ? 0 : 1;
-    // $published = $_POST['draft'];
-    // $image_banner = $_FILES['post_image_banner'];
-    $image_banner = "image.png";
-    $user_id = $_SESSION['current_user']['id'];
-
-
-    $post = new Posts();
-    $post->insertPost($title, $body,$user_id , $image_banner, $published);
-    // dump($post);
-
-}
-
-
 ?>
 
 
@@ -58,19 +39,19 @@ if(!empty($_POST)){
             <span><?= $_SESSION['current_user']['country'] ?></span>
         </div>
         <ul>
-            <li><a class="<?= (isset($_GET['user_info']) || empty($_GET)) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?user_info"><i class="fa-solid fa-user-pen"></i>User info</a></li>
-            <li><a class="<?= isset($_GET['favorite']) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?favorite"><i class="fa-regular fa-heart"></i>Favorites</a></li>
-            <li><a class="<?= isset($_GET['watchlist']) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?watchlist"><i class="fa-regular fa-star"></i>WatchList</a></li>
-            <li><a class="<?= isset($_GET['account_setting']) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?account_setting"><i class="fa-solid fa-id-card"></i>Account setting</a></li>
+            <li><a class="<?= (isset($_GET['user_info']) || empty($_GET)) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?user_info"><i class="fa-regular fa-newspaper"></i>Posts</a></li>
+            <li><a class="<?= isset($_GET['favorite']) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?favorite"><i class="fa-solid fa-layer-group"></i>Thematics</a></li>
+            <li><a class="<?= isset($_GET['watchlist']) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?watchlist"><i class="fa-solid fa-rectangle-list"></i>Categories</a></li>
+            <li><a class="<?= isset($_GET['account_setting']) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?account_setting"><i class="fa-solid fa-tags"></i>Tags</a></li>
         </ul>
     </aside>
 
     <div class="info-detail">
         <div class="head-info">
-            <a href="?posts">Posts</a>
-            <a href="?posts">Categories</a>
-            <a href="?posts">Thematics</a>
-            <a href="?posts">Tags</a>
+            <a href="?posts">All authors <i class="fa-solid fa-filter"></i></a>
+            <a href="?posts">All categories <i class="fa-solid fa-filter"></i></a>
+            <a href="?posts">All thematics <i class="fa-solid fa-filter"></i></a>
+            <a href="?posts">All tags <i class="fa-solid fa-filter"></i></a>
 
         </div>
 
@@ -80,7 +61,7 @@ if(!empty($_POST)){
                 include_once  "partials/posts.php";
             } elseif (isset($_GET['favorite'])) {
                 include_once  "partials/favorites_user.php";
-            } 
+            }
             ?>
 
         </div>

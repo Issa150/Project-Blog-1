@@ -67,11 +67,14 @@ for (let i = 0; i < links.length; i++) {
 ////////////////////////////////////////////////
 //         Form handling
 
-// const  closeDialog = closeDialog
-openDialog.onclick = ()=>{
-    myModal.showModal();
-    document.body.style.overflow = 'hidden';
-}
+const  btnsCloseDialog = document.querySelectorAll('.btn-modal')
+btnsCloseDialog.forEach(btn =>{
+
+    btn.onclick = ()=>{
+        myModal.showModal();
+        document.body.style.overflow = 'hidden';
+    }
+})
 cancelModal.onclick = ()=>{
     myModal.close();
     document.body.style.overflow = 'auto';

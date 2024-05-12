@@ -1,7 +1,7 @@
 <?php
-include_once "Newdb.php";
+include_once "Database.php";
 
-class updateUserInfo extends Newdb
+class updateUserInfo extends Database
 {
     public function updateUser($firstName, $lastName, $username, $email, $city, $country, $gender,$id)
     {

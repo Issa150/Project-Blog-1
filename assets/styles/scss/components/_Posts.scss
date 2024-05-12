@@ -8,19 +8,49 @@
 
 
 
-    .layouts{
-
+    .meta-statistic{
         display: flex;
-        gap: .8em;
-        padding-right: 1em;
+        gap: 1em;
 
-        i{
-            transition: .35s;
+        dl{
+            display: flex;
+            gap: .3em;
 
-            &:hover{
-                color: $clr_main;
-                scale: 1.001;
+            dt{
+                font-weight: bold;
             }
         }
     }
+
+    
+}
+
+.posts_container{
+    display: flex;
+    flex-wrap: wrap;
+
+    article{
+        // flex: 1 0 max(150px,25%);
+        flex: 1 0 clamp(150px,25%,230px);
+        padding: 5px;
+
+        figure{
+            
+
+            figcaption{
+
+                .meta-info-container{
+
+                    // Author Profile image
+                    img{
+                        width: 30px;
+                        border-radius: 50%;
+                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.256);
+                    }
+                }
+            }
+            
+        }
+    }
+
 }

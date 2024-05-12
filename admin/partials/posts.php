@@ -1,28 +1,40 @@
 <?php
 include_once "../classes/Posts.php";
+$posts = new Posts();
 
+// Ajouter une nouvelle article
 if (!empty($_POST)) {
-    $title = $_POST['title'];
-    $body = $_POST['body'];
+    $title = trim(filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS));
+    $body = trim(filter_input(INPUT_POST, "body", FILTER_SANITIZE_SPECIAL_CHARS));
+    $published = (isset($_POST['draft'])) ? 0 : 1;
+    $image_cover = isset($_FILES['post_image_banner']['name']) ? $_FILES['post_image_banner']['name'] : null;
+    $user_id = $_SESSION['current_user']['id'];
 
-    if (isset($_POST['draft'])) {
-        echo "DRAFT";
-    } else {
-        echo "Submition";
+
+    $post->insertPost($title, $body, $user_id, $image_cover, $published);
+    if (!empty($_FILES['post_image_banner'])) {
+        $posts->insertSingleFile($image_cover);
+        move_uploaded_file($_FILES['post_image_banner']['tmp_name'], SITE_PATH . "assets/posts/" . $_FILES['post_image_banner']['name']);
     }
 }
+
+// Afficher Toutes les articles
+$allPosts = $posts->getAllByJoin("SELECT p.*, u.id,u.name,u.image 
+                                    FROM posts p
+                                    JOIN users u
+                                    ON p.user_id = u.id");
+// dump($allPosts);
 
 ?>
 <div class="control_bar">
     <button class="btn" id="openDialog">Create new <i class="fa-regular fa-square-plus"></i></button>
     <dialog id="myModal">
 
-        <form action="" method="post" id="editProfileform">
+        <form action="" method="post" id="editProfileform" enctype='multipart/form-data'>
             <h2>Add new post</h2>
             <fieldset class="grid-col-6">
                 <label for="title">Title:</label>
-                <input type="text" name="title" id="title" value="<? //= $getUser['title'] 
-                                                                    ?>">
+                <input type="text" name="title" id="title" value="">
 
             </fieldset>
             <fieldset class="grid-col-6">
@@ -33,12 +45,12 @@ if (!empty($_POST)) {
 
             <fieldset class="grid-col-3">
                 <label for="draft"><i class="fa-solid fa-clock-rotate-left"></i> Save it as draft</label>
-                <input type="checkbox" name="draft" value="f" id="draft">
+                <input type="checkbox" name="draft" value="0" id="draft">
             </fieldset>
 
             <fieldset class="grid-col-3">
                 <label for="post_image_banner"><i class="fa-solid fa-photo-film"></i> Image cover</label>
-                <input type="file" name="post_image_banner" id="post_image_banner">
+                <input type="file" name="postCover" id="post_image_banner">
             </fieldset>
 
             <div class="grid-full-width">
@@ -48,11 +60,45 @@ if (!empty($_POST)) {
 
         </form>
     </dialog>
-    <div class="layouts">
-        <i class="fa-solid fa-expand"></i>
-        <i class="fa-solid fa-border-all"></i>
-        <i class="fa-solid fa-list"></i>
+    <div class="meta-statistic">
+        <!-- <dl>
+            <dt>Published: </dt>
+            <dd><?//= '2'  ?></dd>
+        </dl>
+        <dl>
+            <dt>Draft: </dt>
+            <dd><?//= '2' ?></dd>
+        </dl> -->
+
+        <dl>
+            <dt>Total: </dt>
+            <dd><?= count($allPosts)  ?></dd>
+        </dl>
     </div>
 </div>
 
-.posts
+<div class="posts_container">
+
+    <?php
+    // dump($allPosts);
+    foreach ($allPosts as $post) : ?>
+        <article>
+            <figure>
+                <!-- adding image placeholder  -->
+                <img src="<?= SITE_PATH . 'assets/imgs/' ?><?= !empty($post['image_cover']) ? $post['image_cover'] : "initials/placeholder.png" ?>" alt="Post image">
+                <figcaption>
+                    <h3><?= $post['title'] ?></h3>
+                    <p><?= $post['body'] ?></p>
+                    <div class="meta-info-container">
+                        <img src="<?= SITE_PATH ?>assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
+                        <div class="meta-info-author_date">
+                            <p>User id : <?= $post['user_id'] ?></p>
+                            <p><?= $post['created_at'] ?></p>
+                        </div>
+                    </div>
+                </figcaption>
+            </figure>
+        </article>
+    <?php endforeach ?>
+    <!-- End of fEtching Posts -->
+</div>

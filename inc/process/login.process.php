@@ -34,6 +34,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $verifyTicket = false;
     }
 
+    
+    ///////////////////////////////////////
+    // Verification et creation de compte
 
     if ($verifyTicket) {
         

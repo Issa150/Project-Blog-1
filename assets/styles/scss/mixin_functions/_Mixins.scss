@@ -63,6 +63,7 @@
   grid-template-columns: repeat(6, 1fr);
   column-gap: 1em;
 
+
   // generals
   label {
     cursor: pointer;
@@ -80,11 +81,17 @@
   fieldset {
     margin-block: 1em;
     grid-column: span 3;
+    text-align: left;
 
     &:has(input[type='file']){
       background: white;
       border-radius: $radius-sm;
       padding: 1em;
+      // grid-column: span 6;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: center;
     }
 
     input[type="radio"]:not(:first-child) {
@@ -137,6 +144,8 @@
   border: none;
   outline: none;
   width: clamp(400px, 60%,800px);
+  max-height: 90vh;
+  overflow-y: scroll;
   left: 50%;
   top: 50%;
   transform: translate(-50%,-50%);
@@ -152,9 +161,9 @@
       padding: .69em 1.5em;
   }
 
-  input[type='file']{
-      display: none;
-  }
+  // input[type='file']{
+      // display: none;
+  // }
   input[type='checkbox']{
       padding: 2em;
   }
@@ -175,6 +184,10 @@
           }
       }
       
+  }
+  fieldset.media-profile{
+    grid-column: span 6;
+
   }
 
   &::backdrop{

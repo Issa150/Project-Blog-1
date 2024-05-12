@@ -33,8 +33,8 @@
             <!-- PHP scripts for showing the user profile -->
             <?php if(isset($_SESSION['current_user'])) { ?>
             <li>
-                <a href=''>
-                    <img src="<?= SITE_PATH . "assets/imgs/profile/" . ($_SESSION['current_user'] ? $_SESSION['current_user']['image'] : "placeholder-general-img.png")?>" alt="Profile image holder">
+                <a href='#'>
+                    <img src="<?= SITE_PATH . "assets/imgs/profile/" . (!empty($_SESSION['current_user']['image']) ? $_SESSION['current_user']['image'] : "placeholder-general-img.png")?>" alt="Profile image holder">
                     <span><?=ucfirst($_SESSION['current_user']['username'])?></span>
                 </a>
                 <ul>
