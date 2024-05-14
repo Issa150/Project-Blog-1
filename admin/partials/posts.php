@@ -2,6 +2,8 @@
 include_once "../classes/Posts.php";
 $posts = new Posts();
 
+// dump($_SESSION['current_user']);
+
 // Ajouter une nouvelle article
 if (!empty($_POST)) {
     $title = trim(filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS));
@@ -11,11 +13,13 @@ if (!empty($_POST)) {
     $user_id = $_SESSION['current_user']['id'];
 
 
-    $post->insertPost($title, $body, $user_id, $image_cover, $published);
+    $posts->insertPost($title, $body, $user_id, $published);
     if (!empty($_FILES['post_image_banner'])) {
         $posts->insertSingleFile($image_cover);
         move_uploaded_file($_FILES['post_image_banner']['tmp_name'], SITE_PATH . "assets/posts/" . $_FILES['post_image_banner']['name']);
     }
+
+    header('location: ' . SITE_PATH .'admin/dashboard.php?posts');
 }
 
 // Afficher Toutes les articles
@@ -28,7 +32,7 @@ $allPosts = $posts->getAll();
 
 ?>
 <div class="control_bar">
-    <button class="btn" id="openDialog">Create new <i class="fa-regular fa-square-plus"></i></button>
+    <button class="btn-modal" id="openDialog">Create new <i class="fa-regular fa-square-plus"></i></button>
     <dialog id="myModal">
 
         <form action="" method="post" id="editProfileform" enctype='multipart/form-data'>

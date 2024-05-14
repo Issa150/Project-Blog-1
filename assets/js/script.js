@@ -67,16 +67,25 @@ for (let i = 0; i < links.length; i++) {
 ////////////////////////////////////////////////
 //         Form handling
 
-const  btnsCloseDialog = document.querySelectorAll('.btn-modal')
-btnsCloseDialog.forEach(btn =>{
+// const  btnsCloseDialog = document.querySelectorAll('.btn-modal')
+// btnsCloseDialog.forEach(btn =>{
 
+//     btn.onclick = ()=>{
+//         myModal.showModal();
+//         document.body.style.overflow = 'hidden';
+//     }
+// })
+// cancelModal.onclick = ()=>{
+//     myModal.close();
+//     document.body.style.overflow = 'auto';
+
+// }
+const  btnsOpenDialogs = document.querySelectorAll('.btn-modal')
+
+btnsOpenDialogs.forEach(btn =>{
     btn.onclick = ()=>{
-        myModal.showModal();
-        document.body.style.overflow = 'hidden';
+        const modal = btn.nextElementSibling
+        modal.showModal()
+        document.body.style.overflow = 'hidden'
     }
 })
-cancelModal.onclick = ()=>{
-    myModal.close();
-    document.body.style.overflow = 'auto';
-
-}

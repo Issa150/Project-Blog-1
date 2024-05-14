@@ -19,15 +19,14 @@ class Posts extends Database{
     }
 
 
-    public function insertPost($title, $body, $user_id, $image_cover, $published){
-        $sql = "INSERT INTO posts(title, body, user_id, image_cover,published) VALUES
-                                (:title, :body, :user_id, :image_cover, :published)";
+    public function insertPost($title, $body, $user_id, $published){
+        $sql = "INSERT INTO posts(title, body, user_id,published) VALUES
+                                (:title, :body, :user_id, :published)";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([
             ":title" => $title, 
             ":body" => $body, 
             ":user_id" => $user_id, 
-            ":image_cover" => $image_cover ,
             ":published" => $published
         ]);
     }
