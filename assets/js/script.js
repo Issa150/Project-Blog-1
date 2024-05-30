@@ -43,7 +43,7 @@ var swiper = new Swiper(".mySwiper", {
         }
     }
 });
-
+//            SWIPER SLIDER                  //
 /////////////////////////////////////////////////
 //            MENU TOGGLE RESPONSIVE           //
 const ul = document.querySelector('nav .container ul');
@@ -52,6 +52,52 @@ hamburger_menu.onclick = () => {
     // menuUls.forEach(ul => {
     // })
 }
+////////////////////////////////////////////////
+//          tinymce rich text editor //
+tinymce.init({
+    container: document.body,
+    selector: '#mytextarea',
+    height: 250,
+    menubar: false,
+    plugins: 'formatselect',
+    toolbar: 'undo redo | blocks | ' +
+  'bold italic backcolor | alignleft aligncenter ' +
+  'alignright alignjustify | bullist numlist outdent indent | ' +
+  'removeformat | help'
+    /*  
+    menubar: 'favs file edit view insert format',
+    plugins: 'image link media table code lists fullscreen',
+    toolbar: 'undo redo | formatselect | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code',
+        
+        image_title: true,
+        automatic_uploads: true,
+        images_upload_url: 'postAcceptor.php',
+        images_upload_base_path: '/imageDir',
+        file_picker_callback: function (cb, value, meta) {
+            var input = document.createElement('input');
+            input.setAttribute('type', 'file');
+            input.setAttribute('accept', 'image/*');
+
+            input.onchange = function () {
+                var file = this.files[0];
+
+                var reader = new FileReader();
+                reader.onload = function () {
+                    var id = 'blobid' + (new Date()).getTime();
+                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                    var blobInfo = blobCache.create(id, file, reader.result);
+                    blobCache.add(blobInfo);
+
+                    cb(blobInfo.blobUri(), { title: file.name });
+                };
+                reader.readAsDataURL(file);
+            };
+
+            input.click();
+        }
+    */  
+});
+
 ////////////////////////////////////////////////
 //          Active Menu detection //
 let links = document.querySelectorAll("nav ul:first-child a"); 
@@ -65,18 +111,45 @@ for (let i = 0; i < links.length; i++) {
 }
 
 ////////////////////////////////////////////////
-//         Form handling
+//         Form handling/dialog /modal
+const modal = document.getElementById("modal");
+// const modalContent = document.getElementById("modal-content");
+const closeModal = document.getElementById("cancelModal");
+const openModalBtn = document.getElementById("open-modal");
 
-const  btnsCloseDialog = document.querySelectorAll('.btn-modal')
-btnsCloseDialog.forEach(btn =>{
+openModalBtn.addEventListener("click", () => {
+  modal.style.display = "block";
+  document.body.style.overflow = "hidden";
+});
 
-    btn.onclick = ()=>{
-        myModal.showModal();
-        document.body.style.overflow = 'hidden';
-    }
-})
-cancelModal.onclick = ()=>{
-    myModal.close();
-    document.body.style.overflow = 'auto';
+closeModal.addEventListener("click", () => {
+  modal.style.display = "none";
+  document.body.style.overflow = "auto";
+});
 
-}
+document.addEventListener("click", (e) => {
+  if (e.target === modal) {
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+});
+//////////////////////
+// const  btnsDialog = document.querySelectorAll('.openDialog')
+// const  btnDialog = document.querySelector('.openDialog')
+// btnDialog.onclick = ()=>{
+//         console.log('✅✅✅✅✅✅');
+//     myModal.showModal();
+//         document.body.style.overflow = 'hidden';
+// }
+// btnDialog.forEach(btn =>{
+//     btn.onclick = ()=>{
+//         myModal.showModal();
+//         document.body.style.overflow = 'hidden';
+//     }
+// })
+// cancelModal.onclick = ()=>{
+//     myModal.close();
+//     document.body.style.overflow = 'auto';
+
+// }
+

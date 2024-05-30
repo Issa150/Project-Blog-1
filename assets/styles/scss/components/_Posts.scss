@@ -5,8 +5,9 @@
     padding: .5em 1em;
     border-bottom: 1px solid grey;
 
-
-
+    #modal{
+        @include mudal_2();
+    }
 
     .meta-statistic{
         display: flex;

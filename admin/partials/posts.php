@@ -28,8 +28,9 @@ $allPosts = $posts->getAll();
 
 ?>
 <div class="control_bar">
-    <button class="btn" id="openDialog">Create new <i class="fa-regular fa-square-plus"></i></button>
-    <dialog id="myModal">
+    <button class="btn openDialog" id="open-modal">Create new <i class="fa-regular fa-square-plus"></i></button>
+    <!-- <dialog id="myModal"> -->
+    <div id="modal">
 
         <form action="" method="post" id="editProfileform" enctype='multipart/form-data'>
             <h2>Add new post</h2>
@@ -39,14 +40,15 @@ $allPosts = $posts->getAll();
 
             </fieldset>
             <fieldset class="grid-col-6">
-                <label for="body">Body:</label>
-                <textarea name="body" id="body" cols="30" rows="10"></textarea>
+                <label for="mytextarea">Body:</label>
+                <!-- <textarea name="body" id="body" cols="30" rows="10"></textarea> -->
+                <textarea name="body" id="mytextarea" placeholder="Description..." cols="30" rows="10"></textarea>
 
             </fieldset>
 
             <fieldset class="grid-col-3">
                 <label for="draft"><i class="fa-solid fa-clock-rotate-left"></i> Save it as draft</label>
-                <input type="checkbox" name="draft" value="0" id="draft">
+                <input type="radio" name="draft" value="0" id="draft">
             </fieldset>
 
             <fieldset class="grid-col-3">
@@ -60,7 +62,8 @@ $allPosts = $posts->getAll();
             </div>
 
         </form>
-    </dialog>
+    </div>
+    <!-- </dialog> -->
     <div class="meta-statistic">
         <!-- <dl>
             <dt>Published: </dt>
@@ -110,24 +113,33 @@ $allPosts = $posts->getAll();
 
     <?php
     // dump($allPosts);
-    //foreach ($allPosts as $post) : ?>
-        <article>
-            <!-- <figure>
+    //foreach ($allPosts as $post) : 
+    ?>
+    <article>
+        <!-- <figure>
                  adding image placeholder  -->
-                <!-- <img src="<?//= SITE_PATH . 'assets/imgs/' ?><?//= !empty($post['image_cover']) ? $post['image_cover'] : "initials/placeholder.png" ?>" alt="Post image">
+        <!-- <img src="<? //= SITE_PATH . 'assets/imgs/' 
+                        ?><? //= !empty($post['image_cover']) ? $post['image_cover'] : "initials/placeholder.png" 
+                                                            ?>" alt="Post image">
                 <figcaption>
-                    <h3><?//= $post['title'] ?></h3>
-                    <p><?//= $post['body'] ?></p>
+                    <h3><? //= $post['title'] 
+                        ?></h3>
+                    <p><? //= $post['body'] 
+                        ?></p>
                     <div class="meta-info-container">
-                        <img src="<?//= SITE_PATH ?>assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
+                        <img src="<? //= SITE_PATH 
+                                    ?>assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
                         <div class="meta-info-author_date">
-                            <p>User id : <?//= $post['user_id'] ?></p>
-                            <p><?//= $post['created_at'] ?></p>
+                            <p>User id : <? //= $post['user_id'] 
+                                            ?></p>
+                            <p><? //= $post['created_at'] 
+                                ?></p>
                         </div>
                     </div>
                 </figcaption>
             </figure>
-        </article> --> 
-    <?php //endforeach ?>
-    <!-- End of fEtching Posts -->
+        </article> -->
+        <?php //endforeach 
+        ?>
+        <!-- End of fEtching Posts -->
 </div>
