@@ -25,8 +25,8 @@ if (!isset($_SESSION['current_user'])) {
 
 
 <header>
-    <?php include_once "../inc/components/nav.php"; ?>
     <img src="../assets/imgs/initials/pawel-czerwinski-7FqOISWr5V0-unsplash.jpg" alt="">
+    <?php include_once "../inc/components/nav.php"; ?>
 </header>
 <main class="container">
 

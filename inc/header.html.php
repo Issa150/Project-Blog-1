@@ -11,6 +11,9 @@
         echo "<link rel='stylesheet' href='".SITE_PATH."assets/styles/css/signup-login.css'>";
     }else{
         echo "<link rel='stylesheet' href='".SITE_PATH."assets/styles/css/$title.css'>";
+        if($title == 'dashboard'){
+            echo "<script src='".SITE_PATH."assets/js/tinymce/tinymce.min.js' referrerpolicy='origin'></script>";
+        }
     }
     ?>
     <title><?= $title ? $title : "Blog_1"?></title>

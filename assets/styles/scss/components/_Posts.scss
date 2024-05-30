@@ -1,34 +1,33 @@
-.control_bar {
+.control_bar{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: .5em 1em;
     border-bottom: 1px solid grey;
 
-    dialog{
-        @include mudal();
+    #modal{
+        @include mudal_2();
     }
 
-    .meta-statistic {
+    .meta-statistic{
         display: flex;
         gap: 1em;
 
-        dl {
+        dl{
             display: flex;
             gap: .3em;
 
-            dt {
+            dt{
                 font-weight: bold;
             }
         }
-
+        
     }
 
-
-
+    
 }
 
-.posts_container {
+.posts_container{
     // display: flex;
     // flex-wrap: wrap;
 
@@ -75,4 +74,30 @@
             background-color: #DFFDFF;
         }
     }
+
+    // canceled
+    // article{
+    //     // flex: 1 0 max(150px,25%);
+    //     flex: 1 0 clamp(150px,25%,230px);
+    //     padding: 5px;
+
+    //     figure{
+            
+
+    //         figcaption{
+
+    //             .meta-info-container{
+
+    //                 // Author Profile image
+    //                 img{
+    //                     width: 30px;
+    //                     border-radius: 50%;
+    //                     box-shadow: 0 0 10px rgba(0, 0, 0, 0.256);
+    //                 }
+    //             }
+    //         }
+            
+    //     }
+    // }
+
 }
