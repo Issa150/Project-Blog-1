@@ -19,7 +19,7 @@ if (!empty($_POST)) {
 }
 
 // Afficher Toutes les articles
-$allPosts = $posts->getAll();
+$allPosts = $posts->getPostInfosOffice($_SESSION['current_user']['id']);
 // $allPosts = $posts->getAllByJoin("SELECT p.*, u.id,u.name,u.image 
 //                                     FROM posts p
 //                                     JOIN users u
@@ -101,11 +101,11 @@ $allPosts = $posts->getAll();
             <?php foreach ($allPosts as $post) : ?>
                 <tr>
                     <td><?= $post['title'] ?></td>
-                    <td><?= '$post[author]' ?></td>
-                    <td><?= '$post[thematic]' ?></td>
-                    <td><?= '$post[category]' ?></td>
+                    <td><?= $post['author'] ?></td>
+                    <td><?= $post['thematic'] ?></td>
+                    <td><?= $post['category'] ?></td>
                     <td><?= '$post[tags]' ?></td>
-                    <td><?= '$post[created_att]' ?></td>
+                    <td><?= $post['created_at'] ?></td>
                 </tr>
             <?php endforeach ?>
         </tbody>

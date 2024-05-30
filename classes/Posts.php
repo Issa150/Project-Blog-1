@@ -10,6 +10,27 @@ class Posts extends Database{
         $results = $stmt->fetchAll();
         return $results;
     }
+
+
+    public function getPostInfosOffice($id){
+        $sql = "
+        SELECT p.title, u.name AS 'author', t.title AS 'thematic', c.title AS 'category' ,p.created_at
+        FROM posts p
+        JOIN users u ON p.user_id = u.id
+        JOIN post_themathics PT ON p.id = PT.post_id
+        JOIN thematics t ON PT.thematic_id = t.id
+        JOIN post_categories PC ON p.id = PC.post_id
+        JOIN categories c ON PC.category_id = c.id
+        WHERE p.user_id = :id;";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([
+            ":id" => $id
+        ]);
+        $results = $stmt->fetchAll();
+        return $results;
+    }
+
+
     public function getAllByJoin($sql)
     {
         $stmt = $this->connection->prepare($sql);

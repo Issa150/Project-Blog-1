@@ -20,7 +20,8 @@
       margin-top: 1em;
       background: #eeeeee;
       box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
-      padding: 10px;
+      padding: 8px;
+      border-radius: $radius-sm + 6;
 
       li {
         // margin-block: 10px;
@@ -38,6 +39,7 @@
             border-bottom: 3px solid $clr_accent_1;
             background: #e1e1e1;
             background: rgba($clr_accent_1, 0.065);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.11);
 
             i {
               color: darken($clr_accent_1, 5%);
