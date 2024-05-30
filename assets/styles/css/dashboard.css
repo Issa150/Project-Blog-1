@@ -8,8 +8,7 @@
 img {
   width: 100%;
   aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   display: block;
 }
 
@@ -47,18 +46,6 @@ input[type=file] {
   cursor: pointer;
 }
 
-::-webkit-file-upload-button {
-  margin: 0;
-  padding: 0.6em 1em;
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  font-weight: bold;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgb(233, 233, 233)), to(rgb(170, 170, 170)));
-  background: linear-gradient(to bottom, rgb(233, 233, 233), rgb(170, 170, 170));
-  cursor: pointer;
-}
-
 ::file-selector-button {
   margin: 0;
   padding: 0.6em 1em;
@@ -66,7 +53,6 @@ input[type=file] {
   outline: none;
   font-size: 1rem;
   font-weight: bold;
-  background: -webkit-gradient(linear, left top, left bottom, from(rgb(233, 233, 233)), to(rgb(170, 170, 170)));
   background: linear-gradient(to bottom, rgb(233, 233, 233), rgb(170, 170, 170));
   cursor: pointer;
 }
@@ -92,17 +78,14 @@ button,
   border: none;
   margin-block: 0.5em;
   border-radius: 5px;
-  background: -webkit-gradient(linear, left bottom, left top, from(rgb(77, 77, 77)), to(rgb(154, 154, 154)));
   background: linear-gradient(to top, rgb(77, 77, 77), rgb(154, 154, 154));
   font-weight: bolder;
   color: white;
-  -webkit-transition: 1s;
   transition: 1s;
   cursor: pointer;
 }
 button:hover,
 .btn:hover {
-  background: -webkit-gradient(linear, left bottom, left top, from(rgb(34, 34, 34)), to(rgb(94, 94, 94)));
   background: linear-gradient(to top, rgb(34, 34, 34), rgb(94, 94, 94));
 }
 
@@ -118,24 +101,17 @@ body {
 
 nav {
   padding: 1em;
-  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
-          box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
-  position: absolute;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+  position: relative;
   top: 0;
   width: 100%;
   z-index: 2;
 }
 nav .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 nav .container > ul {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 0.2em;
 }
@@ -145,7 +121,6 @@ nav .container > ul > li {
 nav .container > ul > li > a {
   padding: 0.5em 0.9em;
   border-radius: 5px;
-  -webkit-transition: 0.15s ease-out;
   transition: 0.15s ease-out;
 }
 nav .container > ul > li > a:hover {
@@ -164,37 +139,25 @@ nav .container > ul > li ul {
   position: absolute;
   top: 100%;
   left: 0;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   opacity: 0;
   visibility: hidden;
-  -webkit-transition: opacity 0.25s, -webkit-transform 0.25s;
-  transition: opacity 0.25s, -webkit-transform 0.25s;
   transition: transform 0.25s, opacity 0.25s;
-  transition: transform 0.25s, opacity 0.25s, -webkit-transform 0.25s;
-  -webkit-transform: translateY(1em) scale(0.95);
-          transform: translateY(1em) scale(0.95);
+  transform: translateY(1em) scale(0.95);
 }
 nav .container > ul > li ul > div {
   margin-top: 1em;
   background: #eeeeee;
-  -webkit-box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
-          box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
   padding: 10px;
 }
 nav .container > ul > li ul > div li a {
   padding: 0.6em 0.8em;
   border-radius: 5px;
-  -webkit-transition: 0.25s;
   transition: 0.25s;
   border-bottom: 3px solid transparent;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   gap: 0.5em;
 }
 nav .container > ul > li ul > div li a:hover {
@@ -211,23 +174,17 @@ nav .container > ul > li ul > div li a i {
 nav .container > ul > li:hover ul {
   opacity: 1;
   visibility: visible;
-  -webkit-transform: translateY(0em) scale(1);
-          transform: translateY(0em) scale(1);
+  transform: translateY(0em) scale(1);
 }
 nav .container ul.connection li:has(img) > a {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   gap: 0.5em;
   padding: 0;
 }
 nav .container ul.connection li:has(img) > a img {
   border: 3px solid white;
-  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.158);
-          box-shadow: 0 0 8px rgba(0, 0, 0, 0.158);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.158);
   width: 40px;
   border-radius: 50%;
 }
@@ -255,7 +212,6 @@ nav .container .hamburger_menu {
     top: -300px;
     right: 0%;
     z-index: 2;
-    -webkit-transition: 0.65s;
     transition: 0.65s;
     padding-left: 6em;
     background: #f9f9f9;
@@ -290,6 +246,7 @@ header > img {
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: -1;
 }
 
 main.container {
@@ -298,11 +255,9 @@ main.container {
   gap: 1em;
 }
 main.container aside, main.container .info-detail {
-  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.108);
-          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.108);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.108);
   background: #ffffff;
   margin-top: -6em;
-  z-index: 1;
 }
 main.container aside {
   padding: 2em;
@@ -313,8 +268,6 @@ main.container aside h2 {
   margin-bottom: 0.7em;
 }
 main.container aside ul {
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
 }
 main.container aside ul li {
@@ -323,7 +276,6 @@ main.container aside ul li {
 main.container aside ul li a {
   text-decoration: none;
   padding: 0.5rem 1rem;
-  -webkit-transition: 0.2s;
   transition: 0.2s;
   border-left: 3px solid transparent;
   display: block;
@@ -348,8 +300,7 @@ main.container aside img {
   border: 5px solid white;
   width: 200px;
   border-radius: 50%;
-  -webkit-filter: drop-shadow(0 0 10px lightgrey);
-          filter: drop-shadow(0 0 10px lightgrey);
+  filter: drop-shadow(0 0 10px lightgrey);
 }
 main.container aside .user-info {
   text-align: center;
@@ -368,7 +319,6 @@ main.container .info-detail .head-info a {
   padding: 1.5em 2em;
   display: inline-block;
   border-bottom: 2px solid transparent;
-  -webkit-transition: 0.35s;
   transition: 0.35s;
   font-weight: bolder;
   color: rgb(91, 91, 91);
@@ -379,15 +329,9 @@ main.container .info-detail .head-info a:hover {
   color: black;
 }
 main.container .info-detail .body-info .control_bar {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
   padding: 0.5em 1em;
   border-bottom: 1px solid grey;
 }
@@ -405,8 +349,7 @@ main.container .info-detail .body-info .control_bar #modal form {
   position: fixed;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
   z-index: 5;
   background: linear-gradient(-60deg, #eeeeee, rgb(246, 248, 227), #eeeeee);
   padding: 1em 2em;
@@ -414,8 +357,7 @@ main.container .info-detail .body-info .control_bar #modal form {
   outline: none;
   width: clamp(400px, 60%, 800px);
   max-height: 90vh;
-  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
-          box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
   text-align: center;
   overflow-y: scroll;
 }
@@ -443,31 +385,22 @@ main.container .info-detail .body-info .control_bar #modal fieldset:has(input[ty
 main.container .info-detail .body-info .control_bar #modal fieldset.media-profile {
   grid-column: span 6;
 }
-main.container .info-detail .body-info .control_bar #modal::-ms-backdrop {
-  background: hsla(0, 0%, 0%, 0.637);
-}
 main.container .info-detail .body-info .control_bar #modal::backdrop {
   background: hsla(0, 0%, 0%, 0.637);
 }
 main.container .info-detail .body-info .control_bar #modal .grid-full-width button {
   font-size: 1.2rem;
   padding: 0.8em 1.5em;
-  background: -webkit-gradient(linear, left top, left bottom, from(#F06543), to(#b83619));
   background: linear-gradient(to bottom, #F06543, #b83619);
 }
 main.container .info-detail .body-info .control_bar #modal .grid-full-width #cancelModal {
-  background: -webkit-gradient(linear, left top, left bottom, from(rgb(0, 162, 248)), to(rgb(2, 120, 167)));
   background: linear-gradient(to bottom, rgb(0, 162, 248), rgb(2, 120, 167));
 }
 main.container .info-detail .body-info .control_bar .meta-statistic {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 1em;
 }
 main.container .info-detail .body-info .control_bar .meta-statistic dl {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
   gap: 0.3em;
 }
@@ -480,13 +413,28 @@ main.container .info-detail .body-info .posts_container Table {
   width: calc(100% - 2em);
   margin-inline: auto;
 }
-main.container .info-detail .body-info .posts_container Table td, main.container .info-detail .body-info .posts_container Table th {
+main.container .info-detail .body-info .posts_container Table td,
+main.container .info-detail .body-info .posts_container Table th {
   border: 1px solid #dddddd;
   text-align: left;
   padding: 8px;
 }
+main.container .info-detail .body-info .posts_container Table thead tr {
+  background: linear-gradient(to bottom, #E4E4E4, #D0D0D0);
+}
+main.container .info-detail .body-info .posts_container Table thead tr th {
+  padding: 1em;
+  border: 1px solid #dddddd;
+}
+main.container .info-detail .body-info .posts_container Table tbody tr {
+  background: #F5FEFF;
+}
+main.container .info-detail .body-info .posts_container Table tbody tr td {
+  padding: 1em;
+  border: 1px solid #F5FEFF;
+}
 main.container .info-detail .body-info .posts_container Table tr:nth-child(even) {
-  background-color: #dddddd;
+  background-color: #DFFDFF;
 }
 
 footer {
@@ -495,12 +443,8 @@ footer {
   padding: 2em;
 }
 footer .container {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  justify-content: space-between;
 }
 footer .container ul h3 {
   margin-block: 1em;

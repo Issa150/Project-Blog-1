@@ -31,20 +31,48 @@
     // display: flex;
     // flex-wrap: wrap;
 
-    Table{
+    Table {
         border-collapse: collapse;
         margin-top: 1em;
         width: calc(100% - 2em);
         margin-inline: auto;
-        td, th {
+
+        td,
+        th {
             border: 1px solid #dddddd;
             text-align: left;
             padding: 8px;
-          }
-          
-          tr:nth-child(even) {
-            background-color: #dddddd;
-          }
+        }
+
+        thead {
+
+            tr {
+                background: linear-gradient(to bottom, #E4E4E4, #D0D0D0);
+
+                th {
+                    padding: 1em;
+                    border: 1px solid #dddddd;
+                }
+            }
+        }
+
+        tbody {
+
+            
+            tr {
+                background: #F5FEFF;
+
+                td {
+                    padding: 1em;
+                    border: 1px solid #F5FEFF;
+                }
+            }
+
+        }
+
+        tr:nth-child(even) {
+            background-color: #DFFDFF;
+        }
     }
 
     // canceled
