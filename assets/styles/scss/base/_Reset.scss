@@ -28,6 +28,8 @@ textarea {
   margin-block: 0.5em;
   border-radius: $radius-sm;
   outline: 1px solid lightgrey;
+  direction: auto;
+  unicode-bidi: plaintext;
 
   &:focus {
     outline: 1px solid rgb(5, 172, 218);

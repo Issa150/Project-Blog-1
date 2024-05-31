@@ -25,8 +25,9 @@ if (!isset($_SESSION['current_user'])) {
 
 
 <header>
-    <img src="../assets/imgs/initials/pawel-czerwinski-7FqOISWr5V0-unsplash.jpg" alt="">
     <?php include_once "../inc/components/nav.php"; ?>
+    <!-- <img src="../assets/imgs/initials/pawel-czerwinski-7FqOISWr5V0-unsplash.jpg" alt=""> -->
+    <img src="<?= SITE_PATH . "assets/imgs/banner/" . (!empty($_SESSION['current_user']['profile_cover']) ? $_SESSION['current_user']['profile_cover'] : "initial-banner.jpg") ?>" alt="">
 </header>
 <main class="container">
 

@@ -52,8 +52,11 @@ $allPosts = $posts->getPostInfosOffice($_SESSION['current_user']['id']);
             </fieldset>
 
             <fieldset class="grid-col-3">
-                <label for="post_image_banner"><i class="fa-solid fa-photo-film"></i> Image cover</label>
-                <input type="file" name="postCover" id="post_image_banner">
+                <label for="post_image_banner">
+                    <i class="fa-solid fa-photo-film"></i> 
+                    Image cover
+                    <input type="file" name="postCover" id="post_image_banner">
+                </label>
             </fieldset>
 
             <div class="grid-full-width">

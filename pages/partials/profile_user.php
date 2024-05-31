@@ -95,7 +95,7 @@ include_once "../inc/process/profile_user.process.php";
             <input type="text" name="country" id="country" value="<?= $getUser['country'] ?>">
         </fieldset>
         <div class="grid-full-width">
-            <button id="cancelModal" formmethod="dialog">Cancel</button>
+            <!-- <button id="cancelModal" formmethod="dialog">Cancel</button> -->
 
             <button type="submit">Save changes</button>
 

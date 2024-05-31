@@ -195,15 +195,6 @@
   }
 }
 @mixin mudal_2() {
-  // background: linear-gradient(-60deg, #eeeeee, rgb(246, 248, 227), #eeeeee);
-  // padding: 1em 2em;
-  // border: none;
-  // outline: none;
-  // width: clamp(400px, 60%, 800px);
-  // max-height: 90vh;
-  // box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
-  // text-align: center;
-  // overflow-y: scroll;
   position: fixed;
   top: 0;
   left: 0;
@@ -238,6 +229,15 @@
     display: inline-block;
     font-size: 1.2rem;
     padding: 0.69em 1.5em;
+  }
+  label:has(input[type="file"]){
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+
+    input[type="file"]{
+      margin-left: 1em;
+    }    
   }
 
   fieldset {

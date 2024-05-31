@@ -6,6 +6,7 @@
 main.container {
   display: grid;
   grid-template-columns: max(160px, 20%) 1fr;
+  position: relative;
   // grid-template-columns: repeat(auto-fill, minmax(max(160px,20%), 1fr));
   // gap: 2em;
 
