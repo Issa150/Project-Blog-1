@@ -20,7 +20,7 @@ a {
 }
 // style genrala of all inputs to look like Bootstrap
 input:is([type="text"], [type="password"], [type="email"]),
-textarea {
+textarea, .input {
   width: 100%;
   padding: 0.6em 1em;
   font-size: 1rem;

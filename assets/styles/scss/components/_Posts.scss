@@ -52,6 +52,10 @@
                 th {
                     padding: 1em;
                     border: 1px solid #dddddd;
+
+                    &.post-title{
+                        width: 40%;
+                    }
                 }
             }
         }
@@ -74,30 +78,5 @@
             background-color: #DFFDFF;
         }
     }
-
-    // canceled
-    // article{
-    //     // flex: 1 0 max(150px,25%);
-    //     flex: 1 0 clamp(150px,25%,230px);
-    //     padding: 5px;
-
-    //     figure{
-            
-
-    //         figcaption{
-
-    //             .meta-info-container{
-
-    //                 // Author Profile image
-    //                 img{
-    //                     width: 30px;
-    //                     border-radius: 50%;
-    //                     box-shadow: 0 0 10px rgba(0, 0, 0, 0.256);
-    //                 }
-    //             }
-    //         }
-            
-    //     }
-    // }
 
 }

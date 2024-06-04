@@ -3,7 +3,9 @@ include_once "../inc/session_security.php";
 include_once "../inc/function.php";
 include_once "../classes/GetUsers.php";
 include_once "../classes/Update_user_info.php";
-include_once "../classes/Posts.php";
+include_once "../classes/Posts_class.php";
+include_once "../classes/Thematics_class.php";
+include_once "../classes/Categories_class.php";
 
 ///////////::
 
@@ -40,32 +42,34 @@ if (!isset($_SESSION['current_user'])) {
             <span><?= $_SESSION['current_user']['country'] ?></span>
         </div>
         <ul>
-            <li><a class="<?= (isset($_GET['user_info']) || empty($_GET)) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?user_info"><i class="fa-regular fa-newspaper"></i>Posts</a></li>
-            <li><a class="<?= isset($_GET['favorite']) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?favorite"><i class="fa-solid fa-layer-group"></i>Thematics</a></li>
-            <li><a class="<?= isset($_GET['watchlist']) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?watchlist"><i class="fa-solid fa-rectangle-list"></i>Categories</a></li>
-            <li><a class="<?= isset($_GET['account_setting']) ? "active" : "" ?>" href="<?= SITE_PATH ?>pages/account.php?account_setting"><i class="fa-solid fa-tags"></i>Tags</a></li>
+            <li><a class="<?= (isset($_GET['user_info']) || empty($_GET)) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?posts"><i class="fa-regular fa-newspaper"></i>Posts</a></li>
+            <li><a class="<?= isset($_GET['thematics']) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?thematics"><i class="fa-solid fa-layer-group"></i>Thematics</a></li>
+            <li><a class="<?= isset($_GET['categories']) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?categories"><i class="fa-solid fa-rectangle-list"></i>Categories</a></li>
+            <!-- <li><a class="<?//= isset($_GET['account_setting']) ? "active" : "" ?>" href="<?//= SITE_PATH ?>pages/dashboard.php.php?account_setting"><i class="fa-solid fa-tags"></i>Tags</a></li> -->
         </ul>
     </aside>
 
     <div class="info-detail">
-        <div class="head-info">
+        <!-- <div class="head-info">
             <a href="?posts">All authors <i class="fa-solid fa-filter"></i></a>
             <a href="?posts">All categories <i class="fa-solid fa-filter"></i></a>
             <a href="?posts">All thematics <i class="fa-solid fa-filter"></i></a>
-            <a href="?posts">All tags <i class="fa-solid fa-filter"></i></a>
+             <a href="?posts">All tags <i class="fa-solid fa-filter"></i></a> -->
 
-        </div>
+        <!--</div>
 
-        <div class="body-info">
+        <div class="body-info"> -->
             <?php
             if (isset($_GET['posts']) || empty($_GET)) {
                 include_once  "partials/posts.php";
-            } elseif (isset($_GET['favorite'])) {
-                include_once  "partials/favorites_user.php";
+            } elseif (isset($_GET['thematics'])) {
+                include_once  "partials/thematics.php";
+            } elseif (isset($_GET['categories'])) {
+                include_once  "partials/categories.php";
             }
             ?>
 
-        </div>
+        <!-- </div> -->
     </div>
 </main>
 
