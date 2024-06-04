@@ -65,14 +65,16 @@ $allThematics = $thematics->getAll();
                 <tr>
                     <th class="post-title">Title</th>
                     <th>Description</th>
+                    <th>Total</th>
                 </tr>
             </thead>
 
             <tbody>
-                <?php foreach ($allThematics as $post) : ?>
+                <?php foreach ($allThematics as $thematic) : ?>
                     <tr>
-                        <td><?= $post['title'] ?></td>
-                        <td><?= $post['description'] ?></td>
+                        <td><?= $thematic['title'] ?></td>
+                        <td><?= $thematic['description'] ?></td>
+                        <td><?= $general_class->counter('posts','thematic_id', $thematic['id']  )["COUNT(*)"]; ?></td>
                         <!-- <td><? //= date('Y-m-d', strtotime($post['created_at'])) 
                                     ?></td> -->
                     </tr>

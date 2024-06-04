@@ -220,6 +220,9 @@
     box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
     text-align: center;
     overflow-y: scroll;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
   }
 
   label {
@@ -230,17 +233,18 @@
     font-size: 1.2rem;
     padding: 0.69em 1.5em;
   }
-  label:has(input[type="file"]){
+  label:has(input[type="file"]) {
     display: grid;
     grid-template-columns: auto auto 1fr;
     align-items: center;
 
-    input[type="file"]{
+    input[type="file"] {
       margin-left: 1em;
-    }    
+    }
   }
 
   fieldset {
+    grid-column: span 6;
     margin-block: 0.5em;
     i {
       margin-right: 1em;
@@ -254,16 +258,32 @@
         margin-right: 2em;
       }
     }
+
+    .input {
+      background: $clr_light_1;
+      text-align: left;
+    }
+    label {
+      span {
+        color: red;
+        font-size: 0.7rem;
+      }
+    }
+
+    &.grid-col-3 {
+      grid-column: span 3;
+    }
   }
-  fieldset.media-profile {
-    grid-column: span 6;
-  }
+  // fieldset.media-profile {
+  //   grid-column: span 6;
+  // }
 
   &::backdrop {
     background: hsla(0, 0%, 0%, 0.637);
   }
 
   .grid-full-width {
+    grid-column: span 6;
     button {
       font-size: 1.2rem;
       padding: 0.8em 1.5em;

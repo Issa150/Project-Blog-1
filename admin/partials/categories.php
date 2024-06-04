@@ -64,17 +64,17 @@ $allCategories = $categories->getAll();
             <thead>
                 <tr>
                     <th class="post-title">Title</th>
-                    <th>Description</th>
                     <th>Author</th>
+                    <th>Total</th>
                 </tr>
             </thead>
 
             <tbody>
-                <?php foreach ($allCategories as $post) : ?>
+                <?php foreach ($allCategories as $categorie) : ?>
                     <tr>
-                        <td><?= $post['title'] ?></td>
-                        <td><?= isset($post['description']) ? $post['description'] : "..." ?></td>
-                        <td><?= $post['name'] ?></td>
+                        <td><?= $categorie['title'] ?></td>
+                        <td><?= $categorie['name'] ?></td>
+                        <td><?= $general_class->counter('posts', 'categorie_id', $categorie['id']  )["COUNT(*)"];?></td>
                         <!-- <td><? //= date('Y-m-d', strtotime($post['created_at'])) 
                                     ?></td> -->
                     </tr>

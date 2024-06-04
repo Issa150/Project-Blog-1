@@ -6,6 +6,11 @@ include_once "../classes/Update_user_info.php";
 include_once "../classes/Posts_class.php";
 include_once "../classes/Thematics_class.php";
 include_once "../classes/Categories_class.php";
+include_once "../classes/General_class.php";
+
+///////////::
+// instentiaions
+$general_class = new Genreal();
 
 ///////////::
 
@@ -42,7 +47,7 @@ if (!isset($_SESSION['current_user'])) {
             <span><?= $_SESSION['current_user']['country'] ?></span>
         </div>
         <ul>
-            <li><a class="<?= (isset($_GET['user_info']) || empty($_GET)) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?posts"><i class="fa-regular fa-newspaper"></i>Posts</a></li>
+            <li><a class="<?= (isset($_GET['posts']) || empty($_GET)) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?posts"><i class="fa-regular fa-newspaper"></i>Posts</a></li>
             <li><a class="<?= isset($_GET['thematics']) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?thematics"><i class="fa-solid fa-layer-group"></i>Thematics</a></li>
             <li><a class="<?= isset($_GET['categories']) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?categories"><i class="fa-solid fa-rectangle-list"></i>Categories</a></li>
             <!-- <li><a class="<?//= isset($_GET['account_setting']) ? "active" : "" ?>" href="<?//= SITE_PATH ?>pages/dashboard.php.php?account_setting"><i class="fa-solid fa-tags"></i>Tags</a></li> -->
