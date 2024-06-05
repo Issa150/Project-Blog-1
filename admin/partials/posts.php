@@ -1,34 +1,22 @@
 <?php
 // include_once "../classes/Posts_class.php";
-$posts = new Posts();
-$thematics = new Thematic();
-$categories = new Categorie();
+
+// $thematics = new Thematic();
+// $categories = new Categorie();
+
+
 
 // Ajouter une nouvelle article
-if (!empty($_POST)) {
-    $title = trim(filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS));
-    $body = trim(filter_input(INPUT_POST, "body", FILTER_SANITIZE_SPECIAL_CHARS));
-    $thematic_id = trim(filter_input(INPUT_POST, "thematic", FILTER_SANITIZE_SPECIAL_CHARS));
-    $category_id = trim(filter_input(INPUT_POST, "category", FILTER_SANITIZE_SPECIAL_CHARS));
-    $published = (isset($_POST['draft'])) ? 0 : 1;
-    $image_cover = isset($_FILES['post_image_banner']['name']) ? $_FILES['post_image_banner']['name'] : null;
-    $user_id = $_SESSION['current_user']['id'];
 
 
-    $posts->insertPost($title, $body, $user_id, $image_cover, $published, $thematic_id, $category_id);
-    if (!empty($_FILES['post_image_banner'])) {
-        $posts->insertSingleFile($image_cover);
-        move_uploaded_file($_FILES['post_image_banner']['tmp_name'], SITE_PATH . "assets/posts/" . $_FILES['post_image_banner']['name']);
-    }
 
-    header('Location:' .SITE_PATH . 'admin/dashboard.php?posts');
-}
-
-// Update
-// if()
 
 // Afficher Toutes les articles
 $allPosts = $posts->getPostInfosOffice($_SESSION['current_user']['id']);
+// dump($allPosts);
+// die;
+// Aficher les categories fait par Cette Utilisateur
+$allCategories = $categories->getAllMyCategories($_SESSION['current_user']['id']);
 
 ?>
 <div class="head-info">
@@ -62,17 +50,17 @@ $allPosts = $posts->getPostInfosOffice($_SESSION['current_user']['id']);
                 </fieldset>
 
                 <fieldset class="grid-col-6">
-                    <label for="post_image_banner">
+                    <label for="post_cover">
                         <i class="fa-solid fa-photo-film"></i>
                         Image cover
-                        <input type="file" name="postCover" id="post_image_banner">
+                        <input type="file" name="post_cover" id="post_image_banner">
                     </label>
                 </fieldset>
 
                 <fieldset class="grid-col-3">
                     <label for="draft"> Thematics: <span>Required*</span></label>
                     <div class="input">
-                        <?php foreach($thematics->getAll() as $thematic) : ?>
+                        <?php foreach ($thematics->getAll() as $thematic) : ?>
                             <div>
                                 <input type="radio" name="thematic" value="<?= $thematic['id'] ?>" id="draft"> <?= $thematic['title'] ?>
                             </div>
@@ -83,11 +71,20 @@ $allPosts = $posts->getPostInfosOffice($_SESSION['current_user']['id']);
                 <fieldset class="grid-col-3">
                     <label for="draft"> Categories</label>
                     <div class="input">
-                        <?php foreach ($categories->getAll() as $categorie) : ?>
-                            <div>
-                                <input type="checkbox" name="category" value="<?= $categorie['id'] ?>" id="draft"> <?= $categorie['title']?>
-                            </div>
-                        <?php endforeach ?>
+                        <?php
+                        if (count($allCategories) == 0) { ?>
+
+                            <p class="empty">No categories created yet 🫤</p>
+                            <a class="guiding btn" href="<?= SITE_PATH ?>admin/dashboard.php?categories">Add a new category</a>
+
+
+                            <?php } else {
+                            foreach ($allCategories as $categorie) { ?>
+                                <div>
+                                    <input type="checkbox" name="category" value="<?= $categorie['id'] ?>" id="draft"> <?= $categorie['title'] ?>
+                                </div>
+                        <?php  }
+                        } ?>
                     </div>
                 </fieldset>
 
@@ -98,7 +95,8 @@ $allPosts = $posts->getPostInfosOffice($_SESSION['current_user']['id']);
 
                 <div class="grid-full-width">
                     <button id="cancelModal" formmethod="dialog">Cancel</button>
-                    <button type="submit">Publish</button>
+                    <!-- <button type="submit">Publish</button> -->
+                    <input class="btn btn-success" type="submit" name="formType" value="Publish the post">
                 </div>
 
             </form>
@@ -107,12 +105,12 @@ $allPosts = $posts->getPostInfosOffice($_SESSION['current_user']['id']);
             <dl>
                 <dt>Published: </dt>
                 <!-- the counter()[in SQL function count()] returns an arrray, so to acces it => -->
-                <dd><?= $general_class->counter('posts', 'published', 1)["COUNT(*)"]; ?></dd>
+                <dd><?= $general_class->counter('posts', 'published', 1, $_SESSION['current_user']['id'])["COUNT(*)"]; ?></dd>
             </dl>
             <dl>
                 <dt>Draft: </dt>
                 <!-- the counter()[in SQL function count()] returns an arrray, so to acces it => -->
-                <dd><?= $general_class->counter('posts', 'published', 0)["COUNT(*)"]; ?></dd>
+                <dd><?= $general_class->counter('posts', 'published', 0, $_SESSION['current_user']['id'])["COUNT(*)"]; ?></dd>
             </dl>
 
             <dl>
@@ -139,12 +137,15 @@ $allPosts = $posts->getPostInfosOffice($_SESSION['current_user']['id']);
             <tbody>
                 <?php foreach ($allPosts as $post) : ?>
                     <tr>
-                        <td><?= $post['title'] ?></td>
+                        <!-- <td class="button-container"><span class="button-wrapper"><a href="">Modifier</a> <a href=""><i class="fa-solid fa-pen-to-square"></i></a></span></td> -->
+                        <!-- <div><td class="button-container"><span class="button-wrapper"><a href="">Modifier</a> <a href=""><i class="fa-solid fa-pen-to-square"></i></a></span></td></div> -->
+                        <td><?= (strlen($post['title']) > 40) ? substr($post['title'], 0, 40) . '...' : $post['title'] ?></td>
                         <td><?= $post['author'] ?></td>
                         <td><?= $post['thematic'] ?></td>
-                        <td><?= $post['category'] ?></td>
-                        <!-- <td><?//= htmlspecialchars_decode($post['body']) ?></td> -->
-                        <td><?= date('d-m-Y', strtotime($post['created_at'])) ?></td>
+                        <td class="small"><?= !empty($post['categories']) ? $post['categories'] : "<span class='no-choice'>No category!</span>" ?></td>
+                        <!-- <td><? //= htmlspecialchars_decode($post['body']) 
+                                    ?></td> -->
+                        <td class="small"><?= date('d-m-Y', strtotime($post['created_at'])) ?></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>

@@ -16,7 +16,7 @@ class Thematic extends Database
 
     public function insertThematic($title,$description)
     {
-        $sql = "INSERT INTO thematics(title) VALUES (:title)";
+        $sql = "INSERT INTO thematics(title, description) VALUES (:title, :description)";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([
             ":title" => $title,

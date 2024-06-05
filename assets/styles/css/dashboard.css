@@ -169,6 +169,7 @@ nav .container > ul > li ul {
   width: -webkit-max-content;
   width: -moz-max-content;
   width: max-content;
+  min-width: 100%;
   opacity: 0;
   visibility: hidden;
   -webkit-transition: opacity 0.25s, -webkit-transform 0.25s;
@@ -466,6 +467,16 @@ main.container .info-detail .body-info .control_bar #modal fieldset label span {
   color: red;
   font-size: 0.7rem;
 }
+main.container .info-detail .body-info .control_bar #modal fieldset .empty {
+  color: #000000;
+  font-weight: bolder;
+}
+main.container .info-detail .body-info .control_bar #modal fieldset .guiding {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgb(1, 83, 1)), to(rgb(6, 178, 6)));
+  background: linear-gradient(to top, rgb(1, 83, 1), rgb(6, 178, 6));
+  font-size: 0.9rem;
+  color: rgb(255, 255, 255);
+}
 main.container .info-detail .body-info .control_bar #modal fieldset.grid-col-3 {
   grid-column: span 3;
 }
@@ -478,7 +489,7 @@ main.container .info-detail .body-info .control_bar #modal::backdrop {
 main.container .info-detail .body-info .control_bar #modal .grid-full-width {
   grid-column: span 6;
 }
-main.container .info-detail .body-info .control_bar #modal .grid-full-width button {
+main.container .info-detail .body-info .control_bar #modal .grid-full-width button, main.container .info-detail .body-info .control_bar #modal .grid-full-width .btn-success {
   font-size: 1.2rem;
   padding: 0.8em 1.5em;
   background: -webkit-gradient(linear, left top, left bottom, from(#F06543), to(#b83619));
@@ -492,6 +503,9 @@ main.container .info-detail .body-info .control_bar .meta-statistic {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 1em;
 }
 main.container .info-detail .body-info .control_bar .meta-statistic dl {
@@ -502,6 +516,10 @@ main.container .info-detail .body-info .control_bar .meta-statistic dl {
 }
 main.container .info-detail .body-info .control_bar .meta-statistic dl dt {
   font-weight: bold;
+}
+main.container .info-detail .body-info .control_bar .meta-statistic span {
+  font-size: 0.8rem;
+  color: red;
 }
 main.container .info-detail .body-info .posts_container Table {
   border-collapse: collapse;
@@ -528,10 +546,58 @@ main.container .info-detail .body-info .posts_container Table thead tr th.post-t
 }
 main.container .info-detail .body-info .posts_container Table tbody tr {
   background: #F5FEFF;
+  position: relative;
+}
+main.container .info-detail .body-info .posts_container Table tbody tr > div {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: 100%;
+  z-index: 4;
+}
+main.container .info-detail .body-info .posts_container Table tbody tr .button-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: 100%;
+  z-index: 4;
+  padding-left: 1em;
+  visibility: hidden;
+  display: none;
+}
+main.container .info-detail .body-info .posts_container Table tbody tr .button-container .button-wrapper {
+  background: #ececec;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+}
+main.container .info-detail .body-info .posts_container Table tbody tr:hover .button-container {
+  display: block;
+  visibility: visible;
 }
 main.container .info-detail .body-info .posts_container Table tbody tr td {
   padding: 1em;
   border: 1px solid #F5FEFF;
+}
+main.container .info-detail .body-info .posts_container Table tbody tr td.empty {
+  background: #1f1f1f;
+  color: antiquewhite;
+  font-weight: bolder;
+  text-align: center;
+}
+main.container .info-detail .body-info .posts_container Table tbody tr td .no-choice {
+  font-size: 0.9rem;
+  color: red;
+}
+main.container .info-detail .body-info .posts_container Table tbody tr td.small {
+  font-size: 0.8rem;
 }
 main.container .info-detail .body-info .posts_container Table tr:nth-child(even) {
   background-color: #DFFDFF;

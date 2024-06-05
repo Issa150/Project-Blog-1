@@ -15,6 +15,19 @@ class Categorie extends Database
         return $results;
     }
 
+    public function getAllMyCategories($user_id)
+    {
+        $sql = "SELECT c.*, u.name
+                FROM categories c 
+                LEFT JOIN users u 
+                ON c.user_id = u.id
+                WHERE user_id = :$user_id";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute([":$user_id" => $user_id]);
+        $results = $stmt->fetchAll();
+        return $results;
+    }
+
 
 
     public function insertCategorie($title,$description, $user_id)

@@ -13,17 +13,23 @@
         <ul class="responsive-nav">
             <li><a href="<?=SITE_PATH?>" class="active">Home</a></li>
             <li>
-                <a href="#">Products<i class="fa-solid fa-angle-down"></i></a>
+                <a href="#">Type of articles<i class="fa-solid fa-angle-down"></i></a>
                 <ul>
                     <div>
-                        <li><a href="<?= SITE_PATH ?>pages/profile.php"><i class="fa-regular fa-user"></i> Profile</a></li>
-                        <li><a href=""><i class="fa-regular fa-heart"></i> Favorites</a></li>
-                        <li><a href="<?= SITE_PATH ?>profile.php?acount_setting"><i class="fa-solid fa-id-card"></i> Account setting</a></li>
-                        <li><a href="?logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                        <li><a href="<?= SITE_PATH ?>pages/profile.php"> Tutorials</a></li>
+                        <li><a href=""> Lists</a></li>
                     </div>
                 </ul>
             </li>
-            <li><a href="#">Blog<i class="fa-solid fa-angle-down"></i></a></li>
+            <li>
+                <a href="#">Categories<i class="fa-solid fa-angle-down"></i></a>
+                <ul>
+                    <div>
+                        <li><a href="<?= SITE_PATH ?>pages/profile.php"> Tutorials</a></li>
+                        <li><a href=""> Lists</a></li>
+                    </div>
+                </ul>
+            </li>
             <li><a href="#">Pricing</a></li>
             <li><a href="#">About us</a></li>
         </ul>

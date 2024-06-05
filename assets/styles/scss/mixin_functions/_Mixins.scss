@@ -8,6 +8,7 @@
     top: 100%;
     left: 0;
     width: max-content;
+    min-width: 100%;
     opacity: 0;
     visibility: hidden;
 
@@ -270,6 +271,17 @@
       }
     }
 
+    .empty {
+      color: #000000;
+      font-weight: bolder;
+    }
+    .guiding {
+      background: linear-gradient(to top,rgb(1, 83, 1), rgb(6, 178, 6));
+      font-size: 0.9rem;
+      color: rgb(255, 255, 255);
+      // text-decoration: underline;
+    }
+
     &.grid-col-3 {
       grid-column: span 3;
     }
@@ -284,7 +296,7 @@
 
   .grid-full-width {
     grid-column: span 6;
-    button {
+    button , .btn-success {
       font-size: 1.2rem;
       padding: 0.8em 1.5em;
       @include btn($clr_btn_accent_1);
