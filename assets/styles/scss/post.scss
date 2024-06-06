@@ -1,0 +1,59 @@
+@import "./base/Variables";
+@import "./base/Reset";
+@import "./components/Cards";
+
+@import "./partials/Nav";
+
+section {
+    display: grid;
+    grid-template-columns: 1fr 20%;
+    gap: 1.5em;
+  article {
+    margin-bottom: 2em;
+    // & > img {
+    // }
+    .meta-info-container {
+      margin-top: 1em;
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1em;
+
+      img {
+        width: 50px;
+        aspect-ratio: 1/1;
+        border-radius: 50%;
+      }
+      i{
+        justify-self: end;
+      }
+    }
+
+    h1{
+        margin-bottom: 1.2em;
+    }
+  }
+
+  aside{
+    .months-wrapper{
+
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+        gap: 10px;
+        margin-top: 1em;
+
+        p.monthes-archive{
+            cursor: pointer;
+            // padding: .8em 1.8em;
+            text-align: center;
+            padding: .8em;
+            background: grey;
+            border-radius: $radius-sm;
+        }
+    }
+  }
+
+}
+
+@import "./partials/Footer";

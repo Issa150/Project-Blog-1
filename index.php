@@ -26,7 +26,7 @@ $postSlides = $posts->getAll("LIMIT 5");
                     <div class="content">
                         <div class="container">
                             <h3><?= $post['title'] ?></h3>
-                            <p><?= $post['body'] ?></p>
+                            <p><?= htmlspecialchars_decode($post['body']) ?></p>
                         </div>
                     </div>
                 </div>
@@ -51,99 +51,59 @@ $postSlides = $posts->getAll("LIMIT 5");
 
 
 <main>
-    <section class="container">
-        <div class="title-tool">
-            <h2>My followings recent releases</h2>
-            <a href="<?= SITE_PATH?>pages/section.php?all=followings">See all</a>
-        </div>
-        <div class="posts-row">
-            <figure class="card-img-full">
-                <img src="assets/imgs/tina-dawson-f1krjnOeWDk-unsplash.jpg" alt="Post follow">
-                <figcaption>
-                    <h3>Building you API stack</h3>
-                    <div class="meta-info-container">
-                        <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                        <p>Lana steinler</p>
-                        <p>18 Jan 2024</p>
-                    </div>
-                </figcaption>
-            </figure>
-            <figure class="card-img-full">
-                <img src="assets/imgs/tina-dawson-f1krjnOeWDk-unsplash.jpg" alt="Post follow">
-                <figcaption>
-                    <h3>Building you API stack</h3>
-                    <div class="meta-info-container">
-                        <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                        <p>Lana steinler</p>
-                        <p>18 Jan 2024</p>
-                    </div>
-                </figcaption>
-            </figure>
+    <?php if (isset($_SESSION['current_user'])) { ?>
+        <section class="container">
+            <div class="title-tool">
+                <h2>My followings recent releases</h2>
+                <a href="<?= SITE_PATH ?>pages/flow.php?all=followings">See all</a>
+            </div>
+            <div class="posts-row">
+                <?php for ($x = 0; $x < 3; $x++) { ?>
+                    <a href="<?= SITE_PATH ?>pages/post.php?id=<?php //=$var['id']?>">
 
-            <figure class="card-img-full">
-                <img src="assets/imgs/tina-dawson-f1krjnOeWDk-unsplash.jpg" alt="Post follow">
-                <figcaption>
-                    <h3>Building you API stack</h3>
-                    <div class="meta-info-container">
-                        <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                        <p>Lana steinler</p>
-                        <p>18 Jan 2024</p>
-                    </div>
-                </figcaption>
-            </figure>
-        </div>
+                        <figure class="card-img-full">
+                            <img src="assets/imgs/tina-dawson-f1krjnOeWDk-unsplash.jpg" alt="Post follow">
+                            <figcaption>
+                                <h3>Building you API stack</h3>
+                                <div class="meta-info-container">
+                                    <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
+                                    <p>Lana steinler</p>
+                                    <p>18 Jan 2024</p>
+                                </div>
+                            </figcaption>
+                        </figure>
 
-    </section>
+                    </a>
+                <?php } ?>
+            </div>
+
+        </section>
+    <?php } ?>
     <!-- -------------------------------------------------------------------------- -->
     <section class="container">
         <div class="title-tool">
             <h2>Recent blog posts</h2>
-            <a href="<?= SITE_PATH?>pages/section.php?all=tutorials">See all</a>
+            <a href="<?= SITE_PATH ?>pages/flow.php?all=tutorials">See all</a>
         </div>
         <div class="posts-row">
-            <article>
-                <figure>
-                    <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                    <figcaption>
-                        <h3>Building you API stack</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi, aliquam quis culpa quod earum molestiae! Corporis beatae laboriosam suscipit nesciunt illum autem optio a nostrum.</p>
-                        <div class="meta-info-container">
-                            <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                            <p>Lana steinler</p>
-                            <p>18 Jan 2024</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </article>
-            <article>
-                <figure>
-                    <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                    <figcaption>
-                        <h3>Building you API stack</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi, aliquam quis culpa quod earum molestiae! Corporis beatae laboriosam suscipit nesciunt illum autem optio a nostrum.</p>
-                        <div class="meta-info-container">
-                            <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                            <p>Lana steinler</p>
-                            <p>18 Jan 2024</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </article>
-            <article>
-                <figure>
-                    <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                    <figcaption>
-                        <h3>Building you API stack</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi, aliquam quis culpa quod earum molestiae! Corporis beatae laboriosam suscipit nesciunt illum autem optio a nostrum.</p>
-                        <div class="meta-info-container">
-                            <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                            <p>Lana steinler</p>
-                            <p>18 Jan 2024</p>
-                        </div>
-                    </figcaption>
-                </figure>
-            </article>
-
+            <?php for ($x = 0; $x < 3; $x++) { ?>
+                <a href="<?= SITE_PATH ?>pages/post.php?id=<?php //= $var['id'] ?>">
+                    <article>
+                        <figure class="card-main">
+                            <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
+                            <figcaption>
+                                <h3>Building you API stack</h3>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi, aliquam quis culpa quod earum molestiae! Corporis beatae laboriosam suscipit nesciunt illum autem optio a nostrum.</p>
+                                <div class="meta-info-container">
+                                    <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
+                                    <p>Lana steinler</p>
+                                    <p>18 Jan 2024</p>
+                                </div>
+                            </figcaption>
+                        </figure>
+                    </article>
+                </a>
+            <?php } ?>
         </div>
         <button>Load more</button>
     </section>
@@ -151,86 +111,29 @@ $postSlides = $posts->getAll("LIMIT 5");
     <section class="container">
         <div class="title-tool">
             <h2>Discover new tips...</h2>
-            <a href="<?= SITE_PATH?>pages/section.php?all=tips">See all</a>
+            <a href="<?= SITE_PATH ?>pages/flow.php?all=tips">See all</a>
         </div>
         <div class="posts-row container-list">
-            <figure class="card-side-content">
-                <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                <figcaption>
-                    <h3>Top 10 Ergonomic chair </h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi... </p>
-                    <div class="meta-info-container">
-                        <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                        <p>Lana steinler</p>
-                        <p>18 Jan 2024</p>
-                    </div>
-                </figcaption>
-            </figure>
+            <?php for ($x = 0; $x < 6; $x++) { ?>
+                <a href="<?= SITE_PATH ?>pages/post.php?id=<?php //= $var['id'] ?>">
+                    <figure class="card-side-content">
+                        <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
+                        <figcaption>
+                            <h3>Top 10 Ergonomic chair </h3>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi... </p>
+                            <div class="meta-info-container">
+                                <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
+                                <p>Lana steinler</p>
+                                <p>18 Jan 2024</p>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </a>
 
-            <figure class="card-side-content">
-                <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                <figcaption>
-                    <h3>Top 3 new books </h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi.. </p>
-                    <div class="meta-info-container">
-                        <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                        <p>Lana steinler</p>
-                        <p>18 Jan 2024</p>
-                    </div>
-                </figcaption>
-            </figure>
+            <?php } ?>
 
-            <figure class="card-side-content">
-                <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                <figcaption>
-                    <h3>Top 3 Places to see in paris</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi.. </p>
-                    <div class="meta-info-container">
-                        <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                        <p>Lana steinler</p>
-                        <p>18 Jan 2024</p>
-                    </div>
-                </figcaption>
-            </figure>
 
-            <figure class="card-side-content">
-                <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                <figcaption>
-                    <h3>Top 5 ultra laptops 2024</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi.. </p>
-                    <div class="meta-info-container">
-                        <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                        <p>Lana steinler</p>
-                        <p>18 Jan 2024</p>
-                    </div>
-                </figcaption>
-            </figure>
 
-            <figure class="card-side-content">
-                <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                <figcaption>
-                    <h3>Top 100 Universities 2024 </h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi... </p>
-                    <div class="meta-info-container">
-                        <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                        <p>Lana steinler</p>
-                        <p>18 Jan 2024</p>
-                    </div>
-                </figcaption>
-            </figure>
-
-            <figure class="card-side-content">
-                <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                <figcaption>
-                    <h3>Top 1 populaire music of Mars</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi... </p>
-                    <div class="meta-info-container">
-                        <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                        <p>Lana steinler</p>
-                        <p>18 Jan 2024</p>
-                    </div>
-                </figcaption>
-            </figure>
         </div>
     </section>
 </main>

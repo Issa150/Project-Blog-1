@@ -1,7 +1,6 @@
 @import "./base/Variables";
 @import "./base/Reset";
 @import "./partials/Nav";
-@import "./components/Cards";
 @import "./mixin_functions/Mixins";
 
 main.container {
@@ -61,52 +60,9 @@ main.container {
     margin-right: 1em;
     // background: linear-gradient(-60deg, #EEEEEE,rgb(246, 248, 227),#EEEEEE);
     padding: 1.7em;
-    
-    //************   Profile    *************
-    section {
 
-      .title-tool{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-  
-        h2 {
-          font-size: 2rem;
-          margin-block: 1em;
-          border-bottom: 3px solid grey;
-          padding-bottom: .6em;
-          border-spacing: 10px 10px;
-        }
-  
-        a{
-          font-weight: bolder;
-          font-size: 1.2rem;
-        }
-  
-      }
-  
-  
-      &>div {
-  
-        &.posts-row {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 1.2em;
 
-  
-          // @include card_full_img();
-          @include card();
-  
-          &.container-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            @include card_side_content();
-          }
-        }
-      }
-    }
-
-    //************   main form contains the page!   *************
+    // main form contains the page!
     #editProfileform {
 
       .head-info {

@@ -1,0 +1,370 @@
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  display: block;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  display: inline-block;
+}
+
+input:is([type=text], [type=password], [type=email]),
+textarea, .input {
+  width: 100%;
+  padding: 0.6em 1em;
+  font-size: 1rem;
+  border: none;
+  margin-block: 0.5em;
+  border-radius: 5px;
+  outline: 1px solid lightgrey;
+  direction: auto;
+  unicode-bidi: plaintext;
+}
+input:is([type=text], [type=password], [type=email]):focus,
+textarea:focus, .input:focus {
+  outline: 1px solid rgb(5, 172, 218);
+}
+
+input[type=file] {
+  margin-block: 0.5em;
+  width: 100%;
+  border-radius: 5px;
+  background: #ffffff;
+  outline: 1px solid lightgrey;
+  cursor: pointer;
+}
+
+::-webkit-file-upload-button {
+  margin: 0;
+  padding: 0.6em 1em;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: bold;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(254, 255, 244)), to(rgb(210, 213, 195)));
+  background: linear-gradient(to bottom, rgb(254, 255, 244), rgb(210, 213, 195));
+  cursor: pointer;
+}
+
+::file-selector-button {
+  margin: 0;
+  padding: 0.6em 1em;
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  font-weight: bold;
+  background: -webkit-gradient(linear, left top, left bottom, from(rgb(254, 255, 244)), to(rgb(210, 213, 195)));
+  background: linear-gradient(to bottom, rgb(254, 255, 244), rgb(210, 213, 195));
+  cursor: pointer;
+}
+
+label {
+  display: block;
+}
+
+.mce-container {
+  z-index: 1001; /* or a higher value */
+}
+
+fieldset {
+  border: none;
+  outline: none;
+}
+
+button,
+.btn {
+  padding: 0.6em 1.2em;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  margin-block: 0.5em;
+  border-radius: 5px;
+  background: -webkit-gradient(linear, left bottom, left top, from(rgb(77, 77, 77)), to(rgb(154, 154, 154)));
+  background: linear-gradient(to top, rgb(77, 77, 77), rgb(154, 154, 154));
+  font-weight: bolder;
+  color: white;
+  -webkit-transition: 1s;
+  transition: 1s;
+  cursor: pointer;
+}
+button:hover,
+.btn:hover {
+  background: -webkit-gradient(linear, left bottom, left top, from(rgb(34, 34, 34)), to(rgb(94, 94, 94)));
+  background: linear-gradient(to top, rgb(34, 34, 34), rgb(94, 94, 94));
+}
+
+body {
+  background: #eeeeee;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.container {
+  width: min(100% - 2rem, 1200px);
+  margin: 0 auto;
+}
+
+nav {
+  padding: 1em;
+  -webkit-box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 1em rgba(0, 0, 0, 0.2);
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
+nav .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+nav .container .logo {
+  font-size: 1.7rem;
+  color: red;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: yellow;
+}
+nav .container > ul {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.2em;
+}
+nav .container > ul > li {
+  position: relative;
+}
+nav .container > ul > li > a {
+  padding: 0.5em 0.9em;
+  border-radius: 5px;
+  -webkit-transition: 0.15s ease-out;
+  transition: 0.15s ease-out;
+}
+nav .container > ul > li > a:hover {
+  background: #191a19;
+  color: azure;
+}
+nav .container > ul > li > a.active {
+  background: #191a19;
+  color: azure;
+  font-weight: bolder;
+}
+nav .container > ul > li > a i {
+  margin-left: 1em;
+}
+nav .container > ul > li ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  min-width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transition: opacity 0.25s, -webkit-transform 0.25s;
+  transition: opacity 0.25s, -webkit-transform 0.25s;
+  transition: transform 0.25s, opacity 0.25s;
+  transition: transform 0.25s, opacity 0.25s, -webkit-transform 0.25s;
+  -webkit-transform: translateY(1em) scale(0.95);
+          transform: translateY(1em) scale(0.95);
+}
+nav .container > ul > li ul > div {
+  margin-top: 1em;
+  background: #eeeeee;
+  -webkit-box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
+          box-shadow: 0 0 0.3em rgba(0, 0, 0, 0.2);
+  padding: 8px;
+  border-radius: 11px;
+}
+nav .container > ul > li ul > div li a {
+  padding: 0.6em 0.8em;
+  border-radius: 5px;
+  -webkit-transition: 0.25s;
+  transition: 0.25s;
+  border-bottom: 3px solid transparent;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+}
+nav .container > ul > li ul > div li a:hover {
+  border-bottom: 3px solid orange;
+  background: #e1e1e1;
+  background: rgba(255, 165, 0, 0.065);
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.11);
+          box-shadow: 0 0 5px rgba(0, 0, 0, 0.11);
+}
+nav .container > ul > li ul > div li a:hover i {
+  color: #e69500;
+}
+nav .container > ul > li ul > div li a i {
+  margin: 0;
+}
+nav .container > ul > li:hover ul {
+  opacity: 1;
+  visibility: visible;
+  -webkit-transform: translateY(0em) scale(1);
+          transform: translateY(0em) scale(1);
+}
+nav .container ul.connection li:has(img) > a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 0.5em;
+  padding: 0;
+}
+nav .container ul.connection li:has(img) > a img {
+  border: 3px solid white;
+  -webkit-box-shadow: 0 0 8px rgba(0, 0, 0, 0.158);
+          box-shadow: 0 0 8px rgba(0, 0, 0, 0.158);
+  width: 40px;
+  border-radius: 50%;
+}
+nav .container ul.connection li:has(img) > a:hover {
+  background: transparent;
+  color: initial;
+}
+nav .container .hamburger_menu {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  body {
+    overflow-x: hidden;
+  }
+  nav {
+    position: relative;
+  }
+  nav .container {
+    z-index: 1;
+  }
+  nav .container ul.responsive-nav {
+    display: block;
+    position: absolute;
+    top: -300px;
+    right: 0%;
+    z-index: 2;
+    -webkit-transition: 0.65s;
+    transition: 0.65s;
+    padding-left: 6em;
+    background: #f9f9f9;
+    color: #000;
+    width: 100vw;
+  }
+  nav .container ul.active {
+    color: aliceblue;
+    position: absolute;
+    top: 3.3em;
+    border: none;
+    z-index: 2;
+  }
+  nav .container ul.active li {
+    color: #000;
+  }
+  nav .container ul.active li:hover {
+    background: #000;
+  }
+  nav .container .hamburger_menu {
+    color: #000000;
+    display: block;
+  }
+}
+section {
+  display: grid;
+  grid-template-columns: 1fr 20%;
+  gap: 1.5em;
+}
+section article {
+  margin-bottom: 2em;
+}
+section article .meta-info-container {
+  margin-top: 1em;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 1em;
+}
+section article .meta-info-container img {
+  width: 50px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+}
+section article .meta-info-container i {
+  justify-self: end;
+}
+section article h1 {
+  margin-bottom: 1.2em;
+}
+section aside .months-wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 1em;
+}
+section aside .months-wrapper p.monthes-archive {
+  cursor: pointer;
+  text-align: center;
+  padding: 0.8em;
+  background: grey;
+  border-radius: 5px;
+}
+
+footer {
+  background: #141414;
+  color: azure;
+  padding: 2em;
+}
+footer .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+footer .container ul h3 {
+  margin-block: 1em;
+}
+footer .container ul li {
+  list-style: none;
+  margin-block: 0.7em;
+}
+footer .container ul li a {
+  text-decoration: none;
+}
+
+@media (max-width: 800px) {
+  footer .container ul:nth-child(1),
+  footer .container ul:nth-child(3),
+  footer .container ul:nth-child(4) {
+    display: none;
+  }
+}
