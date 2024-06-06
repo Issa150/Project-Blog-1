@@ -10,9 +10,9 @@
 
 
 
-
 // Afficher Toutes les articles
 $allPosts = $posts->getPostInfosOffice($_SESSION['current_user']['id']);
+
 // dump($allPosts);
 // die;
 // Aficher les categories fait par Cette Utilisateur
@@ -51,14 +51,16 @@ $allCategories = $categories->getAllMyCategories($_SESSION['current_user']['id']
 
                 <fieldset class="grid-col-6">
                     <label for="post_cover">
-                        <i class="fa-solid fa-photo-film"></i>
-                        Image cover
+                        <span>
+                            <i class="fa-solid fa-photo-film"></i>
+                            Image cover
+                        </span>
                         <input type="file" name="post_cover" id="post_image_banner">
                     </label>
                 </fieldset>
 
                 <fieldset class="grid-col-3">
-                    <label for="draft"> Thematics: <span>Required*</span></label>
+                    <label for="draft"> Thematics: <span class="alert">Required*</span></label>
                     <div class="input">
                         <?php foreach ($thematics->getAll() as $thematic) : ?>
                             <div>
@@ -74,7 +76,7 @@ $allCategories = $categories->getAllMyCategories($_SESSION['current_user']['id']
                         <?php
                         if (count($allCategories) == 0) { ?>
 
-                            <p class="empty">No categories created yet 🫤</p>
+                            <p class="empty">No categories created yet</p>
                             <a class="guiding btn" href="<?= SITE_PATH ?>admin/dashboard.php?categories">Add a new category</a>
 
 
@@ -145,7 +147,7 @@ $allCategories = $categories->getAllMyCategories($_SESSION['current_user']['id']
                         <td class="small"><?= !empty($post['categories']) ? $post['categories'] : "<span class='no-choice'>No category!</span>" ?></td>
                         <!-- <td><? //= htmlspecialchars_decode($post['body']) 
                                     ?></td> -->
-                        <td class="small"><?= date('d-m-Y', strtotime($post['created_at'])) ?></td>
+                        <td class="small"><?= date('d-m-Y', strtotime($post['date'])) ?></td>
                     </tr>
                 <?php endforeach ?>
             </tbody>

@@ -1,0 +1,137 @@
+@mixin card(){
+    // article{
+        
+        
+        figure{
+            background: #e3e3e3;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+            border-radius: 1.2rem;
+            padding: .3em;
+    
+            img{
+                width: 100%;
+                aspect-ratio: 1/.6;
+                border-radius: 1rem;
+            }
+    
+            figcaption{
+                padding: 1.5em;
+    
+                .meta-info-container{
+                    margin-top: 1em;
+                    display: flex;
+                    align-items: center;
+                    gap: 1em;
+    
+                    img{
+                        
+                        width: 30px;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    // }
+}
+
+@mixin card_full_img(){
+    // article{
+        
+        
+        figure.card-img-full{
+            background: #e3e3e3;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+            border-radius: 1.2rem;
+            // padding: .3em;
+            aspect-ratio: 1/.6;
+            position: relative;
+            display: flex;
+    
+            & >img{
+                position: absolute;
+                offset: 0;
+                z-index: 0;
+                width: 100%;
+                height: 100%;
+                border-radius: 1rem;
+
+            }
+    
+            figcaption{
+                padding: 1.5em;
+                position: relative;
+                margin-top: auto;
+                z-index: 2;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.939), rgba(0, 0, 0, 0.112));
+                width: 100%;
+                color: white;
+                border-radius: calc($radius-md);
+                
+                h3{
+                    font-size: .9rem;
+                }
+    
+                .meta-info-container{
+                    // margin-top: 1em;
+                    font-size: .9rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 1em;
+    
+                    img{
+                        width: 30px;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    // }
+}
+
+@mixin card_side_content(){
+    // article{
+        
+        
+        figure.card-side-content{
+            background: #e3e3e3;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+            border-radius: 1.2rem;
+            padding: .3em;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            
+            & >img{
+                aspect-ratio: 1/.6;
+                // width: 40%;
+                border-radius: 1rem;
+
+            }
+    
+            figcaption{
+                padding: 1em;
+                // background: linear-gradient(to top, rgba(0, 0, 0, 0.939), rgba(0, 0, 0, 0.112));
+                width: 100%;
+                
+                // h3{
+                //     font-size: .9rem;
+                // }
+    
+                .meta-info-container{
+                    // margin-top: 1em;
+                    font-size: .9rem;
+                    display: flex;
+                    align-items: center;
+                    gap: 1em;
+    
+                    img{
+                        width: 30px;
+                        aspect-ratio: 1/1;
+                        border-radius: 50%;
+                    }
+                }
+            }
+        }
+    // }
+}

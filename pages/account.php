@@ -5,6 +5,7 @@ include_once "../classes/GetUsers.php";
 include_once "../classes/Update_user_info.php";
 
 ///////////::
+include_once "../inc/process/profile_user.process.php";
 
 
 

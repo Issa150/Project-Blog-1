@@ -247,150 +247,51 @@ nav .container .hamburger_menu {
     display: block;
   }
 }
-main.container {
-  display: grid;
-  grid-template-columns: max(160px, 20%) 1fr;
-  position: relative;
-}
-main.container aside {
-  padding-top: 2em;
-}
-main.container aside h1,
-main.container aside h2 {
-  margin-left: 0.7em;
-  margin-bottom: 0.7em;
-}
-main.container aside ul {
-  width: max-content;
-}
-main.container aside ul li {
-  list-style: none;
-}
-main.container aside ul li a {
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: 0.2s;
-  border-left: 3px solid transparent;
-  display: block;
-}
-main.container aside ul li a:hover {
-  border-left: 3px solid orange;
-  background: rgba(255, 165, 0, 0.065);
-}
-main.container aside ul li a:hover i {
-  color: #e69500;
-}
-main.container aside ul li a.active {
-  border-left: 3px solid orange;
-  background: rgba(255, 165, 0, 0.065);
-}
-main.container aside ul li a i {
-  margin-right: 10px;
-  font-size: 1.3rem;
-  color: rgb(61, 59, 59);
-}
-main.container .info-detail {
-  padding-top: 2em;
-  margin-right: 1em;
-  padding: 1.7em;
-}
-main.container .info-detail #editProfileform .head-info {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: 1fr;
-  align-items: end;
-  gap: 2rem;
-  height: 200px;
-  margin-bottom: 3em;
-  position: relative;
-}
-main.container .info-detail #editProfileform .head-info > label, main.container .info-detail #editProfileform .head-info > label > img {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-main.container .info-detail #editProfileform .head-info .profile-img {
-  position: relative;
-  margin-left: 1em;
-  width: max-content;
-}
-main.container .info-detail #editProfileform .head-info .profile-img img {
-  border: 5px solid white;
-  width: 100px;
-  border-radius: 50%;
-  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.185));
-  cursor: pointer;
-}
-main.container .info-detail #editProfileform .head-info .profile-img i {
-  position: absolute;
-  top: 80%;
-  right: 5%;
-  color: orange;
-  cursor: pointer;
-}
-main.container .info-detail #editProfileform .head-info > div {
-  margin-bottom: -2em;
-  position: relative;
-  z-index: 2;
-}
-main.container .info-detail #editProfileform .head-info .user-info {
-  background: linear-gradient(to top, #EEEEEE, transparent);
-}
-main.container .info-detail #editProfileform .head-info .user-info h3 {
-  font-size: 2.5rem;
-}
-main.container .info-detail #editProfileform .body-info {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  column-gap: 1em;
-}
-main.container .info-detail #editProfileform .body-info label {
-  cursor: pointer;
-}
-main.container .info-detail #editProfileform .body-info h2 {
-  text-align: center;
-  grid-column: span 6;
-  padding: 0.7em;
-}
-main.container .info-detail #editProfileform .body-info fieldset {
-  margin-block: 1em;
-  grid-column: span 3;
-  text-align: left;
-}
-main.container .info-detail #editProfileform .body-info fieldset input[type=radio]:not(:first-child) {
-  margin-block: 1em;
-  accent-color: red;
-  margin-left: 1em;
-}
-main.container .info-detail #editProfileform .body-info fieldset ul:has(input[type=radio]) {
+main section .title-tool {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+main section .title-tool h2 {
+  font-size: 2rem;
+  margin-block: 1em;
+  border-bottom: 3px solid grey;
+  padding-bottom: 0.6em;
+  border-spacing: 10px 10px;
+}
+main section .title-tool a {
+  font-weight: bolder;
+  font-size: 1.2rem;
+}
+main section > div.posts-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.2em;
+}
+main section > div.posts-row figure {
+  background: #e3e3e3;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
+  border-radius: 1.2rem;
+  padding: 0.3em;
+}
+main section > div.posts-row figure img {
+  width: 100%;
+  aspect-ratio: 1/0.6;
+  border-radius: 1rem;
+}
+main section > div.posts-row figure figcaption {
+  padding: 1.5em;
+}
+main section > div.posts-row figure figcaption .meta-info-container {
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
   gap: 1em;
 }
-main.container .info-detail #editProfileform .body-info .grid-col-3 {
-  grid-column: span 3;
-}
-main.container .info-detail #editProfileform .body-info .grid-col-6 {
-  grid-column: span 6;
-}
-main.container .info-detail #editProfileform .body-info .grid-col-12 {
-  grid-column: span 6;
-}
-main.container .info-detail #editProfileform .body-info .grid-full-width {
-  grid-column: span 6;
-  text-align: center;
-  justify-items: start;
-}
-main.container .info-detail #editProfileform .body-info .grid-full-width button {
-  font-size: 1.2rem;
-  padding: 0.8em 1.5em;
-  background: linear-gradient(to bottom, #F06543, #b83619);
-}
-main.container .info-detail #editProfileform .body-info .grid-full-width button#cancelModal {
-  background: linear-gradient(to bottom, rgb(0, 162, 248), rgb(2, 120, 167));
+main section > div.posts-row figure figcaption .meta-info-container img {
+  width: 30px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
 }
 
 footer {

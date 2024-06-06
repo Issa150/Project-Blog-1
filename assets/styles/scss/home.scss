@@ -1,5 +1,7 @@
 @import "./base/Variables";
 @import "./base/Reset";
+@import "./components/Cards";
+
 
 @import "./partials/Nav";
 
@@ -28,12 +30,12 @@ header {
         object-position: 0 50%;
       }
 
-      .content{
+      .content {
         z-index: 1;
         text-align: left;
         padding: 3em 1em;
         // background: linear-gradient(to top, rgba(0, 0, 0, 0.488), rgba(0, 0, 0, 0.307),transparent);
-        background: linear-gradient(to top, rgba(255, 255, 255, 0.788), rgba(255, 255, 255, 0.607),transparent);
+        background: linear-gradient(to top, rgba(255, 255, 255, 0.788), rgba(255, 255, 255, 0.607), transparent);
         // background: #ffffff47;
         backdrop-filter: blur(5px);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
@@ -45,15 +47,19 @@ header {
     }
 
     // /////////
-    .swiper-button-next,.swiper-button-prev{
-        top: 83%;
+    .swiper-button-next,
+    .swiper-button-prev {
+      top: 83%;
     }
-    .swiper-button-next{
-        right: 4rem;
+
+    .swiper-button-next {
+      right: 4rem;
     }
-    .swiper-button-prev{
-        left: 4rem;
+
+    .swiper-button-prev {
+      left: 4rem;
     }
+
     //////////////
     .autoplay-progress {
       position: absolute;
@@ -88,58 +94,49 @@ header {
 }
 
 
-main{
+main {
 
-    section{
-        h2{
-            font-size: 2rem;
-            margin-block: 1em;
-            border-bottom: 3px solid grey;
-            padding-bottom: .6em;
-            border-spacing: 10px 10px;
-        }
+  section {
 
-        &>div{
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.2em;
+    .title-tool{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
-            article{
-                background: #e3e3e3;
-                box-shadow: 0 0 8px rgba(0, 0, 0, 0.15);
-                border-radius: 1.2rem;
-                padding: .3em;
+      h2 {
+        font-size: 2rem;
+        margin-block: 1em;
+        border-bottom: 3px solid grey;
+        padding-bottom: .6em;
+        border-spacing: 10px 10px;
+      }
 
+      a{
+        font-weight: bolder;
+        font-size: 1.2rem;
+      }
 
-                figure{
-
-                    img{
-                        width: 100%;
-                        aspect-ratio: 1/.6;
-                        border-radius: 1rem;
-                    }
-
-                    figcaption{
-                        padding: 1.5em;
-
-                        .meta-info-container{
-                            margin-top: 1em;
-                            display: flex;
-                            align-items: center;
-                            gap: 1em;
-
-                            img{
-                                
-                                width: 30px;
-                                aspect-ratio: 1/1;
-                                border-radius: 50%;
-                            }
-                        }
-                    }
-                }
-            }
-        }
     }
+
+
+    &>div {
+
+      &.posts-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2em;
+
+        @include card_full_img();
+        @include card();
+
+        &.container-list {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          @include card_side_content();
+        }
+      }
+    }
+  }
 }
 
 @import "./partials/Footer";

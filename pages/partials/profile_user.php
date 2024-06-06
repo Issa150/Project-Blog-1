@@ -1,5 +1,5 @@
 <?php
-include_once "../inc/process/profile_user.process.php";
+// include_once "../inc/process/profile_user.process.php";
 
 ?>
 <form action="" method="post" id="editProfileform" enctype="multipart/form-data">

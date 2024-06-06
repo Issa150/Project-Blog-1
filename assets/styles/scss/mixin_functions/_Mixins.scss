@@ -226,6 +226,10 @@
     gap: 10px;
   }
 
+  h2{
+    grid-column: span 6;
+  }
+
   label {
     text-align: left;
   }
@@ -236,12 +240,12 @@
   }
   label:has(input[type="file"]) {
     display: grid;
-    grid-template-columns: auto auto 1fr;
+    grid-template-columns: auto 1fr;
     align-items: center;
 
-    input[type="file"] {
-      margin-left: 1em;
-    }
+    // input[type="file"] {
+    //   margin-left: 1em;
+    // }
   }
 
   fieldset {
@@ -265,7 +269,7 @@
       text-align: left;
     }
     label {
-      span {
+      span.alert {
         color: red;
         font-size: 0.7rem;
       }

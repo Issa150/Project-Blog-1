@@ -28,9 +28,9 @@ if (!empty($_POST)) {
 
 
         $posts->addPostJoin($user_id, $title, $body, $image_cover, $published, $thematic_id, $category_id);
-        if (!empty($_FILES['post_cover'])) {
+        if (isset($image_cover)) {
             // $posts->insertSingleFile($image_cover);
-            move_uploaded_file($_FILES['post_cover']['tmp_name'], SITE_PATH . "assets/imgs/posts/" . $_FILES['post_image_banner']['name']);
+            move_uploaded_file($_FILES['post_cover']['tmp_name'], "../assets/imgs/posts/" . $image_cover);
         }
 
         header('Location:' . SITE_PATH . 'admin/dashboard.php?posts');
