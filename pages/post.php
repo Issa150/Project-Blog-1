@@ -2,10 +2,15 @@
 include_once "../inc/session_security.php";
 include_once "../inc/function.php";
 include_once "../classes/Posts_class.php";
+include_once "../classes/General_class.php";
+include_once "../classes/Comments_class.php";
+$generalClass = new Genreal();
 $postClassvar = new Posts();
+$comments = new Comments();
 // when good content exist, remove this initiation from DB🔽
-$post = $postClassvar->getSingle(5);
+$post = $postClassvar->getSingle('5');
 ///////////::
+
 
 
 
@@ -18,9 +23,17 @@ include_once "../inc/components/nav.php";
 // *** this page is open for all people to navigate and just see the contents
 
 
-if (isset($_SESSION['id'])) {
+if (isset($_SESSION['current_user']['id'])) {
     $id = $_GET['id'];
     $post = $postClassvar->getSingle($id);
+}
+
+if (!empty($_POST)) {
+    $post_id = $id;
+    $commenter_id = $_SESSION['current_user']['id'];
+    $comment_text = $post['comment'];
+
+    $comments->insertComment($post_id, $commenter_id, $comment_text);
 }
 
 ?>
@@ -38,6 +51,46 @@ if (isset($_SESSION['id'])) {
             </div>
             <h1><?= $post['title'] ?></h1>
             <p><?= htmlspecialchars_decode($post['body']) ?></p>
+
+            <!--*************   Comments  ************** -->
+            <div class="input">
+                <h2><?php //if (!$generalClass->counter('comments', 'post_id', $post['id'])) {
+                    if ($comments->getCommentsByPostId($post['id']) == null) {
+                        echo 'No comments yet';
+                    } else {
+                        echo 'Comments';
+                    } ?>
+                </h2>
+                <!--********* Add new comments  ***********  -->
+                <?php if(isset($_SESSION['current_user'])){ ?>
+                <div class="new-comment">
+                    <form action="" method="post">
+                        <textarea name="comment" id="" placeholder="please write your opinion..."></textarea>
+                        <button>Submit</button>
+                    </form>
+
+                </div>
+                <?php }else{?>
+                    <div class="input">
+                        <h3>Please login to add comment</h3>
+                    <textarea disabled name="" id="" placeholder="please write your opinion..."></textarea>
+                    <button disabled>Submit</button>
+                    </div>
+                <?php }?>
+
+                <!--********* show comments  ***********  -->
+                <?php if ($comments->getCommentsByPostId($post['id']) > 0) {
+                    foreach ($comments as $comment) { ?>
+                        <div class="comment">
+                            <div class="profile">
+                                <img src="<?= !empty($comment['commneter_img']) ? SITE_PATH . "assets/imgs/profile/"  . $comment['commneter_img'] : SITE_PATH . "assets/imgs/profile/placeholder-man-img.jpg" ?>" alt="Profile-author">
+                                <p><?= $comment['commenter_username'] ?></p>
+                            </div>
+                            <p class="input"><?= $comment['comment_text'] ?></p>
+                        </div>
+                <?php }
+                } ?>
+            </div>
         </article>
 
         <aside>
