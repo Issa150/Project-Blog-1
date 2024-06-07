@@ -52,7 +52,7 @@ if (isset($_GET['logout'])) {
                     </a>
                     <ul>
                         <div>
-                            <li><a href="<?= SITE_PATH ?>pages/account.php?profile"><i class="fa-regular fa-user"></i> Profile</a></li>
+                            <li><a href="<?= SITE_PATH ?>pages/account.php?profile"><i class="fa-solid fa-house-chimney-user"></i> Profile</a></li>
                             <li><a href="<?= SITE_PATH ?>pages/account.php?user_info"><i class="fa-regular fa-user"></i> user info</a></li>
                             <li><a href="<?= SITE_PATH ?>admin/dashboard.php"><i class="fa-solid fa-briefcase"></i> Backoffice</a></li>
                             <li><a href=""><i class="fa-regular fa-heart"></i> Favorites</a></li>

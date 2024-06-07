@@ -59,7 +59,7 @@ $postSlides = $posts->getAll("LIMIT 5");
             </div>
             <div class="posts-row">
                 <?php for ($x = 0; $x < 3; $x++) { ?>
-                    <a href="<?= SITE_PATH ?>pages/post.php?id=<?php //=$var['id']?>">
+                    <a href="<?= SITE_PATH ?>pages/post.php?id=5<?php //=$var['id']?>">
 
                         <figure class="card-img-full">
                             <img src="assets/imgs/tina-dawson-f1krjnOeWDk-unsplash.jpg" alt="Post follow">
@@ -87,7 +87,7 @@ $postSlides = $posts->getAll("LIMIT 5");
         </div>
         <div class="posts-row">
             <?php for ($x = 0; $x < 3; $x++) { ?>
-                <a href="<?= SITE_PATH ?>pages/post.php?id=<?php //= $var['id'] ?>">
+                <a href="<?= SITE_PATH ?>pages/post.php?id=5<?php //= $var['id'] ?>">
                     <article>
                         <figure class="card-main">
                             <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
@@ -105,7 +105,7 @@ $postSlides = $posts->getAll("LIMIT 5");
                 </a>
             <?php } ?>
         </div>
-        <button>Load more</button>
+        <!-- <button>Load more</button> -->
     </section>
     <!-- -------------------------------------------------------------------------- -->
     <section class="container">
@@ -115,7 +115,7 @@ $postSlides = $posts->getAll("LIMIT 5");
         </div>
         <div class="posts-row container-list">
             <?php for ($x = 0; $x < 6; $x++) { ?>
-                <a href="<?= SITE_PATH ?>pages/post.php?id=<?php //= $var['id'] ?>">
+                <a href="<?= SITE_PATH ?>pages/post.php?id=6<?php //= $var['id'] ?>">
                     <figure class="card-side-content">
                         <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
                         <figcaption>

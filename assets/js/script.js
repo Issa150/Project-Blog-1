@@ -61,9 +61,9 @@ tinymce.init({
     menubar: false,
     plugins: 'formatselect',
     toolbar: 'undo redo | blocks | ' +
-  'bold italic backcolor | alignleft aligncenter ' +
-  'alignright alignjustify | bullist numlist outdent indent | ' +
-  'removeformat | help'
+        'bold italic backcolor | alignleft aligncenter ' +
+        'alignright alignjustify | bullist numlist outdent indent | ' +
+        'removeformat | help'
     /*  
     menubar: 'favs file edit view insert format',
     plugins: 'image link media table code lists fullscreen',
@@ -95,12 +95,12 @@ tinymce.init({
 
             input.click();
         }
-    */  
+    */
 });
 
 ////////////////////////////////////////////////
 //          Active Menu detection //
-let links = document.querySelectorAll("nav ul:first-child a"); 
+let links = document.querySelectorAll("nav ul:first-child a");
 let pageActive = window.location.href;
 // Stockage localisation dans une variable
 for (let i = 0; i < links.length; i++) {
@@ -111,45 +111,45 @@ for (let i = 0; i < links.length; i++) {
 }
 
 ////////////////////////////////////////////////
-//         Form handling/dialog /modal
+//         dialog /modal/Form handling/
 const modal = document.getElementById("modal");
 // const modalContent = document.getElementById("modal-content");
 const closeModal = document.getElementById("cancelModal");
 const openModalBtn = document.getElementById("open-modal");
 
 openModalBtn.addEventListener("click", () => {
-  modal.style.display = "block";
-  document.body.style.overflow = "hidden";
+    modal.style.display = "block";
+    document.body.style.overflow = "hidden";
 });
 
 closeModal.addEventListener("click", () => {
-  modal.style.display = "none";
-  document.body.style.overflow = "auto";
+    modal.style.display = "none";
+    document.body.style.overflow = "auto";
 });
 
 document.addEventListener("click", (e) => {
-  if (e.target === modal) {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-  }
+    if (e.target === modal) {
+        modal.style.display = "none";
+        document.body.style.overflow = "auto";
+    }
 });
 //////////////////////
-// const  btnsDialog = document.querySelectorAll('.openDialog')
-// const  btnDialog = document.querySelector('.openDialog')
-// btnDialog.onclick = ()=>{
-//         console.log('✅✅✅✅✅✅');
-//     myModal.showModal();
-//         document.body.style.overflow = 'hidden';
-// }
-// btnDialog.forEach(btn =>{
-//     btn.onclick = ()=>{
-//         myModal.showModal();
-//         document.body.style.overflow = 'hidden';
-//     }
+// const openModalBtnLink = document.querySelectorAll(".btn-link");
+// openModalBtnLink.forEach(btn=>{
+//     btn.addEventListener("click", function(event) {
+//         event.preventDefault();
+//     })
 // })
-// cancelModal.onclick = ()=>{
-//     myModal.close();
-//     document.body.style.overflow = 'auto';
 
-// }
-
+////
+const openModalBtnLink = document.querySelectorAll(".btn-link");
+openModalBtnLink.forEach(btn => {
+    btn.addEventListener("click", function (event) {
+        event.preventDefault();
+        const url = this.getAttribute("href");
+        history.pushState({}, "", url);
+        // Now we can open our modal
+        modal.style.display = "block";
+        document.body.style.overflow = "hidden";
+    })
+})

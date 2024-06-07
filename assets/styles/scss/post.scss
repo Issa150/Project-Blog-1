@@ -5,11 +5,13 @@
 @import "./partials/Nav";
 
 section {
-    display: grid;
-    grid-template-columns: 1fr 20%;
-    gap: 1.5em;
+  display: grid;
+  grid-template-columns: 1fr 20%;
+  gap: 1.5em;
+
   article {
     margin-bottom: 2em;
+
     // & > img {
     // }
     .meta-info-container {
@@ -25,32 +27,55 @@ section {
         aspect-ratio: 1/1;
         border-radius: 50%;
       }
-      i{
+
+      i {
         justify-self: end;
       }
     }
 
-    h1{
-        margin-bottom: 1.2em;
+    h1 {
+      margin-bottom: 1.2em;
+    }
+
+    .input {
+      .comment {
+        margin-top: 1em;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1em;
+
+
+        .profile {
+          img {
+            width: 50px;
+            aspect-ratio: 1/1;
+            border-radius: 50%;
+            margin-inline: auto;
+          }
+        }
+
+      }
     }
   }
 
-  aside{
-    .months-wrapper{
+  aside {
+    .months-wrapper {
 
-        display: grid;
-        grid-template-columns: repeat(2,1fr);
-        gap: 10px;
-        margin-top: 1em;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-top: 1em;
 
-        p.monthes-archive{
-            cursor: pointer;
-            // padding: .8em 1.8em;
-            text-align: center;
-            padding: .8em;
-            background: grey;
-            border-radius: $radius-sm;
-        }
+      p.monthes-archive {
+        cursor: pointer;
+        // padding: .8em 1.8em;
+        text-align: center;
+        padding: .8em;
+        background: grey;
+        border-radius: $radius-sm;
+      }
     }
   }
 

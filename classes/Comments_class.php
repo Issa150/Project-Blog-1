@@ -5,7 +5,7 @@ class Comments extends Database
 {
     public function getCommentsByPostId($postId)
     {
-        $sql = "SELECT c.id, c.comment_text, c.created_at, u.username, u.image 
+        $sql = "SELECT c.id, c.comment_text, c.created_at, u.username AS commentor_username, u.image AS commneter_img
                 FROM comments c 
                 JOIN users u ON c.user_id = u.id 
                 WHERE c.post_id = :postId";
@@ -30,7 +30,7 @@ class Comments extends Database
 
     public function insertComment($postId, $userId, $comment)
     {
-        $sql = "INSERT INTO comments(user_id, post_id,  comment_text) VALUES (:userId, :postId, :comment_text)";
+        $sql = "INSERT INTO comments(user_id, post_id, comment_text) VALUES (:userId, :postId, :comment_text)";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([
             ":postId" => $postId,

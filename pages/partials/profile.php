@@ -1,7 +1,7 @@
 <section>
         <div class="title-tool">
-            <h2>Recent blog posts</h2>
-            <a href="<?= SITE_PATH ?>pages/flow.php?all=tutorials">See all</a>
+            <h2>My tutorials:</h2>
+            <!-- <a href="<?php //= SITE_PATH ?>pages/flow.php?all=tutorials">See all</a> -->
         </div>
         <div class="posts-row">
             <?php for ($x = 0; $x < 7; $x++) { ?>
@@ -27,8 +27,8 @@
     <!-- -------------------------------------------------------------------------- -->
     <section >
         <div class="title-tool">
-            <h2>Discover new tips...</h2>
-            <a href="<?= SITE_PATH ?>pages/flow.php?all=tips">See all</a>
+            <h2>My tips...</h2>
+            <!-- <a href="<?php //= SITE_PATH ?>pages/flow.php?all=tips">See all</a> -->
         </div>
         <div class="posts-row container-list">
             <?php for ($x = 0; $x < 6; $x++) { ?>

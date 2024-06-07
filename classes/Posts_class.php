@@ -5,13 +5,13 @@ class Posts extends Database
 {
     public function getSingle($id)
     {
-        $sql = "SELECT p.*, u.username, u.profile_cover 
+        $sql = "SELECT p.*, u.username, u.image 
                 FROM posts p
                 LEFT JOIN users u ON p.user_id = u.id
                 WHERE p.id = :id";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([':id'=> $id]);
-        $results = $stmt->fetch();
+        $results = $stmt->fetch(PDO::FETCH_ASSOC);
         return $results;
     }
 
@@ -28,7 +28,7 @@ class Posts extends Database
     public function getPostInfosOffice($id)
     {
         $sql = "SELECT 
-                    p.title,
+                    p.id,p.title,
                     u.name AS 'author',
                     t.title AS 'thematic',
                     GROUP_CONCAT(c.title SEPARATOR ', ') AS categories,
@@ -39,7 +39,7 @@ class Posts extends Database
                 JOIN post_categories pc ON p.id = pc.post_id
                 LEFT JOIN categories c ON pc.category_id = c.id 
                 WHERE p.user_id = :id
-                GROUP BY p.title, u.name, t.title, p.created_at
+                GROUP BY p.id,p.title, u.name, t.title, p.created_at
                 ORDER BY p.title";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([

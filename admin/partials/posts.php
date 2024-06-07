@@ -123,35 +123,60 @@ $allCategories = $categories->getAllMyCategories($_SESSION['current_user']['id']
     </div>
 
     <div class="posts_container">
+        
+        <!-- ----------------------------- -->
+        <div class="table">
+            <div class="grid-row">
+                <div class="header">Title</div>
+                <div class="header">Author</div>
+                <div class="header">Type d'article</div>
+                <div class="header">Category</div>
+                <div class="header">Dates</div>
+            </div>
 
-        <table>
-            <thead>
-                <tr>
-                    <th class="post-title">Title</th>
-                    <th>Author</th>
-                    <th>Thematics</th>
-                    <th>Category</th>
-                    <!-- <th>Tags</th> -->
-                    <th>Dates</th>
-                </tr>
-            </thead>
+            <?php foreach ($allPosts as $post) : ?>
+                <div class="grid-row">
+                    <!-- Action btns -->
+                    <div class="btns-container">
+                        <a href="<?=SITE_PATH?>admin/dashboard.php?update=<?= $post['id']?>" class="btn btn-link success">Modifier</a>
+                        <a href="<?=SITE_PATH?>admin/dashboard.php?delete=<?= $post['id']?>" class="btn btn-link delete">Suprimer</a>
+                    </div>
+                    <!-- Cells -->
+                    <div class="grid-cell">
+                        <?= (strlen($post['title']) > 40) ? substr($post['title'], 0, 40) . '...' : $post['title'] ?>
+                    </div>
 
-            <tbody>
-                <?php foreach ($allPosts as $post) : ?>
-                    <tr>
-                        <!-- <td class="button-container"><span class="button-wrapper"><a href="">Modifier</a> <a href=""><i class="fa-solid fa-pen-to-square"></i></a></span></td> -->
-                        <!-- <div><td class="button-container"><span class="button-wrapper"><a href="">Modifier</a> <a href=""><i class="fa-solid fa-pen-to-square"></i></a></span></td></div> -->
-                        <td><?= (strlen($post['title']) > 40) ? substr($post['title'], 0, 40) . '...' : $post['title'] ?></td>
-                        <td><?= $post['author'] ?></td>
-                        <td><?= $post['thematic'] ?></td>
-                        <td class="small"><?= !empty($post['categories']) ? $post['categories'] : "<span class='no-choice'>No category!</span>" ?></td>
-                        <!-- <td><? //= htmlspecialchars_decode($post['body']) 
-                                    ?></td> -->
-                        <td class="small"><?= date('d-m-Y', strtotime($post['date'])) ?></td>
-                    </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
+                    <div class="grid-cell">
+                        <?= $post['author'] ?>
+                    </div>
+
+                    <div class="grid-cell">
+                        <?= $post['thematic'] ?>
+                    </div>
+
+                    <div class="grid-cell">
+                        <?= !empty($post['categories']) ? $post['categories'] : "<span class='no-choice'>No category!</span>" ?>
+                    </div>
+
+                    <div class="grid-cell">
+                        <?= date('d-m-Y', strtotime($post['date'])) ?>
+                    </div>
+
+                </div>
+            <?php endforeach ?>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
     </div>
 </div>
