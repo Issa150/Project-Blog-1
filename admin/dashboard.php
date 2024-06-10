@@ -35,7 +35,12 @@ if (!empty($_POST)) {
     if ($_POST['formType'] == 'Publish the post') {
         $title = trim(filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS));
         $body = trim(filter_input(INPUT_POST, "body", FILTER_SANITIZE_SPECIAL_CHARS));
-        $thematic_id = trim(filter_input(INPUT_POST, "thematic", FILTER_SANITIZE_SPECIAL_CHARS));
+        if (isset($_POST['thematic'])) {
+            $thematic_id = trim(filter_input(INPUT_POST, "thematic", FILTER_SANITIZE_SPECIAL_CHARS));
+        } else {
+            $thematic_id = ''; // or some other default value
+        }
+        // $thematic_id = trim(filter_input(INPUT_POST, "thematic", FILTER_SANITIZE_SPECIAL_CHARS));
         if (empty($thematic_id)) {
             $thematicErr = "Please select a thematic";
         }

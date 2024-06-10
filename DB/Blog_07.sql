@@ -61,15 +61,15 @@ CREATE TABLE `comments` (
   `user_id` int(11) DEFAULT NULL,
   `post_id` int(11) DEFAULT NULL,
   `comment_text` text NOT NULL,
-  `created_at` int(11) NOT NULL DEFAULT current_timestamp()
+  `created_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Déchargement des données de la table `comments`
 --
 
-INSERT INTO `comments` (`id`, `user_id`, `post_id`, `comment_text`, `created_at`) VALUES
-(3, 3, 6, 'ftgyhuj', 2147483647);
+INSERT INTO `comments` (`id`, `user_id`, `post_id`, `comment_text`) VALUES
+(3, 3, 6, 'ftgyhuj');
 
 -- --------------------------------------------------------
 

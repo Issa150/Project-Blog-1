@@ -29,7 +29,9 @@ class Posts extends Database
             JOIN thematics t ON p.thematic_id = t.id
             JOIN post_categories pc ON p.id = pc.post_id
             LEFT JOIN categories c ON pc.category_id = c.id 
-            WHERE p.id = :id";
+            WHERE p.id = :id
+            GROUP BY p.id, p.title, u.name, t.title, p.created_at
+            ORDER BY p.title";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([
             ":id" => $id
@@ -94,7 +96,7 @@ class Posts extends Database
                 LEFT JOIN categories c ON pc.category_id = c.id 
                 WHERE p.user_id = :id
                 GROUP BY p.id,p.title, u.name, t.title, p.created_at
-                ORDER BY p.title";
+                ORDER BY p.id DESC";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([
             ":id" => $id

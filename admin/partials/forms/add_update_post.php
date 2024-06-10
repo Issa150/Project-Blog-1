@@ -60,11 +60,14 @@ if (isset($_GET['update_post'])) {
                 <a class="guiding btn" href="<?= SITE_PATH ?>admin/dashboard.php?categories">Add a new category</a>
 
                 <?php } else {
+                // if (isset($_GET['update_post'])) {
+                //     //*** $postCategories = isset($post['categories']) ? explode(',', $post['categories']) : [];
+                //     //*** the methode above leaves the space before second and rest words which are not good for comparing so we use array_map() to trim & explode
+                //     $postCategories = array_map('trim', explode(',', $post['categories']));
+                //     // dump($postCategories);
+                // }
                 if (isset($_GET['update_post'])) {
-                    //*** $postCategories = isset($post['categories']) ? explode(',', $post['categories']) : [];
-                    //*** the methode above leaves the space before second and rest words which are not good for comparing so we use array_map() to trim & explode
-                    $postCategories = array_map('trim', explode(',', $post['categories']));
-                    // dump($postCategories);
+                    $postCategories = array_map('trim', explode(',', $post['categories'] ?? ''));
                 }
 
                 foreach ($allCategories as $category) {
