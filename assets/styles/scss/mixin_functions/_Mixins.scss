@@ -62,8 +62,6 @@
   }
 }
 
-////////////////////////////////////
-
 @mixin form_1() {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -128,8 +126,6 @@
     }
   }
 }
-
-////////////////////////////////////
 
 @mixin mudal() {
   background: linear-gradient(-60deg, #eeeeee, rgb(246, 248, 227), #eeeeee);
@@ -242,6 +238,109 @@
     display: grid;
     grid-template-columns: auto 1fr;
     align-items: center;
+    gap: 1em;
+
+    // input[type="file"] {
+    //   margin-left: 1em;
+    // }
+  }
+
+  fieldset {
+    grid-column: span 6;
+    margin-block: 0.5em;
+    i {
+      margin-right: 1em;
+    }
+
+    &:has(input[type="radio"]) {
+      text-align: left;
+
+      label {
+        display: inline-block;
+        margin-right: 2em;
+      }
+    }
+
+    .input {
+      background: $clr_light_1;
+      text-align: left;
+    }
+    label {
+      span.alert {
+        color: red;
+        font-size: 0.7rem;
+      }
+    }
+
+    .empty {
+      color: #000000;
+      font-weight: bolder;
+    }
+    .guiding {
+      background: linear-gradient(to top,rgb(1, 83, 1), rgb(6, 178, 6));
+      font-size: 0.9rem;
+      color: rgb(255, 255, 255);
+      // text-decoration: underline;
+    }
+
+    &.grid-col-3 {
+      grid-column: span 3;
+    }
+  }
+  // fieldset.media-profile {
+  //   grid-column: span 6;
+  // }
+
+  &::backdrop {
+    background: hsla(0, 0%, 0%, 0.637);
+  }
+
+  .grid-full-width {
+    grid-column: span 6;
+    button , .btn-success {
+      font-size: 1.2rem;
+      padding: 0.8em 1.5em;
+      @include btn($clr_btn_accent_1);
+    }
+    #cancelModal {
+      @include btn($clr_btn_accent_2);
+    }
+  }
+}
+@mixin mudal_3() {
+
+  form {
+
+    background: linear-gradient(-60deg, #eeeeee, rgb(246, 248, 227), #eeeeee);
+    padding: 1em 2em;
+    border: none;
+    outline: none;
+    box-shadow: 0 0 1em rgba(0, 0, 0, 0.167);
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+  }
+
+  h2,.alert-msg{
+    grid-column: span 6;
+  }
+
+
+
+  label {
+    text-align: left;
+  }
+  label.btn {
+    display: inline-block;
+    font-size: 1.2rem;
+    padding: 0.69em 1.5em;
+  }
+  label:has(input[type="file"]) {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    gap: 1em;
 
     // input[type="file"] {
     //   margin-left: 1em;

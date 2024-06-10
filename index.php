@@ -9,9 +9,10 @@ $title = "home";
 include_once "inc/header.html.php";
 include_once "inc/components/nav.php";
 // //////////////////////////////////////
-
-$posts = new Posts();
-$postSlides = $posts->getAll("LIMIT 5");
+$postsClass = new Posts();
+$postSlides = $postsClass->getAll("ORDER BY id DESC LIMIT 5");
+$postsTutorials = $postsClass->getAllJoin(1,"ORDER BY id DESC LIMIT 3");
+$postsTips = $postsClass->getAllJoin(2,"ORDER BY id DESC LIMIT 6");
 ?>
 
 <header>
@@ -22,11 +23,11 @@ $postSlides = $posts->getAll("LIMIT 5");
 
             <?php foreach ($postSlides as $post) : ?>
                 <div class="swiper-slide">
-                    <img src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="a woman cooking in the kitchen.">
+                    <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="a woman cooking in the kitchen.">
                     <div class="content">
                         <div class="container">
                             <h3><?= $post['title'] ?></h3>
-                            <p><?= htmlspecialchars_decode($post['body']) ?></p>
+                            <p><?=  (strlen($post['body']) > 300) ? substr(htmlspecialchars_decode($post['body']), 0, 300) . '...' : htmlspecialchars_decode($post['body'])?></p>
                         </div>
                     </div>
                 </div>
@@ -51,80 +52,58 @@ $postSlides = $posts->getAll("LIMIT 5");
 
 
 <main>
-    <?php if (isset($_SESSION['current_user'])) { ?>
-        <section class="container">
-            <div class="title-tool">
-                <h2>My followings recent releases</h2>
-                <a href="<?= SITE_PATH ?>pages/flow.php?all=followings">See all</a>
-            </div>
-            <div class="posts-row">
-                <?php for ($x = 0; $x < 3; $x++) { ?>
-                    <a href="<?= SITE_PATH ?>pages/post.php?id=5<?php //=$var['id']?>">
-
-                        <figure class="card-img-full">
-                            <img src="assets/imgs/tina-dawson-f1krjnOeWDk-unsplash.jpg" alt="Post follow">
-                            <figcaption>
-                                <h3>Building you API stack</h3>
-                                <div class="meta-info-container">
-                                    <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                                    <p>Lana steinler</p>
-                                    <p>18 Jan 2024</p>
-                                </div>
-                            </figcaption>
-                        </figure>
-
-                    </a>
-                <?php } ?>
-            </div>
-
-        </section>
-    <?php } ?>
-    <!-- -------------------------------------------------------------------------- -->
+    
     <section class="container">
         <div class="title-tool">
-            <h2>Recent blog posts</h2>
-            <a href="<?= SITE_PATH ?>pages/flow.php?all=tutorials">See all</a>
+            <h2>Recent blog tutorials:</h2>
+            <a href="<?= SITE_PATH ?>pages/flow.php?all=1">See all</a>
         </div>
         <div class="posts-row">
-            <?php for ($x = 0; $x < 3; $x++) { ?>
-                <a href="<?= SITE_PATH ?>pages/post.php?id=5<?php //= $var['id'] ?>">
-                    <article>
+            <?php foreach ($postsTutorials as $post) { ?>
+                <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id']?>">
+                    <!-- <article> -->
                         <figure class="card-main">
-                            <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
+                            <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover']?>">
                             <figcaption>
-                                <h3>Building you API stack</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi, aliquam quis culpa quod earum molestiae! Corporis beatae laboriosam suscipit nesciunt illum autem optio a nostrum.</p>
+                                <div>
+                                    <h3><?= (strlen(htmlspecialchars_decode($post['title'])) > 33) ? substr(htmlspecialchars_decode($post['title']), 0, 33). '...' : htmlspecialchars_decode($post['title']) ?></h3>
+                                    <!-- <p><?//= htmlspecialchars_decode($post['body']) ?></p> -->
+                                    <p><?= (strlen(htmlspecialchars_decode($post['body'])) > 160) ? substr(htmlspecialchars_decode($post['body']), 0, 160). '...' : htmlspecialchars_decode($post['body']) ?></p>
+                                </div>
+                                
                                 <div class="meta-info-container">
-                                    <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                                    <p>Lana steinler</p>
-                                    <p>18 Jan 2024</p>
+                                    <!-- <img loading="lazy" src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author"> -->
+                                    <img loading="lazy" src="<?= !empty($post['author_image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['author_image'] : SITE_PATH . "assets/imgs/profile/placeholder-general-img.png" ?>" alt="<?= $post['author_image']?>">
+                                    <p><?= $post['author'] ?></p>
+                                    <p class="date"><?=  date('d-m-Y', strtotime($post['created_at'])) ?></p>
                                 </div>
                             </figcaption>
                         </figure>
-                    </article>
+                    <!-- </article> -->
                 </a>
             <?php } ?>
         </div>
-        <!-- <button>Load more</button> -->
     </section>
     <!-- -------------------------------------------------------------------------- -->
     <section class="container">
         <div class="title-tool">
             <h2>Discover new tips...</h2>
-            <a href="<?= SITE_PATH ?>pages/flow.php?all=tips">See all</a>
+            <a href="<?= SITE_PATH ?>pages/flow.php?all=2">See all</a>
         </div>
         <div class="posts-row container-list">
-            <?php for ($x = 0; $x < 6; $x++) { ?>
-                <a href="<?= SITE_PATH ?>pages/post.php?id=6<?php //= $var['id'] ?>">
+            <?php foreach ($postsTips as $post) { ?>
+                <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id']?>">
                     <figure class="card-side-content">
-                        <img src="assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
+                    <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover']?>">
                         <figcaption>
-                            <h3>Top 10 Ergonomic chair </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi... </p>
+                            <div>
+                                <h3><?= (strlen(htmlspecialchars_decode($post['title'])) > 33) ? substr(htmlspecialchars_decode($post['title']), 0, 33). '...' : htmlspecialchars_decode($post['title']) ?></h3>
+                                <p><?= (strlen(htmlspecialchars_decode($post['body'])) > 90) ? substr(htmlspecialchars_decode($post['body']), 0, 90). '...' : htmlspecialchars_decode($post['body']) ?></p>
+                            </div>
                             <div class="meta-info-container">
-                                <img src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                                <p>Lana steinler</p>
-                                <p>18 Jan 2024</p>
+                            <img loading="lazy" src="<?= !empty($post['author_image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['author_image'] : SITE_PATH . "assets/imgs/profile/placeholder-general-img.png" ?>" alt="<?= $post['author_image']?>">
+                                <p><?= $post['author'] ?></p>
+                                <p><?=  date('d-m-Y', strtotime($post['created_at'])) ?></p>
                             </div>
                         </figcaption>
                     </figure>
@@ -141,3 +120,4 @@ $postSlides = $posts->getAll("LIMIT 5");
 
 
 <?php include_once "inc/footer.html.php"; ?>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis modi qui incidunt ex? Deleniti, autem in hic ipsum adipisci eveniet quo esse, voluptas amet praesentium ab, sequi beatae illum sit.

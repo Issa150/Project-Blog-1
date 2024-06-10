@@ -64,51 +64,19 @@ tinymce.init({
         'bold italic backcolor | alignleft aligncenter ' +
         'alignright alignjustify | bullist numlist outdent indent | ' +
         'removeformat | help'
-    /*  
-    menubar: 'favs file edit view insert format',
-    plugins: 'image link media table code lists fullscreen',
-    toolbar: 'undo redo | formatselect | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image media | code',
-        
-        image_title: true,
-        automatic_uploads: true,
-        images_upload_url: 'postAcceptor.php',
-        images_upload_base_path: '/imageDir',
-        file_picker_callback: function (cb, value, meta) {
-            var input = document.createElement('input');
-            input.setAttribute('type', 'file');
-            input.setAttribute('accept', 'image/*');
-
-            input.onchange = function () {
-                var file = this.files[0];
-
-                var reader = new FileReader();
-                reader.onload = function () {
-                    var id = 'blobid' + (new Date()).getTime();
-                    var blobCache = tinymce.activeEditor.editorUpload.blobCache;
-                    var blobInfo = blobCache.create(id, file, reader.result);
-                    blobCache.add(blobInfo);
-
-                    cb(blobInfo.blobUri(), { title: file.name });
-                };
-                reader.readAsDataURL(file);
-            };
-
-            input.click();
-        }
-    */
 });
 
 ////////////////////////////////////////////////
-//          Active Menu detection //
-let links = document.querySelectorAll("nav ul:first-child a");
-let pageActive = window.location.href;
-// Stockage localisation dans une variable
-for (let i = 0; i < links.length; i++) {
-    // On boucle sur le tableau "links" qui contient les "a"    
-    if (pageActive.includes(links[i].href)) {        // On vérifie si la localisation de la page contient le lien sur lequel on clique // si true        
-        links[i].classList.add("active"); // Ajout de la classe "actuel"    
-    }
-}
+// //          Active Menu detection //
+// let links = document.querySelectorAll("nav ul:first-child a");
+// let pageActive = window.location.href;
+// // Stockage localisation dans une variable
+// for (let i = 0; i < links.length; i++) {
+//     // On boucle sur le tableau "links" qui contient les "a"    
+//     if (pageActive.includes(links[i].href)) {        // On vérifie si la localisation de la page contient le lien sur lequel on clique // si true        
+//         links[i].classList.add("active"); // Ajout de la classe "actuel"    
+//     }
+// }
 
 ////////////////////////////////////////////////
 //         dialog /modal/Form handling/
@@ -142,14 +110,14 @@ document.addEventListener("click", (e) => {
 // })
 
 ////
-const openModalBtnLink = document.querySelectorAll(".btn-link");
-openModalBtnLink.forEach(btn => {
-    btn.addEventListener("click", function (event) {
-        event.preventDefault();
-        const url = this.getAttribute("href");
-        history.pushState({}, "", url);
-        // Now we can open our modal
-        modal.style.display = "block";
-        document.body.style.overflow = "hidden";
-    })
-})
+// const openModalBtnLink = document.querySelectorAll(".btn-link");
+// openModalBtnLink.forEach(btn => {
+//     btn.addEventListener("click", function (event) {
+//         event.preventDefault();
+//         const url = this.getAttribute("href");
+//         history.pushState({}, "", url);
+//         // Now we can open our modal
+//         modal.style.display = "block";
+//         document.body.style.overflow = "hidden";
+//     })
+// })

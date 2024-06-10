@@ -12,17 +12,17 @@ if (isset($_GET['logout'])) {
         <a href="<?= SITE_PATH ?>"><h2 class="logo">IdeaPedia</h2></a>
         <!-- <img class="logo" src="<?//= SITE_PATH ?>assets/imgs/Logo.png" alt=""> -->
         <ul class="responsive-nav">
-            <li><a href="<?= SITE_PATH ?>" class="active">Home</a></li>
+            <li><a href="<?= SITE_PATH ?>">Home</a></li>
             <li>
                 <a href="#">Type of articles<i class="fa-solid fa-angle-down"></i></a>
                 <ul>
                     <div>
-                        <li><a href="<?= SITE_PATH ?>pages/profile.php"> Tutorials</a></li>
-                        <li><a href=""> Lists</a></li>
+                        <li><a href="<?= SITE_PATH ?>pages/flow.php?all=1"> Tutorials</a></li>
+                        <li><a href="<?= SITE_PATH ?>pages/flow.php?all=2"> Lists</a></li>
                     </div>
                 </ul>
             </li>
-            <li>
+            <!-- <li>
                 <a href="#">Categories<i class="fa-solid fa-angle-down"></i></a>
                 <ul>
                     <div>
@@ -38,7 +38,7 @@ if (isset($_GET['logout'])) {
                         <li><a href="">Bien-être et qualité de vie</a></li>
                     </div>
                 </ul>
-            </li>
+            </li> -->
         </ul>
 
 
@@ -53,9 +53,9 @@ if (isset($_GET['logout'])) {
                     <ul>
                         <div>
                             <li><a href="<?= SITE_PATH ?>pages/account.php?profile"><i class="fa-solid fa-house-chimney-user"></i> Profile</a></li>
-                            <li><a href="<?= SITE_PATH ?>pages/account.php?user_info"><i class="fa-regular fa-user"></i> user info</a></li>
+                            <!-- <li><a href="<?php //= SITE_PATH ?>pages/account.php?user_info"><i class="fa-regular fa-user"></i> user info</a></li> -->
                             <li><a href="<?= SITE_PATH ?>admin/dashboard.php"><i class="fa-solid fa-briefcase"></i> Backoffice</a></li>
-                            <li><a href=""><i class="fa-regular fa-heart"></i> Favorites</a></li>
+                            <!-- <li><a href=""><i class="fa-regular fa-heart"></i> Favorites</a></li> -->
                             <li><a href="<?= SITE_PATH ?>pages/account.php?account_setting"><i class="fa-solid fa-id-card"></i>Account setting</a></li>
                             <li><a href="?logout"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
                         </div>

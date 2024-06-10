@@ -27,31 +27,14 @@ $allThematics = $thematics->getAll();
     <!-- ------------------ -->
     <div class="control_bar">
         <?php if ($_SESSION['current_user']['role'] == "owner") { ?>
-            <button class="btn openDialog" id="open-modal">Create new <i class="fa-regular fa-square-plus"></i></button>
+            <!-- <button class="btn openDialog" id="open-modal">Create new <i class="fa-regular fa-square-plus"></i></button> -->
+            <a href="<?= SITE_PATH ?>admin/dashboard.php?add_theme" class="btn openDialog" id="open-modal">Create new <i class="fa-regular fa-square-plus"></i></a>
         <?php } ?>
 
-        <div id="modal">
+        <!-- <div id="modal"> -->
 
-            <form action="" method="post" id="editProfileform" enctype='multipart/form-data'>
-                <h2>Add new Thematic</h2>
-                <fieldset class="grid-col-6">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title" value="">
-                </fieldset>
-
-                <fieldset class="grid-col-6">
-                    <label for="description">Description:</label>
-                    <input type="text" name="description" id="description" value="">
-                </fieldset>
-
-                <div class="grid-full-width">
-                    <button id="cancelModal" formmethod="dialog">Cancel</button>
-                    <!-- <button type="submit">Publish</button> -->
-                    <input class="btn btn-success" type="submit" name="formType" value="Publish the theme">
-                </div>
-
-            </form>
-        </div>
+            
+        <!-- </div> -->
         <div class="meta-statistic">
 
             <dl>
@@ -59,33 +42,49 @@ $allThematics = $thematics->getAll();
                 <dd><?= count($allThematics)  ?></dd>
             </dl>
             <?php if ($_SESSION['current_user']['role'] != "owner") { ?>
-                <span>The themes are selected to align with the website's policies and objectives, ensuring content consistency</span>
+                <span class="alert-msg">The themes are selected to align with the website's policies and objectives, ensuring content consistency</span>
             <?php } ?>
         </div>
     </div>
 
     <div class="posts_container">
 
-        <table>
-            <thead>
-                <tr>
-                    <th class="post-title">Title</th>
-                    <th>Description</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
+        
+        <!-- // -->
 
-            <tbody>
-                <?php foreach ($allThematics as $thematic) : ?>
-                    <tr>
-                        <td><?= $thematic['title'] ?></td>
-                        <td><?= $thematic['description'] ?></td>
-                        <td><?= $general_class->counter('posts', 'thematic_id', $thematic['id'], $_SESSION['current_user']['id'])["COUNT(*)"]; ?></td>
-                        <!-- <td><? //= date('Y-m-d', strtotime($post['created_at'])) 
-                                    ?></td> -->
-                    </tr>
-                <?php endforeach ?>
-            </tbody>
-        </table>
+        <div class="table table-thematics">
+            <div class="grid-row">
+                <div class="header">Title</div>
+                <div class="header">Description</div>
+                <div class="header">Total</div>
+            </div>
+            <?php if (count($allCategories) == 0) { ?>
+                <p class="empty">No categories created yet 🫤</p>
+
+                <?php } else {
+                foreach ($allThematics as $thematic) { ?>
+                    <div class="grid-row">
+                        <!-- Action btns -->
+                        <div class="btns-container">
+                            <a href="<?= SITE_PATH ?>admin/dashboard.php?update_theme=<?= $thematic['id'] ?>" class="btn btn-link success">Modifier</a>
+                            <a href="<?= SITE_PATH ?>admin/dashboard.php?delete_theme=<?= $thematic['id'] ?>" class="btn btn-link delete">Suprimer</a>
+                        </div>
+                        <!-- Cells -->
+                        <div class="grid-cell">
+                            <?= (strlen($thematic['title']) > 40) ? substr($thematic['title'], 0, 40) . '...' : $thematic['title'] ?>
+                        </div>
+
+                        <div class="grid-cell">
+                            <?= $thematic['description'] ?>
+                        </div>
+
+                        <div class="grid-cell">
+                            <?= $general_class->counter('posts', 'thematic_id', $thematic['id'], $_SESSION['current_user']['id'])["COUNT(*)"] ?>
+                        </div>
+
+                    </div>
+            <?php }
+            } ?>
+        </div>
     </div>
 </div>

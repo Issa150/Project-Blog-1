@@ -25,25 +25,30 @@ include_once "../inc/components/nav.php";
 // in this page everithing about the Post should be acceesible  except Adding comments!!!!
 $id_post = $_GET['id'];
 $commentsData = $comments->getCommentsByPostId($id_post);
-$post = $postClassvar->getSingle($id_post);
-//
+$post = $postClassvar->getSingleJoin($id_post);
+
 
 
 // $post = $postClassvar->getSingle(5);
 
-// dump($post);
-// die;
+
 // when good content exist, remove this initiation from DB🔽🔽🔽🔽🔽
 // $post = $postClassvar->getSingle('5');
-
-if (!empty($_POST)) {
-    $post_id = $id_post;
-    // $post_id = 5;
-    $user_id = $_SESSION['current_user']['id'];
-    $comment_text = $_POST['comment'];
-    echo "post id: $post_id, user id: $user_id, comment: $comment_text";
-    $comments->insertComment($post_id, $user_id, $comment_text);
-    header('Location:' . SITE_PATH . 'pages/post.php?id=' . $id_post);
+$commentErr = "";
+if (isset($_SESSION['current_user'])) {
+    if (!empty($_POST)) {
+        $post_id = $id_post;
+        // $post_id = 5;
+        $user_id = $_SESSION['current_user']['id'];
+        $comment_text = $_POST['comment'];
+        if (empty($comment_text) && strlen($comment_text) < 2) {
+            $commentErr = "Comment can not be empty!";
+        } else {
+            // echo "post id: $post_id, user id: $user_id, comment: $comment_text";
+            $comments->insertComment($post_id, $user_id, $comment_text);
+            header('Location:' . SITE_PATH . 'pages/post.php?id=' . $id_post);
+        }
+    }
 }
 // $commentsData = $comments->getCommentsByPostId($post['id']);
 
@@ -59,7 +64,7 @@ if (!empty($_POST)) {
             <div class="meta-info-container">
                 <img src="<?= !empty($post['image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['image'] : SITE_PATH . "assets/imgs/profile/placeholder-man-img.jpg" ?>" alt="Profile-author">
                 <p><?= $post['username'] ?></p>
-                <i class="fa-solid fa-bookmark"></i>
+                <!-- <i class="fa-solid fa-bookmark"></i> -->
             </div>
             <h1><?= $post['title'] ?></h1>
             <p><?= htmlspecialchars_decode($post['body']) ?></p>
@@ -79,6 +84,7 @@ if (!empty($_POST)) {
                     <div class="new-comment">
                         <form action="" method="post">
                             <textarea name="comment" id="" placeholder="please write your opinion..."></textarea>
+                            <p class="alert-msg"><?= $commentErr ? $commentErr : "" ?></p>
                             <button>Submit</button>
                         </form>
 

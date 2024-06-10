@@ -3,7 +3,7 @@ include_once "../inc/session_security.php";
 include_once "../inc/function.php";
 
 ///////////::
-
+include_once "../classes/Posts_class.php";
 
 
 $title = "flow";
@@ -16,30 +16,39 @@ include_once "../inc/components/nav.php";
 // if (!isset($_SESSION['current_user'])) {
 //     header("Location: " . SITE_PATH . "pages/connection/login.php");
 // }
-
+$postsClass = new Posts();
+if(isset($_GET['all'])){
+    $id_thematic = $_GET['all'];
+    $postFlow = $postsClass->getAllJoin($id_thematic, 'ORDER BY id DESC');
+}
 ?>
 <main>
     <section class="container">
         <div class="title-tool">
-            <h2>Recent blog posts</h2>
+            <h2>Recent blog <?php 
+            if($id_thematic == 1){
+                echo 'tutorials';
+            }elseif($id_thematic == 2){
+                echo 'tips';
+            } ?></h2>
         </div>
         <div class="posts-row">
 
             <?php if (isset($_GET['all'])) {
 
 
-                for ($x = 1; $x <= 9; $x++) { ?>
-                    <a href="<?= SITE_PATH ?>pages/post.php?id=<?php //= $var['id'] 
-                                                                ?>">
+                foreach ($postFlow as $post) { ?>
+                    <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id']?>">
                         <figure class="card-main">
-                            <img src="../assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
+                            <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover']?>">
                             <figcaption>
-                                <h3>Building you API stack</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi, aliquam quis culpa quod earum molestiae! Corporis beatae laboriosam suscipit nesciunt illum autem optio a nostrum.</p>
+                                <h3><?= (strlen(htmlspecialchars_decode($post['title'])) > 33) ? substr(htmlspecialchars_decode($post['title']), 0, 33). '...' : htmlspecialchars_decode($post['title']) ?></h3>
+                                <p><?= (strlen(htmlspecialchars_decode($post['body'])) > 160) ? substr(htmlspecialchars_decode($post['body']), 0, 160). '...' : htmlspecialchars_decode($post['body']) ?></p>
+                                
                                 <div class="meta-info-container">
-                                    <img src="../assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                                    <p>Lana steinler</p>
-                                    <p>18 Jan 2024</p>
+                                    <img loading="lazy" src="<?= !empty($post['author_image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['author_image'] : SITE_PATH . "assets/imgs/profile/placeholder-general-img.png" ?>" alt="<?= $post['author_image']?>">
+                                    <p><?= $post['author'] ?></p>
+                                    <p><?=  date('d-m-Y', strtotime($post['created_at'])) ?></p>
                                 </div>
                             </figcaption>
                         </figure>

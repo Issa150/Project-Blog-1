@@ -1,6 +1,9 @@
 <?php
 include_once "../../inc/process/signup.process.php";
 
+if (isset($_SESSION['current_user'])) {
+    header("Location: " . SITE_PATH);
+}
 $title = "signup";
 include_once "../../inc/header.html.php"
 ?>

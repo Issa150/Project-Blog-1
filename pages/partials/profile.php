@@ -1,55 +1,62 @@
+<?php
+include_once "../classes/Posts_class.php";
+$postsClass = new Posts();
+$postsTutorials = $postsClass->getAllpostOfUser($_SESSION['current_user']['id'],1);
+$postsTips = $postsClass->getAllpostOfUser($_SESSION['current_user']['id'],2);
+?>
 <section>
-        <div class="title-tool">
-            <h2>My tutorials:</h2>
-            <!-- <a href="<?php //= SITE_PATH ?>pages/flow.php?all=tutorials">See all</a> -->
-        </div>
-        <div class="posts-row">
-            <?php for ($x = 0; $x < 7; $x++) { ?>
-                <!-- <a href="<?php //= SITE_PATH ?>pages/post.php?id=<?php //= $var['id'] ?>"> -->
-                    <!-- <article> -->
-                        <figure class="card-main">
-                            <img src="../assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                            <figcaption>
-                                <h3>Building you API stack</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi, aliquam quis culpa quod earum molestiae! Corporis beatae laboriosam suscipit nesciunt illum autem optio a nostrum.</p>
-                                <div class="meta-info-container">
-                                    <img src="../assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                                    <p>Lana steinler</p>
-                                    <p>18 Jan 2024</p>
-                                </div>
-                            </figcaption>
-                        </figure>
-                    <!-- </article> -->
-                <!-- </a> -->
-            <?php } ?>
-        </div>
-    </section>
-    <!-- -------------------------------------------------------------------------- -->
-    <section >
-        <div class="title-tool">
-            <h2>My tips...</h2>
-            <!-- <a href="<?php //= SITE_PATH ?>pages/flow.php?all=tips">See all</a> -->
-        </div>
-        <div class="posts-row container-list">
-            <?php for ($x = 0; $x < 6; $x++) { ?>
-                <a href="<?= SITE_PATH ?>pages/post.php?id=<?php //= $var['id'] ?>">
-                    <figure class="card-side-content">
-                        <img src="../assets/imgs/kaylah-matthews-6e5hgWV2DAo-unsplash.jpg" alt="Post image">
-                        <figcaption>
-                            <h3>Top 10 Ergonomic chair </h3>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti modi nisi hic voluptate commodi... </p>
-                            <div class="meta-info-container">
-                                <img src="../assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author">
-                                <p>Lana steinler</p>
-                                <p>18 Jan 2024</p>
-                            </div>
-                        </figcaption>
-                    </figure>
-                </a>
+    <div class="title-tool">
+        <h2>My tutorials:</h2>
+        <!-- <a href="<?php //= SITE_PATH 
+                        ?>pages/flow.php?all=tutorials">See all</a> -->
+    </div>
+    <div class="posts-row profile">
+        <?php foreach ($postsTutorials as $post) { ?>
+            <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id']?>">
+            
+            <figure class="card-main">
+            <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover']?>">
+                <figcaption>
+                    <h3><?= (strlen(htmlspecialchars_decode($post['title'])) > 33) ? substr(htmlspecialchars_decode($post['title']), 0, 33). '...' : htmlspecialchars_decode($post['title']) ?></h3>
+                    <p><?= (strlen(htmlspecialchars_decode($post['body'])) > 40) ? substr(htmlspecialchars_decode($post['body']), 0, 40). '...' : htmlspecialchars_decode($post['body']) ?></p></p>
+                    <div class="meta-info-container">
+                        <img loading="lazy" src="<?= !empty($post['author_image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['author_image'] : SITE_PATH . "assets/imgs/profile/placeholder-general-img.png" ?>" alt="<?= $post['author_image']?>">
+                        <p><?=$post['author'] ?></p>
+                        <p><?=  date('d-m-Y', strtotime($post['created_at'])) ?></p>
+                    </div>
+                </figcaption>
+            </figure>
+            </a>
+        <?php } ?>
+    </div>
+</section>
+<!-- -------------------------------------------------------------------------- -->
+<section>
+    <div class="title-tool">
+        <h2>My tips...</h2>
+        <!-- <a href="<?php //= SITE_PATH 
+                        ?>pages/flow.php?all=tips">See all</a> -->
+    </div>
+    <div class="posts-row container-list">
+        <?php foreach ($postsTips as $post) { ?>
+            <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id']?>">
+                <figure class="card-side-content">
+                <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover']?>">
+                    <figcaption>
+                        <h3><?= (strlen(htmlspecialchars_decode($post['title'])) > 33) ? substr(htmlspecialchars_decode($post['title']), 0, 33). '...' : htmlspecialchars_decode($post['title']) ?></h3>
+                        <p><?= (strlen(htmlspecialchars_decode($post['body'])) > 40) ? substr(htmlspecialchars_decode($post['body']), 0, 40). '...' : htmlspecialchars_decode($post['body']) ?></p></p>
+                        <div class="meta-info-container">
+                        <img loading="lazy" src="<?= !empty($post['author_image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['author_image'] : SITE_PATH . "assets/imgs/profile/placeholder-general-img.png" ?>" alt="<?= $post['author_image']?>">
+                        <p><?=$post['author'] ?></p>
+                        <p><?=  date('d-m-Y', strtotime($post['created_at'])) ?></p>
+                        </div>
+                    </figcaption>
+                </figure>
+            </a>
 
-            <?php } ?>
+        <?php } ?>
 
 
 
-        </div>
-    </section>
+    </div>
+</section>

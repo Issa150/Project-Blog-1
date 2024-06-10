@@ -1,6 +1,9 @@
 <?php
 include_once "../../inc/process/login.process.php";
 
+if (isset($_SESSION['current_user'])) {
+    header("Location: " . SITE_PATH);
+}
 
 $title = "login";
 include_once "../../inc/header.html.php";

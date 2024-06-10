@@ -2,7 +2,6 @@
 @import "./base/Reset";
 @import "./components/Cards";
 
-
 @import "./partials/Nav";
 
 header {
@@ -13,12 +12,15 @@ header {
     .swiper-slide {
       text-align: center;
       font-size: 18px;
-      background: #EEEEEE;
+      background: #eeeeee;
       display: flex;
       justify-content: center;
       align-items: flex-end;
 
       position: relative;
+
+      //my code
+      width: 100% !important;
 
       img {
         position: absolute;
@@ -35,14 +37,18 @@ header {
         text-align: left;
         padding: 3em 1em;
         // background: linear-gradient(to top, rgba(0, 0, 0, 0.488), rgba(0, 0, 0, 0.307),transparent);
-        background: linear-gradient(to top, rgba(255, 255, 255, 0.788), rgba(255, 255, 255, 0.607), transparent);
+        background: linear-gradient(
+          to top,
+          rgba(255, 255, 255, 0.788),
+          rgba(255, 255, 255, 0.607),
+          transparent
+        );
         // background: #ffffff47;
         backdrop-filter: blur(5px);
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
         // max-width: 100vw;
         width: 100vw;
         margin-left: calc(-50vw + 50%);
-
       }
     }
 
@@ -91,15 +97,19 @@ header {
       }
     }
   }
-}
 
+  @media (max-width:800px) {
+    .swiper{
+      height: 50vh;
+    }
+  }
+}
 
 main {
   padding-bottom: 3em;
 
   section {
-
-    .title-tool{
+    .title-tool {
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -108,34 +118,47 @@ main {
         font-size: 2rem;
         margin-block: 1em;
         border-bottom: 3px solid grey;
-        padding-bottom: .6em;
+        padding-bottom: 0.6em;
         border-spacing: 10px 10px;
       }
 
-      a{
+      a {
         font-weight: bolder;
         font-size: 1.2rem;
       }
-
     }
 
+    .posts-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2em;
 
-    &>div {
+      @include card_full_img();
+      @include card();
 
-      &.posts-row {
+      &.container-list {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.2em;
+        grid-template-columns: repeat(2, 1fr);
+        @include card_side_content();
 
-        @include card_full_img();
-        @include card();
 
-        &.container-list {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          @include card_side_content();
-        }
+
       }
+    }
+  }
+  @media (max-width:600px) {
+    section{
+      .posts-row{
+        grid-template-columns: 1fr !important;
+        padding-inline: 1.5em
+      }
+    }
+  }
+
+  @media (max-width:700px) {
+    .posts-row.container-list{
+      grid-template-columns: 1fr !important;
+      padding-inline: 2.2em
     }
   }
 }

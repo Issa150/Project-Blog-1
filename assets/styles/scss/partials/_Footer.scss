@@ -26,10 +26,16 @@ footer {
 @media (max-width: 800px) {
   footer {
     .container {
-      ul:nth-child(1),
-      ul:nth-child(3),
-      ul:nth-child(4) {
-        display: none;
+      // ul:nth-child(1),
+      // ul:nth-child(3),
+      // ul:nth-child(4) {
+      //   display: none;
+      // }
+
+      flex-direction: column;
+      align-items: center;
+      ul{
+        text-align: center;
       }
     }
   }

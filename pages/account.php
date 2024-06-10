@@ -29,9 +29,9 @@ if (!isset($_SESSION['current_user'])) {
         <ul>
             <li><a class="<?= (isset($_GET['profile']) || empty($_GET)) ? "active" : ""?>" href="<?= SITE_PATH ?>pages/account.php?profile"><i class="fa-solid fa-house-chimney-user"></i>Profile</a></li>
             <li><a class="<?= (isset($_GET['user_info']) || empty($_GET)) ? "active" : ""?>" href="<?= SITE_PATH ?>pages/account.php?user_info"><i class="fa-solid fa-user-pen"></i>User info</a></li>
-            <li><a class="<?= isset($_GET['favorite']) ? "active" : ""?>" href="<?= SITE_PATH ?>pages/account.php?favorite"><i class="fa-solid fa-people-line"></i>Follows</a></li>
+            <!-- <li><a class="<?= isset($_GET['favorite']) ? "active" : ""?>" href="<?= SITE_PATH ?>pages/account.php?favorite"><i class="fa-solid fa-people-line"></i>Follows</a></li>
             <li><a class="<?= isset($_GET['watchlist']) ? "active" : ""?>" href="<?= SITE_PATH ?>pages/account.php?watchlist"><i class="fa-solid fa-bookmark"></i>Saved</a></li>
-            <li><a class="<?= isset($_GET['watchlist']) ? "active" : ""?>" href="<?= SITE_PATH ?>pages/account.php?watchlist"><i class="fa-solid fa-users-rectangle"></i>Groups</a></li>
+            <li><a class="<?= isset($_GET['watchlist']) ? "active" : ""?>" href="<?= SITE_PATH ?>pages/account.php?watchlist"><i class="fa-solid fa-users-rectangle"></i>Groups</a></li> -->
             <li><a class="<?= isset($_GET['account_setting']) ? "active" : ""?>" href="<?= SITE_PATH ?>pages/account.php?account_setting"><i class="fa-solid fa-id-card"></i>Account setting</a></li>
         </ul>
     </aside>

@@ -26,30 +26,13 @@ $allCategories = $categories->getAllMyCategories($_SESSION['current_user']['id']
 <div class="body-info">
 
     <div class="control_bar">
-        <button class="btn openDialog" id="open-modal">Create new <i class="fa-regular fa-square-plus"></i></button>
+        <!-- <button class="btn openDialog" id="open-modal">Create new <i class="fa-regular fa-square-plus"></i></button> -->
+        <a href="<?= SITE_PATH ?>admin/dashboard.php?add_category" class="btn openDialog" id="open-modal">Create new <i class="fa-regular fa-square-plus"></i></a>
 
-        <div id="modal">
+        <!-- <div id="modal"> -->
 
-            <form action="" method="post" id="editProfileform" enctype='multipart/form-data'>
-                <h2>Add new Categorie</h2>
-                <fieldset class="grid-col-6">
-                    <label for="title">Title:</label>
-                    <input type="text" name="title" id="title">
-                </fieldset>
 
-                <fieldset class="grid-col-6">
-                    <label for="description">Description:</label>
-                    <input type="text" name="description" id="description">
-                </fieldset>
-
-                <div class="grid-full-width">
-                    <button id="cancelModal" formmethod="dialog">Cancel</button>
-                    <!-- <button type="submit">Publish</button> -->
-                    <input class="btn btn-success" type="submit" name="formType" value="Publish the category">
-                </div>
-
-            </form>
-        </div>
+        <!-- </div> -->
         <div class="meta-statistic">
 
             <dl>
@@ -61,33 +44,40 @@ $allCategories = $categories->getAllMyCategories($_SESSION['current_user']['id']
 
     <div class="posts_container">
 
-        <table>
-            <thead>
-                <tr>
-                    <th class="post-title">Title</th>
-                    <th>Author</th>
-                    <th>Total</th>
-                </tr>
-            </thead>
+        <div class="table table-categories">
+            <div class="grid-row">
+                <div class="header">Title</div>
+                <div class="header">Author</div>
+                <div class="header">Total</div>
+            </div>
+            <?php if (count($allCategories) == 0) { ?>
+                <p class="empty">No categories created yet 🫤</p>
 
-            <tbody>
-                <?php
-                if (count($allCategories) == 0) { ?>
-                    <tr>
-                        <td colspan="3" class="empty">No categories created yet 🫤</td>
-                    </tr>
-                    
-                    <?php } else {
-                    foreach ($allCategories as $categorie) { ?>
-                        <tr>
-                            <td><?= $categorie['title'] ?></td>
-                            <td><?= $categorie['name'] ?></td>
-                            <td><?= $general_class->counterJoin_3( $categorie['id'], $_SESSION['current_user']['id'])["total"]; ?></td>
-                            
-                        </tr>
-                <?php }
-                } ?>
-            </tbody>
-        </table>
+                <?php } else {
+                foreach ($allCategories as $categorie) { ?>
+                    <div class="grid-row">
+                        <!-- Action btns -->
+                        <div class="btns-container">
+                            <a href="<?= SITE_PATH ?>admin/dashboard.php?update_category=<?= $categorie['id'] ?>" class="btn btn-link success">Modifier</a>
+                            <a href="<?= SITE_PATH ?>admin/dashboard.php?delete_category=<?= $categorie['id'] ?>" class="btn btn-link delete">Suprimer</a>
+                        </div>
+                        <!-- Cells -->
+                        <div class="grid-cell">
+                            <?= (strlen($categorie['title']) > 40) ? substr($categorie['title'], 0, 40) . '...' : $categorie['title'] ?>
+                        </div>
+
+                        <div class="grid-cell">
+                            <?= $categorie['name'] ?>
+                        </div>
+
+                        <div class="grid-cell">
+                            <?= $general_class->counterJoin_3($categorie['id'], $_SESSION['current_user']['id'])["total"]; ?>
+                        </div>
+
+                    </div>
+            <?php }
+            } ?>
+        </div>
+
     </div>
 </div>
