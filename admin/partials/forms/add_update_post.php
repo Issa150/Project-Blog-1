@@ -82,10 +82,10 @@ if (isset($_GET['update_post'])) {
         </div>
     </fieldset>
 
-    <fieldset class="grid-col-6">
+    <!-- <fieldset class="grid-col-6">
         <label for="draft"><i class="fa-solid fa-clock-rotate-left"></i> Save it as draft</label>
-        <input type="radio" name="draft" <?= (isset($post) && $post['published'] == 0) ? "checked" : "" ?> id="draft">
-    </fieldset>
+        <input type="radio" name="draft" <?//= (isset($post) && $post['published'] == 0) ? "checked" : "" ?> id="draft">
+    </fieldset> -->
 
     <div class="grid-full-width">
         <a id="cancelModal" href="<?= SITE_PATH ?>admin/dashboard.php?posts" class="btn">Cancel</a>
