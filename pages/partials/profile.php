@@ -11,7 +11,11 @@ $postsTips = $postsClass->getAllpostOfUser($_SESSION['current_user']['id'],2);
                         ?>pages/flow.php?all=tutorials">See all</a> -->
     </div>
     <div class="posts-row profile">
-        <?php foreach ($postsTutorials as $post) { ?>
+        <?php 
+        if(count($postsTutorials) == 0){
+            echo "<p>No Post made in type of tutorial yet!</p>";
+        }else{
+        foreach ($postsTutorials as $post) { ?>
             <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id']?>">
             
             <figure class="card-main">
@@ -27,7 +31,7 @@ $postsTips = $postsClass->getAllpostOfUser($_SESSION['current_user']['id'],2);
                 </figcaption>
             </figure>
             </a>
-        <?php } ?>
+        <?php }} ?>
     </div>
 </section>
 <!-- -------------------------------------------------------------------------- -->
@@ -38,7 +42,11 @@ $postsTips = $postsClass->getAllpostOfUser($_SESSION['current_user']['id'],2);
                         ?>pages/flow.php?all=tips">See all</a> -->
     </div>
     <div class="posts-row container-list">
-        <?php foreach ($postsTips as $post) { ?>
+        <?php 
+        if(count($postsTips) == 0){
+            echo "<p>No Post made in type of tips yet!</p>";
+        }else{
+            foreach ($postsTips as $post) { ?>
             <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id']?>">
                 <figure class="card-side-content">
                 <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover']?>">
@@ -54,7 +62,7 @@ $postsTips = $postsClass->getAllpostOfUser($_SESSION['current_user']['id'],2);
                 </figure>
             </a>
 
-        <?php } ?>
+        <?php }} ?>
 
 
 

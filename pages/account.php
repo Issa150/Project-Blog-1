@@ -8,7 +8,8 @@ include_once "../classes/Update_user_info.php";
 include_once "../inc/process/profile_user.process.php";
 
 
-
+$metaTitle ="Account";
+$metaDescription ="Privet page";
 $title = "profile";
 include_once "../inc/header.html.php";
 include_once "../inc/components/nav.php";

@@ -1,6 +1,6 @@
 <?php
 // Afficher Toutes les articles
-$allPosts = $posts->getAllPostsInfosOffice($_SESSION['current_user']['id']);
+$allPosts = $posts->getAllPostsInsight();
 
 // dump($allPosts);
 // die;
@@ -58,7 +58,7 @@ $allPosts = $posts->getAllPostsInfosOffice($_SESSION['current_user']['id']);
                 <div class="grid-row">
                     <!-- Action btns -->
                     <div class="btns-container">
-                        <a href="<?=SITE_PATH?>admin/dashboard.php?update_post=<?= $post['id']?>" class="btn btn-link success">Modifier</a>
+                        <!-- <a href="<?//=SITE_PATH?>admin/dashboard.php?update_post=<?//= $post['id']?>" class="btn btn-link success">Modifier</a> -->
                         <a href="<?= SITE_PATH ?>admin/dashboard.php?delete_post=<?= $post['id']?>" class="btn btn-link delete">Suprimer</a>
                     </div>
                     <!-- Cells -->

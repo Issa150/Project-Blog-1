@@ -58,7 +58,7 @@ $allThematics = $thematics->getAll();
                 <div class="header">Description</div>
                 <div class="header">Total</div>
             </div>
-            <?php if (count($allCategories) == 0) { ?>
+            <?php if (count($allThematics) == 0) { ?>
                 <p class="empty">No categories created yet 🫤</p>
 
                 <?php } else {

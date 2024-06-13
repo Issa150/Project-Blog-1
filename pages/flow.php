@@ -6,9 +6,7 @@ include_once "../inc/function.php";
 include_once "../classes/Posts_class.php";
 
 
-$title = "flow";
-include_once "../inc/header.html.php";
-include_once "../inc/components/nav.php";
+
 /////////////////////////////////////////  //
 
 // ************  Login check  ************//
@@ -19,8 +17,16 @@ include_once "../inc/components/nav.php";
 $postsClass = new Posts();
 if(isset($_GET['all'])){
     $id_thematic = $_GET['all'];
-    $postFlow = $postsClass->getAllJoin($id_thematic, 'ORDER BY id DESC');
+    $postFlow = $postsClass->getAllJoin($id_thematic,1, 'ORDER BY id DESC');
 }
+
+/////////////////////:
+$metaTitle = "Post feeds about" . $id_thematic == 1 ? "tutorials" : "tips";
+$metaDescription = "Explore posts about tutorials and tips in idea based blog platforֻm IdeaPedia.";
+// css file name finder:
+$title = "flow";
+include_once "../inc/header.html.php";
+include_once "../inc/components/nav.php";
 ?>
 <main>
     <section class="container">

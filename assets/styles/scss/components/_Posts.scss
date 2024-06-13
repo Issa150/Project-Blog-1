@@ -35,7 +35,8 @@
 }
 
 .posts_container {
-
+    max-height: 90vh;
+    overflow-y: scroll;
     // Grid Table 
     // .grid-row {
 

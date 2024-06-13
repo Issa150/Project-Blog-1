@@ -59,11 +59,18 @@ tinymce.init({
     selector: '#mytextarea',
     height: 250,
     menubar: false,
-    plugins: 'formatselect',
+
+    plugins: 'formatselect textcolor', // added textcolor plugin
     toolbar: 'undo redo | blocks | ' +
-        'bold italic backcolor | alignleft aligncenter ' +
-        'alignright alignjustify | bullist numlist outdent indent | ' +
-        'removeformat | help'
+    'bold italic backcolor | alignleft aligncenter '
+       + 'alignright alignjustify | bullist numlist outdent indent | '
+       + 'emoveformat | forecolor | help', // added forecolor button
+    formats: {
+        // Remove H1 and H2 from the format list
+        heading: { block: 'h4,h5,h6,p' }
+    },
+    invalid_elements: 'h1,h2,h3',
+    extended_valid_elements: 'h4,h5,h6,p'
 });
 
 ////////////////////////////////////////////////

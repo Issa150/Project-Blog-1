@@ -1,5 +1,5 @@
 @mixin btn($clr_btn) {
-  background: linear-gradient(to bottom, $clr_btn);
+  background: linear-gradient(to top, $clr_btn);
 }
 
 @mixin slidingMenu() {
@@ -62,6 +62,7 @@
   }
 }
 
+// used in profile page
 @mixin form_1() {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -354,7 +355,7 @@
       margin-right: 1em;
     }
 
-    &:has(input[type="radio"]) {
+    &:has(input[type="checkbox"]) {
       text-align: left;
 
       label {

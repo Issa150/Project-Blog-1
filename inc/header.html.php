@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="<?= isset($metaDescription) ? $metaDescription : "Privet page" ?>">
     <link rel="icon" type="image/x-icon" href="<?= SITE_PATH?>assets/imgs/favicon.png">
     <!-- <base href="<?//=SITE_PATH?>"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -17,7 +18,8 @@
         }
     }
     ?>
-    <title><?= $title ? $title : "Blog_1"?></title>
+    <!-- <title><?//= $title ? $title : "Blog_1"?></title> -->
+    <title><?= $metaTitle ? $metaTitle : "IdeaPedia"?></title>
 </head>
 <body>
     

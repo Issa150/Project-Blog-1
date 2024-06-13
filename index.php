@@ -5,14 +5,19 @@ include_once "inc/process/index.process.php";
 // classes:
 include_once "classes/Posts_class.php";
 
+
+// //////////////////////////////////////
+$postsClass = new Posts();
+$postSlides = $postsClass->getAll(1, "ORDER BY id DESC LIMIT 5");
+$postsTutorials = $postsClass->getAllJoin(1, 1, "ORDER BY id DESC LIMIT 3");
+$postsTips = $postsClass->getAllJoin(2, 1, "ORDER BY id DESC LIMIT 6");
+
+//////////////////
+$metaTitle = "IdeaPdea home page";
+$metaDescription = "Explore IdeaPedia, a knowledge-sharing platform where users share tips, advice, and experiences on various topics. Search, learn, and share with a curious and engaged community.";
 $title = "home";
 include_once "inc/header.html.php";
 include_once "inc/components/nav.php";
-// //////////////////////////////////////
-$postsClass = new Posts();
-$postSlides = $postsClass->getAll("ORDER BY id DESC LIMIT 5");
-$postsTutorials = $postsClass->getAllJoin(1,"ORDER BY id DESC LIMIT 3");
-$postsTips = $postsClass->getAllJoin(2,"ORDER BY id DESC LIMIT 6");
 ?>
 
 <header>
@@ -22,12 +27,15 @@ $postsTips = $postsClass->getAllJoin(2,"ORDER BY id DESC LIMIT 6");
         <div class="swiper-wrapper">
 
             <?php foreach ($postSlides as $post) : ?>
+
                 <div class="swiper-slide">
                     <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="a woman cooking in the kitchen.">
                     <div class="content">
                         <div class="container">
-                            <h3><?= $post['title'] ?></h3>
-                            <p><?=  (strlen($post['body']) > 300) ? substr(htmlspecialchars_decode($post['body']), 0, 300) . '...' : htmlspecialchars_decode($post['body'])?></p>
+                            <a class="main-title-link" href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id'] ?>">
+                                <h3 class="main-title"><?= $post['title'] ?></h3>
+                            </a>
+                            <p><?= (strlen($post['body']) > 300) ? substr(htmlspecialchars_decode($post['body']), 0, 300) . '...' : htmlspecialchars_decode($post['body']) ?></p>
                         </div>
                     </div>
                 </div>
@@ -52,7 +60,7 @@ $postsTips = $postsClass->getAllJoin(2,"ORDER BY id DESC LIMIT 6");
 
 
 <main>
-    
+
     <section class="container">
         <div class="title-tool">
             <h2>Recent blog tutorials:</h2>
@@ -60,25 +68,26 @@ $postsTips = $postsClass->getAllJoin(2,"ORDER BY id DESC LIMIT 6");
         </div>
         <div class="posts-row">
             <?php foreach ($postsTutorials as $post) { ?>
-                <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id']?>">
+                <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id'] ?>">
                     <!-- <article> -->
-                        <figure class="card-main">
-                            <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover']?>">
-                            <figcaption>
-                                <div>
-                                    <h3><?= (strlen(htmlspecialchars_decode($post['title'])) > 33) ? substr(htmlspecialchars_decode($post['title']), 0, 33). '...' : htmlspecialchars_decode($post['title']) ?></h3>
-                                    <!-- <p><?//= htmlspecialchars_decode($post['body']) ?></p> -->
-                                    <p><?= (strlen(htmlspecialchars_decode($post['body'])) > 160) ? substr(htmlspecialchars_decode($post['body']), 0, 160). '...' : htmlspecialchars_decode($post['body']) ?></p>
-                                </div>
-                                
-                                <div class="meta-info-container">
-                                    <!-- <img loading="lazy" src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author"> -->
-                                    <img loading="lazy" src="<?= !empty($post['author_image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['author_image'] : SITE_PATH . "assets/imgs/profile/placeholder-general-img.png" ?>" alt="<?= $post['author_image']?>">
-                                    <p><?= $post['author'] ?></p>
-                                    <p class="date"><?=  date('d-m-Y', strtotime($post['created_at'])) ?></p>
-                                </div>
-                            </figcaption>
-                        </figure>
+                    <figure class="card-main">
+                        <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover'] ?>">
+                        <figcaption>
+                            <div>
+                                <h3><?= (strlen(htmlspecialchars_decode($post['title'])) > 33) ? substr(htmlspecialchars_decode($post['title']), 0, 33) . '...' : htmlspecialchars_decode($post['title']) ?></h3>
+                                <!-- <p><? //= htmlspecialchars_decode($post['body']) 
+                                        ?></p> -->
+                                <p><?= (strlen(htmlspecialchars_decode($post['body'])) > 160) ? substr(htmlspecialchars_decode($post['body']), 0, 160) . '...' : htmlspecialchars_decode($post['body']) ?></p>
+                            </div>
+
+                            <div class="meta-info-container">
+                                <!-- <img loading="lazy" src="assets/imgs/profile/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Profile-author"> -->
+                                <img loading="lazy" src="<?= !empty($post['author_image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['author_image'] : SITE_PATH . "assets/imgs/profile/placeholder-general-img.png" ?>" alt="<?= $post['author_image'] ?>">
+                                <p><?= $post['author'] ?></p>
+                                <p class="date"><?= date('d-m-Y', strtotime($post['created_at'])) ?></p>
+                            </div>
+                        </figcaption>
+                    </figure>
                     <!-- </article> -->
                 </a>
             <?php } ?>
@@ -92,18 +101,18 @@ $postsTips = $postsClass->getAllJoin(2,"ORDER BY id DESC LIMIT 6");
         </div>
         <div class="posts-row container-list">
             <?php foreach ($postsTips as $post) { ?>
-                <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id']?>">
+                <a href="<?= SITE_PATH ?>pages/post.php?id=<?= $post['id'] ?>">
                     <figure class="card-side-content">
-                    <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover']?>">
+                        <img loading="lazy" src="<?= !empty($post['image_cover']) ? SITE_PATH . "assets/imgs/posts/"  . $post['image_cover'] : SITE_PATH . "assets/imgs/initials/placeholder.png" ?>" alt="<?= $post['image_cover'] ?>">
                         <figcaption>
                             <div>
-                                <h3><?= (strlen(htmlspecialchars_decode($post['title'])) > 33) ? substr(htmlspecialchars_decode($post['title']), 0, 33). '...' : htmlspecialchars_decode($post['title']) ?></h3>
-                                <p><?= (strlen(htmlspecialchars_decode($post['body'])) > 90) ? substr(htmlspecialchars_decode($post['body']), 0, 90). '...' : htmlspecialchars_decode($post['body']) ?></p>
+                                <h3><?= (strlen(htmlspecialchars_decode($post['title'])) > 33) ? substr(htmlspecialchars_decode($post['title']), 0, 33) . '...' : htmlspecialchars_decode($post['title']) ?></h3>
+                                <p><?= (strlen(htmlspecialchars_decode($post['body'])) > 90) ? substr(htmlspecialchars_decode($post['body']), 0, 90) . '...' : htmlspecialchars_decode($post['body']) ?></p>
                             </div>
                             <div class="meta-info-container">
-                            <img loading="lazy" src="<?= !empty($post['author_image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['author_image'] : SITE_PATH . "assets/imgs/profile/placeholder-general-img.png" ?>" alt="<?= $post['author_image']?>">
+                                <img loading="lazy" src="<?= !empty($post['author_image']) ? SITE_PATH . "assets/imgs/profile/"  . $post['author_image'] : SITE_PATH . "assets/imgs/profile/placeholder-general-img.png" ?>" alt="<?= $post['author_image'] ?>">
                                 <p><?= $post['author'] ?></p>
-                                <p><?=  date('d-m-Y', strtotime($post['created_at'])) ?></p>
+                                <p><?= date('d-m-Y', strtotime($post['created_at'])) ?></p>
                             </div>
                         </figcaption>
                     </figure>
@@ -120,4 +129,3 @@ $postsTips = $postsClass->getAllJoin(2,"ORDER BY id DESC LIMIT 6");
 
 
 <?php include_once "inc/footer.html.php"; ?>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis modi qui incidunt ex? Deleniti, autem in hic ipsum adipisci eveniet quo esse, voluptas amet praesentium ab, sequi beatae illum sit.

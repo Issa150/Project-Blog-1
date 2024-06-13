@@ -21,6 +21,7 @@ $thematics = new Thematic();
 $categories = new Categorie();
 
 // ********* data eccessible for partials  ***********
+// Aficher les categories fait par Cette Utilisateur
 $allCategories = $categories->getAllMyCategories($_SESSION['current_user']['id']);
 // dump($allCategories);
 
@@ -171,7 +172,8 @@ elseif (!empty($_GET)) {
 }
 
 //*********  :: END Proccess  : ***********
-
+$metaTitle ="BackOffice";
+$metaDescription ="Administration page";
 $title = "dashboard";
 include_once "../inc/header.html.php";
 
@@ -191,7 +193,7 @@ include_once "../inc/header.html.php";
 
     <aside>
 
-        <img src="<?= SITE_PATH . 'assets/imgs/profile/' . ($_SESSION['current_user'] ? $_SESSION['current_user']['image'] : "placeholder-general-img.png") ?>" alt="">
+        <img src="<?= SITE_PATH . 'assets/imgs/profile/' . ($_SESSION['current_user']['image'] ? $_SESSION['current_user']['image'] : "placeholder-general-img.png") ?>" alt="">
         <div class="user-info">
             <h3><?= ucfirst($_SESSION['current_user']['name']) . " " . strtoupper($_SESSION['current_user']['lastName']) ?></h3>
             <span><?= $_SESSION['current_user']['city'] ?>,</span>
@@ -202,6 +204,9 @@ include_once "../inc/header.html.php";
             <li><a class="<?= (isset($_GET['posts']) || empty($_GET)) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?posts"><i class="fa-regular fa-newspaper"></i>Posts</a></li>
             <li><a class="<?= isset($_GET['thematics']) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?thematics"><i class="fa-solid fa-layer-group"></i>Themes</a></li>
             <li><a class="<?= isset($_GET['categories']) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?categories"><i class="fa-solid fa-rectangle-list"></i>Categories</a></li>
+            <?php if ($_SESSION['current_user']['role'] == "owner") {?>
+            <li><a class="<?= isset($_GET['publications_insight']) ? "active" : "" ?>" href="<?= SITE_PATH ?>admin/dashboard.php?publications_insight"><i class="fa-solid fa-rectangle-list"></i>Publications insight</a></li>
+            <?php }?>
 
         </ul>
     </aside>
@@ -223,7 +228,9 @@ include_once "../inc/header.html.php";
             include_once  "partials/thematics.php";
         } elseif (isset($_GET['categories'])) {
             include_once  "partials/categories.php";
-        } elseif (isset($_GET['update_post']) || isset($_GET['add_post'])) {
+        }elseif (isset($_GET['publications_insight'])) {
+            include_once  "partials/publications_insight.php";
+        }elseif (isset($_GET['update_post']) || isset($_GET['add_post'])) {
             include_once  "partials/forms/add_update_post.php";
         } elseif (isset($_GET['update_theme']) || isset($_GET['add_theme'])) {
             include_once  "partials/forms/add_update_theme.php";

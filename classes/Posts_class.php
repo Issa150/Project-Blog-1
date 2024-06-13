@@ -46,7 +46,8 @@ class Posts extends Database
                 FROM posts p
                 LEFT JOIN users u ON p.user_id = u.id
                 WHERE u.id = :id_user 
-                AND thematic_id = :thematic_id";
+                AND thematic_id = :thematic_id
+                ORDER BY id DESC";
         $stmt = $this->connection->prepare($sql);
         $stmt->execute([
             ':id_user' => $id_user,
@@ -55,25 +56,50 @@ class Posts extends Database
         $results = $stmt->fetchAll();
         return $results;
     }
-
-    public function getAll($param = "")
+    // slide
+    public function getAll($published, $param = "")
     {
-        $sql = "SELECT * FROM posts $param";
+        $sql = "SELECT * FROM posts WHERE published = :published $param";
         $stmt = $this->connection->prepare($sql);
-        $stmt->execute();
+        $stmt->execute([':published' => $published]);
         $results = $stmt->fetchAll();
         return $results;
     }
-
-    public function getAllJoin($thematic_id, $limit = "")
+    // home page feeds
+    public function getAllJoin($thematic_id, $published = 'NOT NULL', $limit = "")
     {
         $sql = "SELECT p.*, u.username AS author, u.image AS author_image 
                 FROM posts p
                 LEFT JOIN users u ON p.user_id = u.id
-                WHERE p.thematic_id = :thematic_id
+                WHERE p.thematic_id = :thematic_id AND published = :published 
                 $limit";
         $stmt = $this->connection->prepare($sql);
-        $stmt->execute([':thematic_id'=> $thematic_id]);
+        $stmt->execute(
+            [
+                ':thematic_id'=> $thematic_id,
+                ':published'=> $published
+        ]);
+        $results = $stmt->fetchAll();
+        return $results;
+    }
+
+    public function getAllPostsInsight()
+    {
+        $sql = "SELECT 
+                    p.id,p.title,
+                    u.name AS 'author',
+                    t.title AS 'thematic',
+                    GROUP_CONCAT(c.title SEPARATOR ', ') AS categories,
+                    p.created_at as 'date'
+                FROM posts p 
+                JOIN users u ON p.user_id = u.id
+                JOIN thematics t ON p.thematic_id = t.id
+                JOIN post_categories pc ON p.id = pc.post_id
+                LEFT JOIN categories c ON pc.category_id = c.id 
+                GROUP BY p.id,p.title, u.name, t.title, p.created_at
+                ORDER BY p.id DESC";
+        $stmt = $this->connection->prepare($sql);
+        $stmt->execute();
         $results = $stmt->fetchAll();
         return $results;
     }
@@ -104,7 +130,7 @@ class Posts extends Database
         $results = $stmt->fetchAll();
         return $results;
     }
-
+// unuseable
     public function getAllByJoin($sql)
     {
         $stmt = $this->connection->prepare($sql);

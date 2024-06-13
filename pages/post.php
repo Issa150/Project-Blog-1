@@ -13,9 +13,7 @@ $comments = new Comments();
 
 
 
-$title = "post";
-include_once "../inc/header.html.php";
-include_once "../inc/components/nav.php";
+
 /////////////////////////////////////////  //
 
 // ************  Login check  ************//
@@ -51,7 +49,11 @@ if (isset($_SESSION['current_user'])) {
     }
 }
 // $commentsData = $comments->getCommentsByPostId($post['id']);
-
+$metaTitle = $post['title'];
+$metaDescription = (strlen($post['body']) > 120) ? substr(htmlspecialchars_decode($post['body']), 0, 120) . '...' : htmlspecialchars_decode($post['body']);
+$title = "post";
+include_once "../inc/header.html.php";
+include_once "../inc/components/nav.php";
 
 ?>
 

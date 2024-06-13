@@ -23,7 +23,7 @@ if (isset($_GET['update_post'])) {
     </fieldset>
 
     <fieldset class="grid-col-6">
-        <label for="mytextarea">Body:</label>
+        <label for="mytextarea">Body: <span class="alert-msg">(Please do not select the H1,H2,H3)(the first 120 characters is your meta)</span></label>
         <textarea name="body" id="mytextarea" placeholder="Description..." cols="30" rows="10"> <?= isset($post['body']) ? $post['body'] : ""; ?></textarea>
 
     </fieldset>
@@ -82,10 +82,10 @@ if (isset($_GET['update_post'])) {
         </div>
     </fieldset>
 
-    <!-- <fieldset class="grid-col-6">
+    <fieldset class="grid-col-6">
         <label for="draft"><i class="fa-solid fa-clock-rotate-left"></i> Save it as draft</label>
-        <input type="radio" name="draft" <?//= (isset($post) && $post['published'] == 0) ? "checked" : "" ?> id="draft">
-    </fieldset> -->
+        <input type="checkbox" name="draft" <?= (isset($post) && $post['published'] == 0) ? "checked" : "" ?> id="draft">
+    </fieldset>
 
     <div class="grid-full-width">
         <a id="cancelModal" href="<?= SITE_PATH ?>admin/dashboard.php?posts" class="btn">Cancel</a>
