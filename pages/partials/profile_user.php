@@ -6,7 +6,7 @@
     <div class="head-info">
 
         <label for="profile-cover">
-            <img src="<?= SITE_PATH . "assets/imgs/banner/" . (!empty($getUser['profile_cover']) ? $getUser['profile_cover'] : "initial-banner.jpg") ?>" alt="">
+            <img src="<?= SITE_PATH . "assets/imgs/banner/" . (!empty($getUser['profile_cover']) ? $getUser['profile_cover'] : "pawel-czerwinski-7FqOISWr5V0-unsplash.jpg") ?>" alt="">
 
         </label>
 
