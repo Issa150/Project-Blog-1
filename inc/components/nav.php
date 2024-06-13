@@ -9,8 +9,8 @@ if (isset($_GET['logout'])) {
 <nav>
     <div class="container">
 
-        <a href="<?= SITE_PATH ?>"><h2 class="logo">IdeaPedia</h2></a>
-        <!-- <img class="logo" src="<?//= SITE_PATH ?>assets/imgs/Logo.png" alt=""> -->
+        <!-- <a href="<?//= SITE_PATH ?>"><h2 class="logo">IdeaPedia</h2></a> -->
+        <img class="logo" src="<?= SITE_PATH ?>assets/imgs/Logo.png" alt="Logo">
         <ul class="responsive-nav">
             <li><a href="<?= SITE_PATH ?>">Home</a></li>
             <li>

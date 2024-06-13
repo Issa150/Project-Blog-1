@@ -120,10 +120,8 @@ nav .container {
   justify-content: space-between;
 }
 nav .container .logo {
-  font-size: 1.7rem;
-  color: red;
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: yellow;
+  width: 100px;
+  height: 30px;
 }
 nav .container > ul {
   display: flex;
