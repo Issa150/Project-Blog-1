@@ -9,7 +9,6 @@ Welcome to **Idea Pedia**, a dynamic and modern blog application built to share 
 
 **Frontend:**
 - 🧱 HTML5, SCSS, JavaScript
-- 🎨 Bootstrap for responsive design
 - 🖱️ SwiperJS for interactive sliders
 - 📝 TinyMCE for rich text editing
 
@@ -62,7 +61,7 @@ The UI is sleek, responsive, and intuitive—designed to provide a seamless expe
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/idea-pedia.git
+git clone [https://github.com/yourusername/idea-pedia.git](https://github.com/Issa150/Project-Blog-1.git)
 
 # Set up your database and import the schema
 Inside the "DB" directory :
